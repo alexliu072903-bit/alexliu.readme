@@ -168,6 +168,12 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .about-entry--single { border-bottom: 1px solid var(--line); }
 .about-resume--compact { margin-top: clamp(3rem, 6vw, 4.5rem); }
 .about-resume--compact .about-entry { padding-block: 1rem; }
+.about-entry--brief h3 { font-size: 1rem; font-weight: 600; }
+.about-entry--brief > p { margin-top: .35rem; color: var(--muted); font-size: .9rem; }
+.about-skills { border-top: 1px solid var(--line); }
+.about-skills > div { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1rem; border-bottom: 1px solid var(--line); }
+.about-skills h3 { margin: 0; font-size: 1rem; font-weight: 650; }
+.about-skills p { max-width: 43rem; margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.65; }
 .writing-list { max-width: 48rem; margin-top: 3rem; padding-left: 1.25rem; }
 .lede { color: var(--muted); font-size: 1.15rem; }
 .eyeline { color: var(--muted); }
@@ -190,6 +196,7 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
   .readme-excerpt header { align-items: flex-start; flex-direction: column; gap: .25rem; }
   .about-facts > div, .writing-topics > div { grid-template-columns: 1fr; gap: .2rem; padding-block: .9rem; }
   .about-entry__top { align-items: flex-start; flex-direction: column; gap: .25rem; }
+  .about-skills > div { grid-template-columns: 1fr; gap: .2rem; padding-block: .9rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

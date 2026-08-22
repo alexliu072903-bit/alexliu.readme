@@ -5,45 +5,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="About — Alex Liu" pageClass="about-page">
   <section class="about-profile">
     <p class="eyeline">About</p>
-    <h1 class="display">Jinhong (Alex) Liu</h1>
-    <p class="lede">AI Product Manager · Product Research · AI-assisted Building</p>
+    <h1 class="display">刘锦鸿 Jinhong (Alex) Liu</h1>
+    <p class="lede">AI 产品经理 · 产品研究 · AI 辅助开发</p>
     <div class="about-profile__meta" aria-label="基本信息">
       <a href="mailto:alexliu072903@gmail.com">alexliu072903@gmail.com</a>
-      <span>Shenzhen, China</span>
-      <a href="https://mp.weixin.qq.com/s/1DU2XSPm51Ds8s4AmEtSMQ" target="_blank" rel="noreferrer">Profile ↗</a>
+      <span>中国深圳</span>
+      <a href="https://mp.weixin.qq.com/s/1DU2XSPm51Ds8s4AmEtSMQ" target="_blank" rel="noreferrer">公开报道 ↗</a>
     </div>
   </section>
 
   <section class="about-resume" aria-labelledby="experience-heading">
-    <header class="about-resume__head"><p>Experience</p><h2 id="experience-heading">工作经历</h2></header>
+    <header class="about-resume__head"><h2 id="experience-heading">工作经历</h2></header>
     <div class="about-resume__list">
       <article class="about-entry">
-        <div class="about-entry__top"><div><h3>Low Entropy AI · AirJelly</h3><p>AI Product Manager Intern</p></div><time datetime="2026-05">2026.05 - Present</time></div>
+        <div class="about-entry__top"><div><h3>Low Entropy AI · AirJelly</h3><p>北京 AI 创业公司 · AI Product Manager Intern</p></div><time datetime="2026-05">2026.05 - 至今</time></div>
         <p>作为 AirJelly 2.0 大版本的核心 PM 之一，推动多个模块的更新设计与迭代框架。</p>
       </article>
       <article class="about-entry">
-        <div class="about-entry__top"><div><h3>Emotional Byte AI Inc.</h3><p>AI Research Intern</p></div><time datetime="2026-02">2026.02 - 2026.04</time></div>
+        <div class="about-entry__top"><div><h3>Emotional Byte AI Inc.</h3><p>美国俄亥俄州 AI 公司 · AI Research Intern</p></div><time datetime="2026-02">2026.02 - 2026.04</time></div>
         <p>从 AI Agent 产品研究出发，完成面向海外用户的消费产品实践，覆盖洞察、产品设计、开发与上线。</p>
-      </article>
-      <article class="about-entry">
-        <div class="about-entry__top"><div><h3>Resume.AI</h3><p>Independent Design &amp; Development</p></div><time datetime="2026-04">2026.04 - Present</time></div>
-        <p>围绕 JD 与简历匹配设计 AI 工具，并通过真实用户反馈持续重建产品。</p>
       </article>
     </div>
   </section>
 
   <section class="about-resume" aria-labelledby="education-heading">
-    <header class="about-resume__head"><p>Education</p><h2 id="education-heading">教育</h2></header>
+    <header class="about-resume__head"><h2 id="education-heading">教育背景</h2></header>
     <article class="about-entry about-entry--single">
-      <div class="about-entry__top"><div><h3>Shenzhen Technology University</h3><p>B.Mgmt. in Marketing · English-taught program</p></div><time datetime="2023-09">2023.09 - 2027.06</time></div>
+      <div class="about-entry__top"><div><h3>深圳技术大学 · Shenzhen Technology University</h3><p>市场营销（全英文授课） · B.Mgmt. in Marketing (English-taught program)</p></div><time datetime="2023-09">2023.09 - 2027.06</time></div>
     </article>
   </section>
 
-  <section class="about-resume about-resume--compact" aria-labelledby="other-heading">
-    <header class="about-resume__head"><p>Elsewhere</p><h2 id="other-heading">其他信息</h2></header>
+  <section class="about-resume about-resume--compact" aria-labelledby="awards-heading">
+    <header class="about-resume__head"><h2 id="awards-heading">获奖经历</h2></header>
     <div class="about-resume__list">
-      <article class="about-entry"><h3>Recognition</h3><p>National Finals First Prize, Business Negotiation Competition · National Third Prize (Top 2%), CP Group Market Survey and Analysis Competition · SZTU Science and Innovation Star Award</p></article>
-      <article class="about-entry"><h3>Beyond work</h3><p>SZTU Business School Debate Team Captain · Cantonese (native) · English</p></article>
+      <article class="about-entry about-entry--brief"><h3>全国大学生商科综合能力大赛商务谈判竞赛全国总决赛一等奖</h3><p>2024.11</p></article>
+      <article class="about-entry about-entry--brief"><h3>第十四届正大杯全国大学生市场调查与分析大赛全国三等奖（前 2%）</h3><p>2023.11 - 2024.06</p></article>
+      <article class="about-entry about-entry--brief"><h3>深圳技术大学科技创新之星（科研创新奖）一等奖</h3><p>校级</p></article>
+    </div>
+  </section>
+
+  <section class="about-resume about-resume--compact" aria-labelledby="skills-heading">
+    <header class="about-resume__head"><h2 id="skills-heading">技能</h2></header>
+    <div class="about-skills">
+      <div><h3>AI 产品</h3><p>Agent 体验分析、LLM routing、用户研究、Prompt 策略、PRD 与技术协作、GTM 冷启动</p></div>
+      <div><h3>AI 辅助开发</h3><p>Claude Code、Codex、Cursor、Manus、Coze、OpenRouter、Perplexity、NotebookLM</p></div>
+      <div><h3>开发与数据</h3><p>React、FastAPI、Railway、PostgreSQL、Python、SQL、SPSS、STATA</p></div>
+    </div>
+  </section>
+
+  <section class="about-resume about-resume--compact" aria-labelledby="other-heading">
+    <header class="about-resume__head"><h2 id="other-heading">其他信息</h2></header>
+    <div class="about-resume__list">
+      <article class="about-entry about-entry--brief"><h3>辩论</h3><p>深圳技术大学商学院辩论队队长（2024.09 - 2025.09）</p></article>
+      <article class="about-entry about-entry--brief"><h3>语言</h3><p>粤语（母语）· 英语（全英文授课背景，可日常沟通）</p></article>
     </div>
   </section>
 </BaseLayout>
