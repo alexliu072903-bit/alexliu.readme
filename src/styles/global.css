@@ -151,7 +151,16 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .about-facts > div, .writing-topics > div { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.05rem; border-bottom: 1px solid var(--line); }
 .about-facts h2, .writing-topics h2 { margin: 0; color: var(--accent); font-size: .9rem; font-weight: 650; }
 .about-facts p, .writing-topics p { max-width: 42rem; margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.65; }
-.about-link { margin-top: 1.25rem; }
+.about-path, .about-principles { max-width: 58rem; margin-top: clamp(3.5rem, 7vw, 5.5rem); }
+.about-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; padding-bottom: .85rem; border-bottom: 1px solid var(--ink); }
+.about-section-head p { margin: 0; color: var(--accent); font-size: .86rem; font-weight: 650; }
+.about-section-head h2 { margin: 0; font-size: clamp(1.25rem, 2vw, 1.65rem); font-weight: 620; line-height: 1.15; }
+.about-path__list, .about-principles__list { border-top: 1px solid var(--line); }
+.about-path__list article, .about-principles__list article { display: grid; grid-template-columns: minmax(12rem, .37fr) minmax(0, .63fr); gap: clamp(1.5rem, 4vw, 3.5rem); padding-block: clamp(1rem, 2.2vw, 1.4rem); border-bottom: 1px solid var(--line); }
+.about-path h3, .about-principles h3 { margin: 0; font-size: 1.02rem; font-weight: 650; line-height: 1.35; }
+.about-path__list p, .about-principles__list p { max-width: 39rem; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
+.about-closing { max-width: 48rem; margin-top: clamp(3.5rem, 7vw, 5.5rem); padding-top: 1.25rem; border-top: 1px solid var(--ink); }
+.about-closing p { margin-bottom: 1rem; color: var(--muted); font-size: 1.05rem; }
 .writing-list { max-width: 48rem; margin-top: 3rem; padding-left: 1.25rem; }
 .lede { color: var(--muted); font-size: 1.15rem; }
 .eyeline { color: var(--muted); }
@@ -173,6 +182,8 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
   .project-brief__row { grid-template-columns: 1fr; gap: .2rem; padding-block: .85rem; }
   .readme-excerpt header { align-items: flex-start; flex-direction: column; gap: .25rem; }
   .about-facts > div, .writing-topics > div { grid-template-columns: 1fr; gap: .2rem; padding-block: .9rem; }
+  .about-section-head { align-items: flex-start; flex-direction: column; gap: .35rem; }
+  .about-path__list article, .about-principles__list article { grid-template-columns: 1fr; gap: .3rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
