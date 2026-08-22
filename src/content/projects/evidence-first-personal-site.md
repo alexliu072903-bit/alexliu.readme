@@ -9,7 +9,7 @@ source: Open source
 draft: false
 order: 6
 specimen: site
-image: project-assets/evidence-first-personal-site-readme-cover.png
+image: project-assets/evidence-first-personal-site-repository.png
 imageAlt: Evidence-First Personal Site README 的开头，说明它如何用真实材料建立可维护的个人网站
 evidenceCaption: README 的真实内容截图：从公开证据、页面结构到发布前检查，定义这个 Skill 的工作范围。
 problem: 个人网站常在泛泛自我描述、项目状态不清和难以持续更新之间失去可信度。
