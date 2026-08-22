@@ -5,6 +5,8 @@ publishedAt: 2026-08-22
 tags:
   - 团队协作
   - AI 创业
+readTime: 6
+visual: two-flywheels
 source:
   label: AirJelly
   url: https://www.airjelly.ai/blog/two-flywheels
