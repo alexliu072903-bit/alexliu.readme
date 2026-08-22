@@ -145,22 +145,29 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 
 .simple-page { max-width: 44rem; padding-top: clamp(4rem, 10vw, 8rem); }
 .simple-page .display { margin-bottom: 1.5rem; font-size: clamp(2.8rem, 6vw, 4.7rem); line-height: 1.02; }
-.about-intro, .writing-intro { max-width: 48rem; padding-top: clamp(3.5rem, 8vw, 6rem); }
-.about-intro .display, .writing-intro .display { margin-bottom: 1.35rem; font-size: clamp(2.5rem, 5vw, 4.1rem); font-weight: 590; line-height: 1.04; letter-spacing: -.03em; }
+.about-profile, .writing-intro { max-width: 58rem; padding-top: clamp(3.5rem, 8vw, 6rem); }
+.about-profile .display, .writing-intro .display { margin-bottom: 1.35rem; font-size: clamp(2.5rem, 5vw, 4.1rem); font-weight: 590; line-height: 1.04; letter-spacing: -.03em; }
+.about-profile__meta { display: flex; flex-wrap: wrap; gap: .45rem 1.2rem; margin-top: 1.35rem; color: var(--muted); font-size: .92rem; }
+.about-profile__meta a { text-underline-offset: .28em; }
+.about-profile__meta a:hover { color: var(--accent); }
 .about-facts, .writing-topics { max-width: 58rem; margin-top: clamp(3rem, 6vw, 4.5rem); border-top: 1px solid var(--ink); }
 .about-facts > div, .writing-topics > div { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.05rem; border-bottom: 1px solid var(--line); }
 .about-facts h2, .writing-topics h2 { margin: 0; color: var(--accent); font-size: .9rem; font-weight: 650; }
 .about-facts p, .writing-topics p { max-width: 42rem; margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.65; }
-.about-path, .about-principles { max-width: 58rem; margin-top: clamp(3.5rem, 7vw, 5.5rem); }
-.about-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; padding-bottom: .85rem; border-bottom: 1px solid var(--ink); }
-.about-section-head p { margin: 0; color: var(--accent); font-size: .86rem; font-weight: 650; }
-.about-section-head h2 { margin: 0; font-size: clamp(1.25rem, 2vw, 1.65rem); font-weight: 620; line-height: 1.15; }
-.about-path__list, .about-principles__list { border-top: 1px solid var(--line); }
-.about-path__list article, .about-principles__list article { display: grid; grid-template-columns: minmax(12rem, .37fr) minmax(0, .63fr); gap: clamp(1.5rem, 4vw, 3.5rem); padding-block: clamp(1rem, 2.2vw, 1.4rem); border-bottom: 1px solid var(--line); }
-.about-path h3, .about-principles h3 { margin: 0; font-size: 1.02rem; font-weight: 650; line-height: 1.35; }
-.about-path__list p, .about-principles__list p { max-width: 39rem; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
-.about-closing { max-width: 48rem; margin-top: clamp(3.5rem, 7vw, 5.5rem); padding-top: 1.25rem; border-top: 1px solid var(--ink); }
-.about-closing p { margin-bottom: 1rem; color: var(--muted); font-size: 1.05rem; }
+.about-resume { max-width: 58rem; margin-top: clamp(3.5rem, 7vw, 5.5rem); }
+.about-resume__head { display: flex; align-items: baseline; gap: 1rem; padding-bottom: .85rem; border-bottom: 1px solid var(--ink); }
+.about-resume__head p { margin: 0; color: var(--accent); font-size: .86rem; font-weight: 650; }
+.about-resume__head h2 { margin: 0; font-size: clamp(1.25rem, 2vw, 1.65rem); font-weight: 620; line-height: 1.15; }
+.about-resume__list { border-top: 1px solid var(--line); }
+.about-entry { padding-block: clamp(1.15rem, 2.6vw, 1.55rem); border-bottom: 1px solid var(--line); }
+.about-entry__top { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; }
+.about-entry h3 { margin: 0; font-size: 1.06rem; font-weight: 650; line-height: 1.35; }
+.about-entry__top p { margin: .18rem 0 0; color: var(--muted); font-size: .92rem; }
+.about-entry time { flex: 0 0 auto; color: var(--muted); font-size: .84rem; white-space: nowrap; }
+.about-entry > p { max-width: 43rem; margin: .75rem 0 0; color: var(--ink); font-size: 1rem; line-height: 1.65; }
+.about-entry--single { border-bottom: 1px solid var(--line); }
+.about-resume--compact { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.about-resume--compact .about-entry { padding-block: 1rem; }
 .writing-list { max-width: 48rem; margin-top: 3rem; padding-left: 1.25rem; }
 .lede { color: var(--muted); font-size: 1.15rem; }
 .eyeline { color: var(--muted); }
@@ -182,8 +189,7 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
   .project-brief__row { grid-template-columns: 1fr; gap: .2rem; padding-block: .85rem; }
   .readme-excerpt header { align-items: flex-start; flex-direction: column; gap: .25rem; }
   .about-facts > div, .writing-topics > div { grid-template-columns: 1fr; gap: .2rem; padding-block: .9rem; }
-  .about-section-head { align-items: flex-start; flex-direction: column; gap: .35rem; }
-  .about-path__list article, .about-principles__list article { grid-template-columns: 1fr; gap: .3rem; }
+  .about-entry__top { align-items: flex-start; flex-direction: column; gap: .25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
