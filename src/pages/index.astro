@@ -12,7 +12,16 @@ const statusLabel = { 'Public product': '可访问', Historical: '历史项目',
 <BaseLayout title="Alex Liu — Product, writing, and field notes" description="Alex Liu 做产品，也把实践变成可以复用的工具。" pageClass="home-page">
   <section class="home-intro">
     <h1>产品、工具与实践。</h1>
-    <p>我做过的产品、开源项目和 Skills。</p>
+    <div class="home-intro__experience" aria-label="实习经历">
+      <article>
+        <h2>Low Entropy AI · AirJelly</h2>
+        <p><strong>AI Product Manager Intern</strong> · 核心参与 AirJelly 2.0 多个模块的更新设计与迭代框架。</p>
+      </article>
+      <article>
+        <h2>Emotional Byte AI Inc.</h2>
+        <p><strong>AI Research Intern</strong> · 从产品研究出发，完成过面向海外用户的消费产品实践。</p>
+      </article>
+    </div>
   </section>
 
   <section class="home-projects">
@@ -24,17 +33,6 @@ const statusLabel = { 'Public product': '可访问', Historical: '历史项目',
           <div><span>{statusLabel[project.data.status]}</span><h3><a href={`${base}projects/${project.id}/`}>{project.data.title}</a></h3><p>{project.data.description}</p></div>
         </article>
       ))}
-    </div>
-  </section>
-
-  <section class="home-about" aria-labelledby="home-about-title">
-    <header><h2 id="home-about-title">About</h2><a href={`${base}about/`}>完整经历</a></header>
-    <div class="home-about__content">
-      <h3>柳锦鸿<br /><span>Jinhong (Alex) Liu</span></h3>
-      <div>
-        <p>深圳技术大学市场营销专业（全英文授课），2027 年毕业。</p>
-        <p>目前在 Low Entropy AI 参与 AirJelly 2.0 的产品迭代；此前在 Emotional Byte AI 从产品研究出发，完成过面向海外用户的产品实践。</p>
-      </div>
     </div>
   </section>
 

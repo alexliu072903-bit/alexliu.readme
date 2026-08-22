@@ -46,9 +46,13 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .primary-link:hover, .project-entry__link:hover { color: var(--accent); }
 
 /* Home */
-.home-intro { max-width: 58rem; padding-block: clamp(3.5rem, 6vw, 4.75rem) clamp(2.25rem, 4vw, 3.25rem); }
+.home-intro { max-width: 64rem; padding-block: clamp(3rem, 5vw, 4.25rem) clamp(2.25rem, 4vw, 3.25rem); }
 .home-intro h1 { margin-bottom: .85rem; font-size: clamp(2.25rem, 4.2vw, 3.5rem); font-weight: 570; line-height: 1.08; letter-spacing: -.03em; }
-.home-intro > p { max-width: 42rem; margin: 0; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.12rem); }
+.home-intro__experience { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 3.5rem); max-width: 58rem; }
+.home-intro__experience article { padding-top: .85rem; border-top: 1px solid var(--line); }
+.home-intro__experience h2 { margin: 0 0 .35rem; font-size: .96rem; font-weight: 650; line-height: 1.35; }
+.home-intro__experience p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.6; }
+.home-intro__experience strong { color: var(--ink); font-weight: 600; }
 .home-projects { padding-top: 2rem; border-top: 1px solid var(--ink); }
 .home-projects > header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
 .home-projects > header h2 { font-size: 1.4rem; font-weight: 620; }
@@ -63,15 +67,10 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .home-projects__list h3 { margin: .55rem 0 .75rem; font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 590; line-height: 1.08; }
 .home-projects__list h3 a { text-decoration: none; }
 .home-projects__list p { max-width: 34rem; margin: 0; color: var(--muted); }
-.home-about, .home-writing { margin-top: clamp(4.5rem, 9vw, 7.5rem); padding-top: 1.2rem; border-top: 1px solid var(--ink); }
-.home-about > header, .home-writing > header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
-.home-about > header h2, .home-writing > header h2 { margin: 0; font-size: 1.4rem; font-weight: 620; }
-.home-about > header a, .home-writing > header a { color: var(--muted); font-size: .9rem; }
-.home-about__content { display: grid; grid-template-columns: minmax(16rem, .75fr) minmax(22rem, 1.25fr); gap: clamp(2rem, 8vw, 7.5rem); max-width: 62rem; align-items: start; }
-.home-about__content h3 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.65rem); font-weight: 570; line-height: 1.1; letter-spacing: -.025em; }
-.home-about__content h3 span { color: var(--muted); font-size: .7em; font-weight: 500; }
-.home-about__content p { max-width: 37rem; margin: 0 0 1rem; color: var(--muted); }
-.home-about__content p:last-child { margin-bottom: 0; color: var(--ink); }
+.home-writing { margin-top: clamp(4.5rem, 9vw, 7.5rem); padding-top: 1.2rem; border-top: 1px solid var(--ink); }
+.home-writing > header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.home-writing > header h2 { margin: 0; font-size: 1.4rem; font-weight: 620; }
+.home-writing > header a { color: var(--muted); font-size: .9rem; }
 .home-writing__content { display: grid; grid-template-columns: minmax(17rem, .9fr) minmax(20rem, 1.1fr); gap: clamp(2rem, 7vw, 6rem); max-width: 66rem; align-items: center; }
 .home-writing__copy { max-width: 36rem; }
 .home-writing__copy > p:first-child { margin-bottom: .7rem; color: var(--muted); font-size: .88rem; }
@@ -243,7 +242,7 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
   footer { grid-template-columns: 1fr auto; }
   .footer-note { display: none; }
   .project-header__title-row--brief { align-items: flex-start; flex-direction: column; gap: .35rem; }
-  .home-projects__list article, .project-entry, .project-group--skill .project-entry, .home-about__content, .home-writing__content { grid-template-columns: 1fr; gap: 1.25rem; }
+  .home-projects__list article, .project-entry, .project-group--skill .project-entry, .home-intro__experience, .home-writing__content { grid-template-columns: 1fr; gap: 1.25rem; }
   .home-projects__list article:nth-child(even) .home-project__image, .project-entry:nth-child(even) .project-entry__image { order: 0; }
   .project-group--tools .project-group__list { grid-template-columns: 1fr; }
   .project-summary { grid-template-columns: 1fr; }
