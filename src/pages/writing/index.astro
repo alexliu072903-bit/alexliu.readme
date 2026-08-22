@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+---
+
+<BaseLayout title="Writing — Alex Liu">
+  <h1>Writing</h1>
+  {entries.length === 0 ? <p class="lede">Writing will appear here.</p> : (
+    <ul>{entries.map((entry) => <li>{entry.data.title}</li>)}</ul>
+  )}
+</BaseLayout>

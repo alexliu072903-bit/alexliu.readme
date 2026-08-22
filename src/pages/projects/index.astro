@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.year - a.data.year,
+);
+---
+
+<BaseLayout title="Projects — Alex Liu">
+  <h1>Projects</h1>
+  {projects.length === 0 ? <p class="lede">Projects will appear here.</p> : (
+    <ul>{projects.map((project) => <li>{project.data.title}</li>)}</ul>
+  )}
+</BaseLayout>
