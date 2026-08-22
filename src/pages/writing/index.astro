@@ -8,5 +8,8 @@ const entries = (await getCollection('writing', ({ data }) => !data.draft)).sort
 ---
 
 <BaseLayout title="Writing — Alex Liu">
-  <section class="simple-page"><p class="eyeline">Writing</p><h1 class="display">仍在展开的认识。</h1>{entries.length === 0 ? <p class="lede">Writing 会在 Projects 完成后继续整理。这里不会为了填满栏目而发布内容。</p> : <ul>{entries.map((entry) => <li>{entry.data.title}</li>)}</ul>}</section>
+  <section class="writing-intro"><p class="eyeline">Writing</p><h1 class="display">把做过的事，整理成可以讨论的判断。</h1><p class="lede">记录从真实经历、产品实践与团队协作中长出来的观察。</p></section>
+  {entries.length === 0 ? (
+    <p class="lede writing-empty">第一篇文章正在整理。</p>
+  ) : <section class="writing-list" aria-label="文章列表">{entries.map((entry) => <article><a href={`${import.meta.env.BASE_URL}writing/${entry.id}/`}><p>{entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</p><h2>{entry.data.title}</h2><p>{entry.data.description}</p>{entry.data.source && <span>{entry.data.source.label} ↗</span>}</a></article>)}</section>}
 </BaseLayout>

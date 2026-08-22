@@ -174,7 +174,26 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .about-skills > div { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1rem; border-bottom: 1px solid var(--line); }
 .about-skills h3 { margin: 0; font-size: 1rem; font-weight: 650; }
 .about-skills p { max-width: 43rem; margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.65; }
-.writing-list { max-width: 48rem; margin-top: 3rem; padding-left: 1.25rem; }
+.writing-empty { max-width: 48rem; margin-top: 3rem; }
+.writing-list { max-width: 58rem; margin-top: clamp(3rem, 6vw, 4.5rem); border-top: 1px solid var(--ink); }
+.writing-list article { border-bottom: 1px solid var(--line); }
+.writing-list a { display: block; padding-block: clamp(1.25rem, 2.5vw, 1.7rem); text-decoration: none; }
+.writing-list a:hover h2, .writing-list a:hover span { color: var(--accent); }
+.writing-list p { max-width: 44rem; margin: 0; color: var(--muted); }
+.writing-list h2 { margin: .35rem 0 .65rem; font-size: clamp(1.35rem, 2.6vw, 2rem); font-weight: 620; line-height: 1.18; }
+.writing-list span { display: inline-block; margin-top: .75rem; color: var(--muted); font-size: .9rem; text-underline-offset: .25em; }
+.writing-article { max-width: 48rem; padding-top: clamp(3.5rem, 8vw, 6rem); }
+.writing-article__header { padding-bottom: clamp(2rem, 5vw, 3.5rem); border-bottom: 1px solid var(--ink); }
+.writing-article__header .display { margin-bottom: 1.35rem; font-size: clamp(2.5rem, 5vw, 4.1rem); font-weight: 590; line-height: 1.04; letter-spacing: -.03em; }
+.writing-article__source { margin: 1.5rem 0 0; color: var(--muted); font-size: .94rem; }
+.writing-article__source a { color: var(--ink); text-underline-offset: .28em; }
+.writing-prose { max-width: 43rem; padding-top: clamp(2rem, 5vw, 3.5rem); }
+.writing-prose h2 { margin: clamp(2.5rem, 5vw, 3.5rem) 0 1rem; font-size: clamp(1.35rem, 2.4vw, 1.8rem); line-height: 1.2; }
+.writing-prose p, .writing-prose li { font-size: 1.05rem; line-height: 1.8; }
+.writing-prose p { margin-bottom: 1.25rem; }
+.writing-prose ul, .writing-prose ol { padding-left: 1.35rem; }
+.writing-prose li { margin-bottom: .55rem; }
+.writing-prose code { padding: .12rem .3rem; background: var(--soft); font-family: inherit; font-size: .94em; }
 .lede { color: var(--muted); font-size: 1.15rem; }
 .eyeline { color: var(--muted); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
