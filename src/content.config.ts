@@ -20,9 +20,16 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     year: z.number(),
-    status: z.enum(['active', 'experiment', 'archived']).default('active'),
+    type: z.enum(['Product', 'Protocol', 'Setup', 'Skill']),
+    status: z.enum(['Public product', 'Historical', 'Experimental', 'Available']),
+    source: z.enum(['Private source', 'Open source']),
     draft: z.boolean().default(false),
-    url: z.url().optional(),
+    order: z.number(),
+    specimen: z.enum(['resume', 'vibe', 'cairn', 'starter', 'sync']),
+    links: z.array(z.object({
+      label: z.string(),
+      url: z.url(),
+    })).default([]),
   }),
 });
 

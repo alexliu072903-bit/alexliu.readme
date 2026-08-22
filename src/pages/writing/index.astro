@@ -8,8 +8,5 @@ const entries = (await getCollection('writing', ({ data }) => !data.draft)).sort
 ---
 
 <BaseLayout title="Writing — Alex Liu">
-  <h1>Writing</h1>
-  {entries.length === 0 ? <p class="lede">Writing will appear here.</p> : (
-    <ul>{entries.map((entry) => <li>{entry.data.title}</li>)}</ul>
-  )}
+  <section class="simple-page"><p class="eyeline">Writing</p><h1 class="display">仍在展开的认识。</h1>{entries.length === 0 ? <p class="lede">Writing 会在 Projects 完成后继续整理。这里不会为了填满栏目而发布内容。</p> : <ul>{entries.map((entry) => <li>{entry.data.title}</li>)}</ul>}</section>
 </BaseLayout>

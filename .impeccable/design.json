@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-22T13:30:00+08:00",
+  "title": "Design System: Alex Liu — Field Notes",
+  "extensions": {
+    "colorMeta": {
+      "field-white": { "role": "neutral", "displayName": "Field White", "canonical": "oklch(1 0 0)", "tonalRamp": ["oklch(0.15 0 0)", "oklch(0.28 0 0)", "oklch(0.42 0 0)", "oklch(0.56 0 0)", "oklch(0.7 0 0)", "oklch(0.82 0 0)", "oklch(0.92 0 0)", "oklch(1 0 0)"] },
+      "instrument-ink": { "role": "neutral", "displayName": "Instrument Ink", "canonical": "oklch(0.195 0.012 145)", "tonalRamp": ["oklch(0.15 0.012 145)", "oklch(0.28 0.012 145)", "oklch(0.42 0.012 145)", "oklch(0.56 0.012 145)", "oklch(0.7 0.012 145)", "oklch(0.82 0.01 145)", "oklch(0.92 0.006 145)", "oklch(0.97 0.003 145)"] },
+      "moss-signal": { "role": "primary", "displayName": "Moss Signal", "canonical": "oklch(0.62 0.1 140)", "tonalRamp": ["oklch(0.18 0.04 140)", "oklch(0.3 0.06 140)", "oklch(0.42 0.08 140)", "oklch(0.54 0.1 140)", "oklch(0.66 0.09 140)", "oklch(0.78 0.07 140)", "oklch(0.88 0.04 140)", "oklch(0.95 0.02 140)"] },
+      "chance-vermilion": { "role": "secondary", "displayName": "Chance Vermilion", "canonical": "oklch(0.62 0.17 35)", "tonalRamp": ["oklch(0.18 0.05 35)", "oklch(0.3 0.09 35)", "oklch(0.42 0.13 35)", "oklch(0.54 0.17 35)", "oklch(0.66 0.15 35)", "oklch(0.78 0.1 35)", "oklch(0.88 0.06 35)", "oklch(0.95 0.025 35)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Frontier Display", "purpose": "One principal thought per page." },
+      "body": { "displayName": "Field Notes", "purpose": "Readable Chinese-first project journals." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "resolve", "value": "cubic-bezier(0.22, 0.61, 0.36, 1)", "purpose": "A path or line resolving into a stable position." },
+      { "name": "quick", "value": "160ms", "purpose": "Control feedback." },
+      { "name": "settle", "value": "620ms", "purpose": "Project specimen and page transitions." }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "640px" },
+      { "name": "wide", "value": "960px" }
+    ]
+  },
+  "components": [],
+  "narrative": {
+    "northStar": "The Calibrated Frontier",
+    "overview": "An expansive white field held by exact marks. Controlled displacement expresses exploration; structure and legibility express reason and restraint.",
+    "keyCharacteristics": ["controlled displacement", "readable density", "flat evidence", "project-specific specimens", "semantic motion"],
+    "rules": [
+      { "name": "Two-Signal Rule", "body": "Green means a path remains usable. Vermilion means the path changed.", "section": "colors" },
+      { "name": "Evidence Stays Flat", "body": "Product specimens and facts never sit inside floating glass cards.", "section": "elevation" }
+    ],
+    "dos": ["Let status and source visibility remain visible.", "Use asymmetry with an obvious reading order.", "Vary density per project."],
+    "donts": ["No generic AI portfolio grammar.", "No beige editorial template.", "No private or unverified material."]
+  }
+}

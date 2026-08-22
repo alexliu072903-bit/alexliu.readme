@@ -1,0 +1,9 @@
+{
+  "name": "Alex Liu",
+  "short_name": "Alex Liu",
+  "description": "Product, writing, and field notes by Alex Liu.",
+  "start_url": "/alexliu.readme/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alexliu072903-bit.github.io/alexliu.readme/sitemap-index.xml
