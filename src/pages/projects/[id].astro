@@ -15,18 +15,13 @@ const nextProject = projects[(currentIndex + 1) % projects.length];
 const base = import.meta.env.BASE_URL;
 const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
 const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源' };
-const scanTitles = project.data.scanTitles;
-const useScanLayout = project.id === 'cairn-lite' && Boolean(scanTitles);
-const scanRows = scanTitles ? [
-  { label: '问题', title: scanTitles.problem, text: project.data.problem },
-  { label: '方法', title: scanTitles.contribution, text: project.data.contribution },
-  { label: '现状', title: scanTitles.current, text: project.data.current },
-] : [];
+const useBriefLayout = project.id === 'cairn-lite' && (project.data.brief?.length ?? 0) > 0;
+const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
 ---
 
 <BaseLayout title={`${project.data.title} — Alex Liu`} description={project.data.description} pageClass="project-page">
-  <article class="project-detail">
-    <a class="back-link" href={`${base}projects/`}>← 返回 Projects</a>
+  <article class:list={['project-detail', { 'project-detail--brief': useBriefLayout }]}>
+    {!useBriefLayout && <a class="back-link" href={`${base}projects/`}>← 返回 Projects</a>}
 
     <header class="project-header">
       <div class="project-header__meta">
@@ -35,26 +30,41 @@ const scanRows = scanTitles ? [
         <span>{sourceLabel[project.data.source]}</span>
         <span>{project.data.year}</span>
       </div>
-      <h1>{project.data.title}</h1>
+      {useBriefLayout ? (
+        <div class="project-header__title-row project-header__title-row--brief">
+          <h1>{project.data.title}</h1>
+          {project.data.links.map((link) => <a class="project-header__github" href={link.url} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
+        </div>
+      ) : <h1>{project.data.title}</h1>}
       <p>{project.data.description}</p>
-      {project.data.links.map((link) => <a class="primary-link" href={link.url} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
+      {!useBriefLayout && project.data.links.map((link) => <a class="primary-link" href={link.url} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
     </header>
 
-    {useScanLayout ? (
+    {useBriefLayout ? (
       <>
-        <section class="scan-story" aria-label="项目概览">
-          {scanRows.map((row, index) => (
-            <div class="scan-story__row">
-              <div class="scan-story__label"><span>{String(index + 1).padStart(2, '0')}</span>{row.label}</div>
-              <div class="scan-story__content"><h2>{row.title}</h2><p>{row.text}</p></div>
+        <section class="project-brief" aria-label="项目概览">
+          {briefRows.map((row) => (
+            <div class="project-brief__row">
+              <h2>{row.label}</h2>
+              <p>{row.text}</p>
             </div>
           ))}
         </section>
 
-        <figure class="project-figure project-figure--scan">
+        <figure class="project-figure project-figure--brief">
           <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} />
-          <figcaption>公开 GitHub 仓库，截取于 2026 年 8 月。</figcaption>
+          <figcaption>{project.data.evidenceCaption ?? '公开 GitHub 仓库，截取于 2026 年 8 月。'}</figcaption>
         </figure>
+
+        {project.data.readme && (
+          <section class="readme-excerpt" aria-label="README 使用摘要">
+            <header>
+              <h2>README：如何开始</h2>
+              <a href={project.data.readme.url} target="_blank" rel="noreferrer">完整 README <span aria-hidden="true">↗</span></a>
+            </header>
+            <ol>{project.data.readme.steps.map((step) => <li>{step}</li>)}</ol>
+          </section>
+        )}
 
         <details class="full-note">
           <summary>展开完整项目笔记</summary>
@@ -82,5 +92,6 @@ const scanRows = scanTitles ? [
       <span>下一个项目</span>
       <strong>{nextProject.data.title} →</strong>
     </a>
+    {useBriefLayout && <a class="back-link back-link--footer" href={`${base}projects/`}>← 返回 Projects</a>}
   </article>
 </BaseLayout>

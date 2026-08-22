@@ -1,6 +1,6 @@
 ---
 title: Cairn Lite
-description: 一个透明、Git-friendly 的跨 Agent 项目 Context 协议，不试图成为记住一切的通用 Memory。
+description: 用 Markdown 维护可交接的项目判断。
 year: 2026
 category: 开源工具
 type: Protocol
@@ -11,13 +11,23 @@ order: 3
 specimen: cairn
 image: project-assets/cairn-lite.png
 imageAlt: Cairn Lite 的公开 GitHub 仓库，包含协议文档、Python CLI、测试和项目历史
+evidenceCaption: 公开 GitHub 仓库：README、协议文件与 CLI 共同构成这套可查看的工作方式。
 problem: 切换 Agent 或开启新会话时，项目判断不断丢失。
 contribution: 设计一套只记录重要变化的 Markdown 协议与 CLI。
 current: 已开源并可使用，但协议仍处于实验阶段。
-scanTitles:
-  problem: 判断为什么会丢失
-  contribution: 只记录发生变化的结论
-  current: 协议今天在哪里
+brief:
+  - label: 场景
+    text: 在同一项目里换 Agent 或重开会话时，已经验证过的判断容易丢失。
+  - label: 使用
+    text: 把需要保留的决定写进 Markdown；新 Agent 先读 LOG，再按任务打开相关主题。
+  - label: 开源
+    text: 基于 MIT License 开源。
+readme:
+  url: https://github.com/alexliu072903-bit/cairn-lite#quick-start
+  steps:
+    - 在已有项目中运行 cairn init；它只补充缺失文件，不覆盖既有项目说明。
+    - 运行 cairn validate 和 cairn status，检查结构并查看最近变化。
+    - 新 Agent 默认先读最新 LOG，再按当前任务打开相关 topic。
 links:
   - label: 查看 GitHub
     url: https://github.com/alexliu072903-bit/cairn-lite

@@ -29,13 +29,14 @@ const projects = defineCollection({
     specimen: z.enum(['resume', 'vibe', 'cairn', 'starter', 'sync']),
     image: z.string(),
     imageAlt: z.string(),
+    evidenceCaption: z.string().optional(),
     problem: z.string(),
     contribution: z.string(),
     current: z.string(),
-    scanTitles: z.object({
-      problem: z.string(),
-      contribution: z.string(),
-      current: z.string(),
+    brief: z.array(z.object({ label: z.string(), text: z.string() })).min(2).max(3).optional(),
+    readme: z.object({
+      url: z.url(),
+      steps: z.array(z.string()).min(2).max(3),
     }).optional(),
     links: z.array(z.object({
       label: z.string(),
