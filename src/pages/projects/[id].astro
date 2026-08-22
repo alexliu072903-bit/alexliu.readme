@@ -15,7 +15,7 @@ const nextProject = projects[(currentIndex + 1) % projects.length];
 const base = import.meta.env.BASE_URL;
 const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
 const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源' };
-const useBriefLayout = project.id === 'cairn-lite' && (project.data.brief?.length ?? 0) > 0;
+const useBriefLayout = (project.data.brief?.length ?? 0) > 0;
 const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
 ---
 

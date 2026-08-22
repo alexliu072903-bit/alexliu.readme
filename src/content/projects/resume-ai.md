@@ -11,9 +11,17 @@ order: 1
 specimen: resume
 image: project-assets/resume-ai.png
 imageAlt: Resume.AI 在线编辑器，左侧导入简历、JD 和知识库，中间编辑简历，右侧与 AI 对话
+evidenceCaption: 公开在线编辑器：简历、JD、经历材料与改写对话位于同一工作区。
 problem: 每个岗位都需要重新判断哪些真实经历值得被看见。
 contribution: 设计并实现简历、JD 与个人知识库共同驱动的改写流程。
 current: 产品仍可访问；源代码保持私有。
+brief:
+  - label: 场景
+    text: 有岗位 JD，但不想让通用 AI 编造经历时。
+  - label: 使用
+    text: 导入简历、JD 和经历材料，选定进入 Context 的内容，再在编辑器里逐轮改写。
+  - label: 状态
+    text: 产品仍可访问；源码私有。
 links:
   - label: 访问产品
     url: https://alexliu.lol/editor

@@ -11,9 +11,23 @@ order: 4
 specimen: starter
 image: project-assets/obsidian-ai-starter.png
 imageAlt: Obsidian AI Starter 的公开 GitHub 仓库，包含跨平台安装脚本、补丁、测试和安装文档
+evidenceCaption: 公开 GitHub 仓库：安装脚本、固定版本、跨平台 patch 与使用说明都可查看。
 problem: 本地 Agent 集成常常卡在依赖、插件构建与跨平台差异上。
 contribution: 把 Pi Agent 接入 Obsidian 的过程做成可重复、会在失败时停止的安装系统。
 current: 已开源，支持 Windows 和 macOS，并明确保留真实权限边界。
+brief:
+  - label: 场景
+    text: 想把 Pi Agent 接入已有 Obsidian vault，却不想手动解决各平台安装差异时。
+  - label: 使用
+    text: 运行安装程序；它验证依赖、固定版本、构建插件，并在失败时停止。
+  - label: 状态
+    text: MIT 开源，支持 Windows 和 macOS；真实权限边界公开说明。
+readme:
+  url: https://github.com/alexliu072903-bit/obsidian-ai-starter#install
+  steps:
+    - Clone 仓库后，按平台运行 setup 脚本，并传入已有 Obsidian vault 的路径。
+    - 在 Obsidian 中启用 Pi plugin，并打开 Command line interface 的 PATH 注册。
+    - 运行 pi 完成登录，再从 Command Palette 打开 Pi chat。
 links:
   - label: 查看 GitHub
     url: https://github.com/alexliu072903-bit/obsidian-ai-starter

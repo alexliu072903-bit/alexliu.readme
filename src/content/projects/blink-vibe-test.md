@@ -11,9 +11,17 @@ order: 2
 specimen: vibe
 image: project-assets/blink-vibe-test.png
 imageAlt: Telegram Mini App Fastbuild 的公开 GitHub 仓库，包含 README、Skill 和示例代码
+evidenceCaption: 历史项目留下的公开部署 Skill，记录了 Telegram Mini App 从 Bot 创建到生产部署的实际步骤。
 problem: 传统性格测试的固定分类和直译内容不适合 Telegram 的跨文化社交场景。
 contribution: 将产品迭代成英俄双语的分享型测试，并完成 Telegram 生产部署。
 current: 原产品状态无法确认；部署经验已沉淀为开源 Skill。
+brief:
+  - label: 场景
+    text: 在 Telegram 做跨文化人格测试和社交分享时。
+  - label: 做法
+    text: English 和 Russian 版本分别重写测试与分享内容，而不是直接翻译。
+  - label: 留下什么
+    text: 产品已经结束；部署经验整理为公开 Skill。
 links:
   - label: 查看开源 Skill
     url: https://github.com/alexliu072903-bit/tg-miniapp-fastbuild

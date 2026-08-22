@@ -11,9 +11,23 @@ order: 5
 specimen: sync
 image: project-assets/obsidian-git-sync.png
 imageAlt: Obsidian Git Sync Skill 的公开 GitHub 仓库，包含 Windows 与 macOS 脚本、双语说明和 Skill 文件
+evidenceCaption: 公开 GitHub 仓库：Skill 文件、双平台脚本与 allowlist 同步方式可查看。
 problem: 自动同步 vault 很方便，也可能把私人内容一起上传。
 contribution: 将 Git 初始化与同步封装为支持预览、备份和 allowlist 的 Agent Skill。
 current: 已开源，支持 Windows 与 macOS 的全量和选定文件夹同步。
+brief:
+  - label: 场景
+    text: 想同步 Obsidian vault，又需要先决定哪些内容能上传时。
+  - label: 使用
+    text: 告诉 Agent 要同步的目录，选择完整备份或 allowlist，再预览或执行。
+  - label: 状态
+    text: MIT 开源，支持 Windows 和 macOS。
+readme:
+  url: https://github.com/alexliu072903-bit/obsidian-git-sync-skill#usage
+  steps:
+    - 将 Skill 安装到 Claude Code 的 skills 目录。
+    - 在 Claude Code 中直接说明要同步 Obsidian vault 到 GitHub。
+    - 提供 vault 路径、空的 GitHub 仓库地址，以及 macOS 下要包含的文件夹。
 links:
   - label: 查看 GitHub
     url: https://github.com/alexliu072903-bit/obsidian-git-sync-skill
