@@ -6,26 +6,32 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 const writing = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())[0];
 const base = import.meta.env.BASE_URL;
 const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
+const catMoments = [
+  { file: 'cat-workspace.jpg', alt: '一只猫趴在工作桌旁，身后是百合花', className: 'home-stills__workspace' },
+  { file: 'cat-portrait.jpg', alt: '一只猫的近景', className: 'home-stills__portrait' },
+  { file: 'cat-chair.jpg', alt: '一只猫躺在椅子上', className: 'home-stills__chair' },
+];
 ---
 
 <BaseLayout title="Alex Liu — Product, writing, and field notes" description="Alex Liu 做产品，也把实践变成可以复用的工具。" pageClass="home-page">
   <section class="home-intro">
     <h1 class="visually-hidden">Alex Liu</h1>
-    <div class="home-intro__identity">
-      <div class="home-intro__experience" aria-label="实习经历">
-        <article>
-          <p class="home-intro__label">目前</p>
-          <h2>Low Entropy AI · AirJelly</h2>
-          <p>AI Product Manager Intern · 深度参与 AirJelly 2.0 的产品框架、需求定义与功能迭代。</p>
-        </article>
-        <article>
-          <p class="home-intro__label">此前</p>
-          <h2>Emotional Byte AI Inc.</h2>
-          <p>AI Research Intern · 围绕 Telegram 的跨文化社交场景，完成 Blink Vibe Test 的产品实践。</p>
-        </article>
-      </div>
-      <figure class="home-intro__portrait"><img src={`${base}profile/alex-event.jpg`} alt="Alex Liu 在活动现场" loading="eager" /></figure>
+    <div class="home-intro__experience" aria-label="实习经历">
+      <article>
+        <p class="home-intro__label">目前</p>
+        <h2>Low Entropy AI · AirJelly</h2>
+        <p>AI Product Manager Intern · 深度参与 AirJelly 2.0 的产品框架、需求定义与功能迭代。</p>
+      </article>
+      <article>
+        <p class="home-intro__label">此前</p>
+        <h2>Emotional Byte AI Inc.</h2>
+        <p>AI Research Intern · 围绕 Telegram 的跨文化社交场景，完成 Blink Vibe Test 的产品实践。</p>
+      </article>
     </div>
+  </section>
+
+  <section class="home-stills" aria-label="工作之外的日常片段">
+    {catMoments.map((moment) => <figure class={moment.className}><img src={`${base}profile/${moment.file}`} alt={moment.alt} loading="eager" /></figure>)}
   </section>
 
   <section class="home-projects">

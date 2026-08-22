@@ -4,16 +4,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About — Alex Liu" pageClass="about-page">
   <section class="about-profile">
-    <div class="about-profile__identity">
-      <div>
-        <p class="eyeline">About</p>
-        <h1 class="display">柳锦鸿 Jinhong (Alex) Liu</h1>
-        <div class="about-profile__meta" aria-label="基本信息">
-          <a href="mailto:alexliu072903@gmail.com">alexliu072903@gmail.com</a>
-          <a href="https://bonjour.bio/jobs-mapping/blog/ai-wayfinders-02" target="_blank" rel="noreferrer">来自 Bonjour! 的公开报道 ↗</a>
-        </div>
-      </div>
-      <figure class="about-profile__portrait"><img src={`${import.meta.env.BASE_URL}profile/alex-event.jpg`} alt="柳锦鸿在活动现场" loading="eager" /></figure>
+    <p class="eyeline">About</p>
+    <h1 class="display">柳锦鸿 Jinhong (Alex) Liu</h1>
+    <div class="about-profile__meta" aria-label="基本信息">
+      <a href="mailto:alexliu072903@gmail.com">alexliu072903@gmail.com</a>
+      <a href="https://bonjour.bio/jobs-mapping/blog/ai-wayfinders-02" target="_blank" rel="noreferrer">来自 Bonjour! 的公开报道 ↗</a>
+    </div>
+    <div class="about-stills" aria-label="日常片段">
+      <figure class="about-stills__resting"><img src={`${import.meta.env.BASE_URL}profile/cat-resting.jpg`} alt="一只猫在桌边休息" loading="eager" /></figure>
+      <figure class="about-stills__close"><img src={`${import.meta.env.BASE_URL}profile/cat-close.jpg`} alt="一只猫靠近镜头" loading="eager" /></figure>
+      <figure class="about-stills__portrait"><img src={`${import.meta.env.BASE_URL}profile/cat-window.jpg`} alt="一只猫隔着玻璃望向镜头" loading="eager" /></figure>
+      <figure class="about-stills__detail"><img src={`${import.meta.env.BASE_URL}profile/cat-detail.jpg`} alt="一只猫低头看向地面" loading="eager" /></figure>
     </div>
   </section>
 
@@ -63,7 +64,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <article class="about-entry about-entry--brief"><h3>辩论</h3><p>深圳技术大学商学院辩论队队长（2024.09 - 2025.09）</p></article>
         <article class="about-entry about-entry--brief"><h3>语言</h3><p>粤语（母语）· 英语（全英文授课背景，可日常沟通）</p></article>
       </div>
-      <figure class="about-personal-note"><img src={`${import.meta.env.BASE_URL}profile/cat.jpg`} alt="柳锦鸿的猫" loading="lazy" /><figcaption>日常</figcaption></figure>
     </div>
   </section>
 </BaseLayout>
