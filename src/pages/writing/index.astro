@@ -10,19 +10,19 @@ const [featured, ...remaining] = entries;
 ---
 
 <BaseLayout title="Writing — Alex Liu">
-  <section class="writing-intro"><p class="eyeline">Writing</p><h1 class="display">从做过的事里，留下一个判断。</h1><p class="lede">记录从真实经历、产品实践与团队协作中长出来的观察。</p></section>
+  <section class="writing-intro"><h1 class="display">Writing</h1><p class="lede">关于产品、AI 和工作方式的一些记录。</p></section>
   {!featured ? (
     <p class="lede writing-empty">第一篇文章正在整理。</p>
   ) : <>
     <section class="writing-feature" aria-labelledby="featured-title">
+      <div class="writing-feature__visual">{featured.data.visual === 'two-flywheels' && <FlywheelDiagram compact />}</div>
       <div class="writing-feature__copy">
-        <p class="writing-feature__meta">最新文章 · {featured.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {featured.data.readTime ?? 5} 分钟阅读</p>
+        <p class="writing-feature__meta">{featured.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {featured.data.readTime ?? 5} 分钟阅读</p>
         <h2 id="featured-title">{featured.data.title}</h2>
         <p>{featured.data.description}</p>
-        {featured.data.source && <p class="writing-feature__source">{featured.data.source.note} <a href={featured.data.source.url} target="_blank" rel="noreferrer">英文原文 ↗</a></p>}
+        {featured.data.source && <p class="writing-feature__source">改写自 <a href={featured.data.source.url} target="_blank" rel="noreferrer">{featured.data.source.label} 英文原文 ↗</a></p>}
         <a class="primary-link" href={`${import.meta.env.BASE_URL}writing/${featured.id}/`}>阅读文章 <span aria-hidden="true">→</span></a>
       </div>
-      {featured.data.visual === 'two-flywheels' && <FlywheelDiagram compact />}
     </section>
     {remaining.length > 0 && <section class="writing-list" aria-label="更多文章">{remaining.map((entry) => <article><a href={`${import.meta.env.BASE_URL}writing/${entry.id}/`}><p>{entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</p><h2>{entry.data.title}</h2><p>{entry.data.description}</p></a></article>)}</section>}
   </>}

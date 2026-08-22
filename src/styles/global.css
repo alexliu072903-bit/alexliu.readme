@@ -145,8 +145,10 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 
 .simple-page { max-width: 44rem; padding-top: clamp(4rem, 10vw, 8rem); }
 .simple-page .display { margin-bottom: 1.5rem; font-size: clamp(2.8rem, 6vw, 4.7rem); line-height: 1.02; }
-.about-profile, .writing-intro { max-width: 58rem; padding-top: clamp(3.5rem, 8vw, 6rem); }
-.about-profile .display, .writing-intro .display { margin-bottom: 1.35rem; font-size: clamp(2.5rem, 5vw, 4.1rem); font-weight: 590; line-height: 1.04; letter-spacing: -.03em; }
+.about-profile { max-width: 58rem; padding-top: clamp(3.5rem, 8vw, 6rem); }
+.about-profile .display { margin-bottom: 1.35rem; font-size: clamp(2.5rem, 5vw, 4.1rem); font-weight: 590; line-height: 1.04; letter-spacing: -.03em; }
+.writing-intro { max-width: 46rem; padding-top: clamp(3.5rem, 7vw, 5.5rem); }
+.writing-intro .display { margin-bottom: 1rem; font-size: clamp(2.8rem, 5.5vw, 4.5rem); font-weight: 570; line-height: 1; letter-spacing: -.03em; }
 .about-profile__meta { display: flex; flex-wrap: wrap; gap: .45rem 1.2rem; margin-top: 1.35rem; color: var(--muted); font-size: .92rem; }
 .about-profile__meta a { text-underline-offset: .28em; }
 .about-profile__meta a:hover { color: var(--accent); }
@@ -175,10 +177,11 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .about-skills h3 { margin: 0; font-size: 1rem; font-weight: 650; }
 .about-skills p { max-width: 43rem; margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.65; }
 .writing-empty { max-width: 48rem; margin-top: 3rem; }
-.writing-feature { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(18rem, .92fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; max-width: 66rem; margin-top: clamp(3rem, 6vw, 4.5rem); padding-block: clamp(1.5rem, 4vw, 3.5rem); border-block: 1px solid var(--ink); }
+.writing-feature { display: grid; grid-template-columns: minmax(18rem, 1fr) minmax(0, .9fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; max-width: 66rem; margin-top: clamp(3rem, 6vw, 4.5rem); padding-block: clamp(1.5rem, 4vw, 3.5rem); border-block: 1px solid var(--ink); }
+.writing-feature__visual { min-width: 0; }
 .writing-feature__copy { max-width: 40rem; }
-.writing-feature__meta { margin: 0 0 .85rem; color: var(--accent); font-size: .9rem; font-weight: 650; }
-.writing-feature h2 { margin: 0 0 1rem; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 590; line-height: 1.05; letter-spacing: -.03em; }
+.writing-feature__meta { margin: 0 0 .7rem; color: var(--muted); font-size: .88rem; }
+.writing-feature h2 { margin: 0 0 .8rem; font-size: clamp(1.65rem, 3vw, 2.65rem); font-weight: 570; line-height: 1.1; letter-spacing: -.02em; }
 .writing-feature__copy > p:not(.writing-feature__meta):not(.writing-feature__source) { max-width: 36rem; margin: 0 0 1.15rem; color: var(--muted); font-size: 1.07rem; line-height: 1.7; }
 .writing-feature__source { margin: 0 0 1.2rem; color: var(--muted); font-size: .9rem; }
 .writing-feature__source a { color: var(--ink); text-underline-offset: .28em; }
@@ -193,7 +196,7 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .writing-article__header { max-width: 48rem; padding-bottom: clamp(2rem, 5vw, 3.5rem); border-bottom: 1px solid var(--ink); }
 .writing-article__header--visual { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(18rem, .85fr); gap: clamp(2rem, 6vw, 5rem); align-items: end; max-width: none; }
 .writing-article__intro { max-width: 42rem; }
-.writing-article__header .display { margin-bottom: 1.35rem; font-size: clamp(2.5rem, 5vw, 4.1rem); font-weight: 590; line-height: 1.04; letter-spacing: -.03em; }
+.writing-article__header .display { margin-bottom: 1.2rem; font-size: clamp(2.2rem, 4.2vw, 3.5rem); font-weight: 570; line-height: 1.08; letter-spacing: -.025em; }
 .writing-article__source { margin: 1.5rem 0 0; color: var(--muted); font-size: .94rem; }
 .writing-article__source a { color: var(--ink); text-underline-offset: .28em; }
 .writing-prose { max-width: 43rem; padding-top: clamp(2rem, 5vw, 3.5rem); }
@@ -239,6 +242,7 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
   .about-skills > div { grid-template-columns: 1fr; gap: .2rem; padding-block: .9rem; }
   .writing-feature, .writing-article__header--visual { grid-template-columns: 1fr; }
   .writing-feature { gap: 1.5rem; }
+  .writing-feature__visual { order: 2; }
 }
 
 @media (prefers-reduced-motion: reduce) {
