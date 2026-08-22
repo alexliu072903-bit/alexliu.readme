@@ -5,16 +5,16 @@ year: 2026
 category: Skill
 type: Skill
 status: Available
-source: Public repository
+source: Open source
 draft: false
 order: 6
 specimen: site
-image: project-assets/evidence-first-personal-site.png
-imageAlt: Evidence-First Personal Site 的公开 GitHub 仓库预览，包含 README、Skill 与三份参考文档
-evidenceCaption: 公开 GitHub 仓库：README 说明适用场景，Skill 与 references 定义内容边界、建站结构和发布检查。
+image: project-assets/evidence-first-personal-site-readme-cover.png
+imageAlt: Evidence-First Personal Site README 的开头，说明它如何用真实材料建立可维护的个人网站
+evidenceCaption: README 的真实内容截图：从公开证据、页面结构到发布前检查，定义这个 Skill 的工作范围。
 problem: 个人网站常在泛泛自我描述、项目状态不清和难以持续更新之间失去可信度。
 contribution: 将公开边界、内容结构、视觉约束与静态发布流程整理为可复用的 Codex Skill。
-current: 公开仓库已可访问；尚未附加开源许可证。
+current: 基于 MIT License 开源；公开仓库已可访问。
 brief:
   - label: 做什么
     text: 将真实项目、经历、文章和公开证据组织成可长期维护的个人网站。
