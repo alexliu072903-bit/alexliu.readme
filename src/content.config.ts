@@ -32,6 +32,11 @@ const projects = defineCollection({
     problem: z.string(),
     contribution: z.string(),
     current: z.string(),
+    scanTitles: z.object({
+      problem: z.string(),
+      contribution: z.string(),
+      current: z.string(),
+    }).optional(),
     links: z.array(z.object({
       label: z.string(),
       url: z.url(),

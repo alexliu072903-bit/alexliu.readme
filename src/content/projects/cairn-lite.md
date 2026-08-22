@@ -14,6 +14,10 @@ imageAlt: Cairn Lite 的公开 GitHub 仓库，包含协议文档、Python CLI�
 problem: 切换 Agent 或开启新会话时，项目判断不断丢失。
 contribution: 设计一套只记录重要变化的 Markdown 协议与 CLI。
 current: 已开源并可使用，但协议仍处于实验阶段。
+scanTitles:
+  problem: 判断为什么会丢失
+  contribution: 只记录发生变化的结论
+  current: 协议今天在哪里
 links:
   - label: 查看 GitHub
     url: https://github.com/alexliu072903-bit/cairn-lite

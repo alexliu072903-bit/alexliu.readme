@@ -15,6 +15,13 @@ const nextProject = projects[(currentIndex + 1) % projects.length];
 const base = import.meta.env.BASE_URL;
 const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
 const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源' };
+const scanTitles = project.data.scanTitles;
+const useScanLayout = project.id === 'cairn-lite' && Boolean(scanTitles);
+const scanRows = scanTitles ? [
+  { label: '问题', title: scanTitles.problem, text: project.data.problem },
+  { label: '方法', title: scanTitles.contribution, text: project.data.contribution },
+  { label: '现状', title: scanTitles.current, text: project.data.current },
+] : [];
 ---
 
 <BaseLayout title={`${project.data.title} — Alex Liu`} description={project.data.description} pageClass="project-page">
@@ -33,18 +40,43 @@ const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源' 
       {project.data.links.map((link) => <a class="primary-link" href={link.url} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
     </header>
 
-    <figure class="project-figure">
-      <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} />
-      <figcaption>真实项目界面或公开仓库，截取于 2026 年 8 月。</figcaption>
-    </figure>
+    {useScanLayout ? (
+      <>
+        <section class="scan-story" aria-label="项目概览">
+          {scanRows.map((row, index) => (
+            <div class="scan-story__row">
+              <div class="scan-story__label"><span>{String(index + 1).padStart(2, '0')}</span>{row.label}</div>
+              <div class="scan-story__content"><h2>{row.title}</h2><p>{row.text}</p></div>
+            </div>
+          ))}
+        </section>
 
-    <section class="project-summary" aria-label="项目摘要">
-      <div><h2>解决什么</h2><p>{project.data.problem}</p></div>
-      <div><h2>我做了什么</h2><p>{project.data.contribution}</p></div>
-      <div><h2>现在怎样</h2><p>{project.data.current}</p></div>
-    </section>
+        <figure class="project-figure project-figure--scan">
+          <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} />
+          <figcaption>公开 GitHub 仓库，截取于 2026 年 8 月。</figcaption>
+        </figure>
 
-    <div class="project-prose"><Content /></div>
+        <details class="full-note">
+          <summary>展开完整项目笔记</summary>
+          <div class="project-prose"><Content /></div>
+        </details>
+      </>
+    ) : (
+      <>
+        <figure class="project-figure">
+          <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} />
+          <figcaption>真实项目界面或公开仓库，截取于 2026 年 8 月。</figcaption>
+        </figure>
+
+        <section class="project-summary" aria-label="项目摘要">
+          <div><h2>解决什么</h2><p>{project.data.problem}</p></div>
+          <div><h2>我做了什么</h2><p>{project.data.contribution}</p></div>
+          <div><h2>现在怎样</h2><p>{project.data.current}</p></div>
+        </section>
+
+        <div class="project-prose"><Content /></div>
+      </>
+    )}
 
     <a class="next-project" href={`${base}projects/${nextProject.id}/`}>
       <span>下一个项目</span>
