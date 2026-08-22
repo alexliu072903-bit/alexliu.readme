@@ -203,7 +203,8 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .about-skills p { max-width: 43rem; margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.65; }
 .writing-empty { max-width: 48rem; margin-top: 3rem; }
 .writing-feature { display: grid; grid-template-columns: minmax(18rem, 1fr) minmax(0, .9fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; max-width: 66rem; margin-top: clamp(1.25rem, 2.5vw, 2rem); padding-block: clamp(1rem, 2.2vw, 1.6rem); border-block: 1px solid var(--ink); }
-.writing-feature__visual { min-width: 0; }
+.writing-feature__visual { min-width: 0; overflow: hidden; border: 1px solid var(--line); background: var(--soft); }
+.writing-feature__visual img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 72%; }
 .writing-feature__copy { max-width: 40rem; }
 .writing-feature__meta { margin: 0 0 .7rem; color: var(--muted); font-size: .88rem; }
 .writing-feature h2 { margin: 0 0 .8rem; font-size: clamp(1.65rem, 3vw, 2.65rem); font-weight: 570; line-height: 1.1; letter-spacing: -.02em; }
