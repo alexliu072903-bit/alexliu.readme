@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import FlywheelDiagram from '../components/FlywheelDiagram.astro';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order).slice(0, 2);
 const writing = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())[0];
@@ -11,15 +10,17 @@ const statusLabel = { 'Public product': '可访问', Historical: '历史项目',
 
 <BaseLayout title="Alex Liu — Product, writing, and field notes" description="Alex Liu 做产品，也把实践变成可以复用的工具。" pageClass="home-page">
   <section class="home-intro">
-    <h1>产品、工具与实践。</h1>
+    <h1 class="visually-hidden">Alex Liu</h1>
     <div class="home-intro__experience" aria-label="实习经历">
       <article>
+        <p class="home-intro__label">目前</p>
         <h2>Low Entropy AI · AirJelly</h2>
-        <p><strong>AI Product Manager Intern</strong> · 核心参与 AirJelly 2.0 多个模块的更新设计与迭代框架。</p>
+        <p>AI Product Manager Intern · 核心参与 AirJelly 2.0 多个模块的更新设计与迭代框架。</p>
       </article>
       <article>
+        <p class="home-intro__label">此前</p>
         <h2>Emotional Byte AI Inc.</h2>
-        <p><strong>AI Research Intern</strong> · 从产品研究出发，完成过面向海外用户的消费产品实践。</p>
+        <p>AI Research Intern · 从产品研究出发，完成过面向海外用户的消费产品实践。</p>
       </article>
     </div>
   </section>
@@ -45,7 +46,6 @@ const statusLabel = { 'Public product': '可访问', Historical: '历史项目',
         <p>{writing.data.description}</p>
         <a class="primary-link" href={`${base}writing/${writing.id}/`}>阅读文章 <span aria-hidden="true">→</span></a>
       </div>
-      {writing.data.visual === 'two-flywheels' && <FlywheelDiagram compact />}
     </div>
   </section>}
 </BaseLayout>
