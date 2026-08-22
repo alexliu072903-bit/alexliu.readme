@@ -1,8 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FlywheelDiagram from '../components/FlywheelDiagram.astro';
 
-const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order).slice(0, 2);
+const writing = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())[0];
 const base = import.meta.env.BASE_URL;
 const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
 ---
@@ -24,4 +26,28 @@ const statusLabel = { 'Public product': '可访问', Historical: '历史项目',
       ))}
     </div>
   </section>
+
+  <section class="home-about" aria-labelledby="home-about-title">
+    <header><h2 id="home-about-title">About</h2><a href={`${base}about/`}>完整经历</a></header>
+    <div class="home-about__content">
+      <h3>柳锦鸿<br /><span>Jinhong (Alex) Liu</span></h3>
+      <div>
+        <p>深圳技术大学市场营销专业（全英文授课），2027 年毕业。</p>
+        <p>目前在 Low Entropy AI 参与 AirJelly 2.0 的产品迭代；此前在 Emotional Byte AI 从产品研究出发，完成过面向海外用户的产品实践。</p>
+      </div>
+    </div>
+  </section>
+
+  {writing && <section class="home-writing" aria-labelledby="home-writing-title">
+    <header><h2 id="home-writing-title">Writing</h2><a href={`${base}writing/`}>全部文章</a></header>
+    <div class="home-writing__content">
+      <div class="home-writing__copy">
+        <p>{writing.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {writing.data.readTime ?? 5} 分钟阅读</p>
+        <h3><a href={`${base}writing/${writing.id}/`}>{writing.data.title}</a></h3>
+        <p>{writing.data.description}</p>
+        <a class="primary-link" href={`${base}writing/${writing.id}/`}>阅读文章 <span aria-hidden="true">→</span></a>
+      </div>
+      {writing.data.visual === 'two-flywheels' && <FlywheelDiagram compact />}
+    </div>
+  </section>}
 </BaseLayout>
