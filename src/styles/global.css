@@ -46,10 +46,9 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .primary-link:hover, .project-entry__link:hover { color: var(--accent); }
 
 /* Home */
-.home-intro { max-width: 58rem; padding-block: clamp(5rem, 10vw, 8rem) clamp(4rem, 8vw, 6rem); }
-.home-intro__name { margin-bottom: 1.4rem; color: var(--muted); font-size: .95rem; }
-.home-intro h1 { max-width: 15ch; margin-bottom: 1.5rem; font-size: clamp(2.7rem, 6vw, 4.7rem); font-weight: 570; line-height: 1.04; letter-spacing: -.035em; }
-.home-intro > p:not(.home-intro__name) { max-width: 42rem; margin-bottom: 1.5rem; color: var(--muted); font-size: clamp(1.05rem, 1.7vw, 1.25rem); }
+.home-intro { max-width: 58rem; padding-block: clamp(3.5rem, 6vw, 4.75rem) clamp(2.25rem, 4vw, 3.25rem); }
+.home-intro h1 { margin-bottom: .85rem; font-size: clamp(2.25rem, 4.2vw, 3.5rem); font-weight: 570; line-height: 1.08; letter-spacing: -.03em; }
+.home-intro > p { max-width: 42rem; margin: 0; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.12rem); }
 .home-projects { padding-top: 2rem; border-top: 1px solid var(--ink); }
 .home-projects > header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
 .home-projects > header h2 { font-size: 1.4rem; font-weight: 620; }
