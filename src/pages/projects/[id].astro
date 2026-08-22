@@ -1,13 +1,54 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectSpecimen from '../../components/ProjectSpecimen.astro';
-export async function getStaticPaths() { const projects = await getCollection('projects', ({ data }) => !data.draft); return projects.map((project) => ({ params: { id: project.id }, props: { project } })); }
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => !data.draft);
+  return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
 const { project } = Astro.props;
 const { Content } = await render(project);
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
 const currentIndex = projects.findIndex((entry) => entry.id === project.id);
 const nextProject = projects[(currentIndex + 1) % projects.length];
 const base = import.meta.env.BASE_URL;
+const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
+const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源' };
 ---
-<BaseLayout title={`${project.data.title} — Alex Liu`} description={project.data.description} pageClass="project-page"><article class="project-detail"><a class="project-detail__back" href={`${base}projects/`}>← All projects</a><header class="project-detail__head"><div><p class="eyeline">Project journal · {project.data.year}</p><h1>{project.data.title}</h1><p class="project-detail__summary">{project.data.description}</p></div><aside class="project-detail__facts"><dl><dt>Type</dt><dd>{project.data.type}</dd><dt>Status</dt><dd>{project.data.status}</dd><dt>Source</dt><dd>{project.data.source}</dd></dl>{project.data.links.map((link) => <a class="text-link" href={link.url} target="_blank" rel="noreferrer">{link.label}</a>)}</aside></header><div class="project-detail__specimen"><ProjectSpecimen kind={project.data.specimen} /></div><div class="journal"><div class="journal__body"><Content /></div></div><a class="project-next" href={`${base}projects/${nextProject.id}/`}><span>Next project</span><strong>{nextProject.data.title} →</strong></a></article></BaseLayout>
+
+<BaseLayout title={`${project.data.title} — Alex Liu`} description={project.data.description} pageClass="project-page">
+  <article class="project-detail">
+    <a class="back-link" href={`${base}projects/`}>← 返回 Projects</a>
+
+    <header class="project-header">
+      <div class="project-header__meta">
+        <span>{project.data.category}</span>
+        <span>{statusLabel[project.data.status]}</span>
+        <span>{sourceLabel[project.data.source]}</span>
+        <span>{project.data.year}</span>
+      </div>
+      <h1>{project.data.title}</h1>
+      <p>{project.data.description}</p>
+      {project.data.links.map((link) => <a class="primary-link" href={link.url} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
+    </header>
+
+    <figure class="project-figure">
+      <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} />
+      <figcaption>真实项目界面或公开仓库，截取于 2026 年 8 月。</figcaption>
+    </figure>
+
+    <section class="project-summary" aria-label="项目摘要">
+      <div><h2>解决什么</h2><p>{project.data.problem}</p></div>
+      <div><h2>我做了什么</h2><p>{project.data.contribution}</p></div>
+      <div><h2>现在怎样</h2><p>{project.data.current}</p></div>
+    </section>
+
+    <div class="project-prose"><Content /></div>
+
+    <a class="next-project" href={`${base}projects/${nextProject.id}/`}>
+      <span>下一个项目</span>
+      <strong>{nextProject.data.title} →</strong>
+    </a>
+  </article>
+</BaseLayout>

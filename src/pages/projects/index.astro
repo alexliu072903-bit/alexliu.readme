@@ -1,16 +1,52 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectSpecimen from '../../components/ProjectSpecimen.astro';
 
-const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
+const categories = ['产品', '开源工具', 'Skill'] as const;
 const base = import.meta.env.BASE_URL;
+const statusLabel = {
+  'Public product': '可访问',
+  Historical: '历史项目',
+  Experimental: '实验中',
+  Available: '可使用',
+};
+const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源' };
 ---
 
-<BaseLayout title="Projects — Alex Liu" description="Alex Liu 做过的产品、协议与 Skills：在不确定性中，把一部分想象变成现实。" pageClass="projects-page">
-  <section class="projects-hero"><div class="projects-hero__copy"><p class="eyeline">Selected work · 2026</p><h1 class="display">在不确定性中，做出一些可以留下的东西。</h1></div><aside class="projects-hero__aside"><p>这里既有仍可使用的产品，也有已经结束的实验、开放协议和从实践中提炼出的 Skill。</p><p>Public、Private 与 Historical 状态会被如实保留。</p></aside></section>
-  <div class="thesis-line" aria-label="Project themes"><span><b>01</b>想象力与确定性</span><span><b>02</b>开拓与克制</span><span><b>03</b>理性与命运的推背感</span></div>
-  <section class="project-list" aria-label="Projects">{projects.map((project, index) => <a class="project-row" href={`${base}projects/${project.id}/`}><div class="project-row__index">{String(index + 1).padStart(2, '0')}</div><div class="project-row__title"><h2>{project.data.title}</h2><p>{project.data.description}</p><div class="meta-row"><span class="status">{project.data.type}</span><span class:list={['status', { 'status--historical': project.data.status === 'Historical', 'status--open': project.data.source === 'Open source' }]}>{project.data.status}</span><span class="status">{project.data.source}</span></div></div><div class="project-row__visual"><ProjectSpecimen kind={project.data.specimen} compact /></div></a>)}</section>
+<BaseLayout title="Projects — Alex Liu" description="Alex Liu 做过的产品、开源工具和 Skills。" pageClass="projects-page">
+  <header class="projects-intro">
+    <h1>Projects</h1>
+    <p>我做过的产品、开源工具和 Skills。有些仍在运行，有些已经结束，但都留下了可以验证的东西。</p>
+  </header>
+
+  {categories.map((category) => {
+    const entries = projects.filter((project) => project.data.category === category);
+    return (
+      <section class:list={['project-group', `project-group--${category === '产品' ? 'products' : category === '开源工具' ? 'tools' : 'skill'}`]}>
+        <header class="project-group__head">
+          <h2>{category}</h2>
+          <span>{entries.length} {entries.length === 1 ? '项' : '项'}</span>
+        </header>
+        <div class="project-group__list">
+          {entries.map((project) => (
+            <article class="project-entry">
+              <a class="project-entry__image" href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`}>
+                <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} loading="lazy" />
+              </a>
+              <div class="project-entry__content">
+                <div class="project-entry__status">
+                  <span>{statusLabel[project.data.status]}</span>
+                  <span>{sourceLabel[project.data.source]}</span>
+                </div>
+                <h3><a href={`${base}projects/${project.id}/`}>{project.data.title}</a></h3>
+                <p>{project.data.description}</p>
+                <a class="project-entry__link" href={`${base}projects/${project.id}/`}>查看项目 <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  })}
 </BaseLayout>

@@ -63,14 +63,14 @@ components:
 
 The site should feel like an instrument for navigating an open field: the space is expansive, but the marks are exact. White is used as a literal field rather than a warm lifestyle surface. Ink establishes certainty; moss green marks a verified path; vermilion appears only where chance, friction, or a changed direction matters.
 
-The design is calm without becoming an editorial template. Its distinctiveness comes from changing coordinates, marginal notes, and continuous structural lines rather than ornamental typography or decorative technology. The visual system should communicate a mind in motion held by deliberate order.
+The design is calm without becoming an editorial template. Its distinctiveness comes from clear reading hierarchy, factual status, and real project artifacts rather than ornamental typography or decorative technology. The visual system should communicate judgment through evidence.
 
 **Key Characteristics:**
 
-- exact structure with occasional controlled displacement;
-- readable density instead of empty luxury;
+- direct, single-column reading paths;
+- readable density instead of empty or theatrical whitespace;
 - flat, honest surfaces with no decorative glass;
-- project-specific specimens rather than repeated cards;
+- real product and repository captures rather than illustrative mockups;
 - motion that resolves uncertainty into a stable state.
 
 ## Colors
@@ -143,16 +143,16 @@ The system is flat by default. Depth is created with overlap, clipping, tonal su
 
 Navigation is a quiet coordinate system. The active destination gains an ink rule and a small positional shift. Mobile navigation wraps without becoming a drawer unless the content later requires it.
 
-### Project specimen
+### Project evidence
 
-Every project receives one code-native visual derived from the real artifact: a three-pane resume editor, a localized quiz choice, a Markdown protocol tree, an installer transcript, or an allowlist diff. These are evidence, not decoration.
+Every project receives one current, verifiable visual: the real product interface or its public repository. Images are evidence, not decoration, and must carry specific alt text.
 
 ## Do's and Don'ts
 
 ### Do:
 
 - **Do** let project status and source visibility remain visible near the title.
-- **Do** use asymmetry to express exploration while preserving an obvious reading order.
+- **Do** keep primary reading content in one clear column, with short summaries before detail.
 - **Do** vary the density and specimen treatment for each project.
 - **Do** keep prose between 45–68ch and preserve generous paragraph rhythm.
 - **Do** use motion to show branching, correction, continuity, or resolution.
@@ -163,5 +163,5 @@ Every project receives one code-native visual derived from the real artifact: a 
 - **Don't** use startup-bro confidence, exaggerated founder narratives, or technical overclaiming.
 - **Don't** use cyberpunk, neon, glassmorphism, purple gradients, or particle fields.
 - **Don't** default to a beige editorial template with a display serif, tiny monospace labels, and ruled three-column grids.
-- **Don't** repeat identical project cards or turn project journals into feature-list case studies.
+- **Don't** repeat identical project cards, expose internal concept words as navigation, or turn project journals into feature-list case studies.
 - **Don't** publish company work, private source, internal screenshots, or unverified status.
