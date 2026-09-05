@@ -7,16 +7,16 @@ const { compact = false } = Astro.props;
 ---
 
 <figure class:list={{ 'flywheel-diagram': true, 'flywheel-diagram--compact': compact }} aria-label="两个飞轮：一个负责当下的建设、发布与支持；另一个负责面向未来的观察、整理与探索。">
-  <figcaption><span>组织观察</span><strong>两个飞轮</strong></figcaption>
+  <figcaption><span data-i18n-en="Organizational observation">组织观察</span><strong data-i18n-en="Two flywheels">两个飞轮</strong></figcaption>
   <div class="flywheel-diagram__tracks">
     <section class="flywheel-diagram__track flywheel-diagram__track--present">
-      <p>当下</p>
-      <ol><li>建设</li><li>发布</li><li>支持</li></ol>
+      <p data-i18n-en="Present">当下</p>
+      <ol><li data-i18n-en="Build">建设</li><li data-i18n-en="Release">发布</li><li data-i18n-en="Support">支持</li></ol>
     </section>
     <section class="flywheel-diagram__track flywheel-diagram__track--future">
-      <p>未来</p>
-      <ol><li>观察</li><li>整理</li><li>探索</li></ol>
+      <p data-i18n-en="Future">未来</p>
+      <ol><li data-i18n-en="Observe">观察</li><li data-i18n-en="Synthesize">整理</li><li data-i18n-en="Explore">探索</li></ol>
     </section>
   </div>
-  <p class="flywheel-diagram__caption">同一家公司，两个不同的时间线</p>
+  <p class="flywheel-diagram__caption" data-i18n-en="One company, two product timelines">同一家公司，两个不同的时间线</p>
 </figure>

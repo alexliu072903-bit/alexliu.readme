@@ -40,6 +40,11 @@ p { text-wrap: pretty; }
 .site-header nav a::after { content: ''; position: absolute; inset: auto 0 0; height: 1px; transform: scaleX(0); transform-origin: right; background: currentColor; transition: transform 180ms ease-out; }
 .site-header nav a:hover, .site-header nav a.active { color: var(--ink); }
 .site-header nav a:hover::after, .site-header nav a.active::after { transform: scaleX(1); transform-origin: left; }
+.site-header nav .language-switch { display: inline-grid; width: 2.25rem; height: 2.25rem; place-items: center; margin-left: .35rem; padding: 0; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; cursor: pointer; transition: border-color 180ms ease-out, color 180ms ease-out, background-color 180ms ease-out; }
+.site-header nav .language-switch svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 1.55; stroke-linecap: round; stroke-linejoin: round; }
+.site-header nav .language-switch:hover { border-color: var(--ink); }
+.site-header nav .language-switch[aria-pressed="true"] { color: var(--accent); border-color: color-mix(in oklch, var(--accent) 55%, var(--line)); background: var(--accent-soft); }
+.site-header nav .language-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 main { min-height: 72vh; }
 footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-items: center; margin-top: 6rem; padding-block: 1.5rem 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
 

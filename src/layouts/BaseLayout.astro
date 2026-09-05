@@ -15,16 +15,12 @@ const {
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const navigation = [
-  ['Projects', 'projects/'],
-  ['Writing', 'writing/'],
-  ['About', 'about/'],
-];
 const relativePath = Astro.url.pathname.replace(base, '/');
+const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About', 'about/']];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -45,12 +41,19 @@ const relativePath = Astro.url.pathname.replace(base, '/');
     <title>{title}</title>
   </head>
   <body class={pageClass}>
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content" data-i18n-en="Skip to content">跳到主要内容</a>
     <div class="top-rule" aria-hidden="true"><i></i><span></span></div>
     <header class="site-header">
       <a class="site-name" href={base}>Alex Liu</a>
       <nav aria-label="Primary navigation">
         {navigation.map(([label, path]) => <a class:list={{ active: relativePath.startsWith(`/${path}`) }} href={`${base}${path}`}>{label}</a>)}
+        <button class="language-switch" type="button" data-language-toggle aria-label="Switch to English" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5"></circle>
+            <path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5M12 3.5C9.8 5.8 8.7 8.6 8.7 12s1.1 6.2 3.3 8.5"></path>
+          </svg>
+          <span class="visually-hidden" data-language-label>Switch to English</span>
+        </button>
       </nav>
     </header>
     <main id="main-content">
@@ -58,11 +61,48 @@ const relativePath = Astro.url.pathname.replace(base, '/');
     </main>
     <footer>
       <span>© {new Date().getFullYear()} Alex Liu</span>
-      <span class="footer-note">Built as an independent, portable archive.</span>
+      <span class="footer-note" data-i18n-en="Built as an independent, portable archive.">一个独立、可迁移的个人档案。</span>
       <a href={`${base}rss.xml`}>RSS</a>
     </footer>
     <script is:inline>
       document.documentElement.classList.add('has-js');
+      const languageNodes = document.querySelectorAll('[data-i18n-en]');
+      const ariaNodes = document.querySelectorAll('[data-i18n-aria-en]');
+      const altNodes = document.querySelectorAll('[data-i18n-alt-en]');
+      const languageToggle = document.querySelector('[data-language-toggle]');
+      const languageLabel = document.querySelector('[data-language-label]');
+      const setLanguage = (language, updateUrl = true) => {
+        const lang = language === 'en' ? 'en' : 'zh';
+        document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+        languageNodes.forEach((node) => {
+          if (!node.dataset.i18nZh) node.dataset.i18nZh = node.textContent || '';
+          node.textContent = lang === 'en' ? node.dataset.i18nEn : node.dataset.i18nZh;
+        });
+        ariaNodes.forEach((node) => {
+          if (!node.dataset.i18nAriaZh) node.dataset.i18nAriaZh = node.getAttribute('aria-label') || '';
+          node.setAttribute('aria-label', lang === 'en' ? node.dataset.i18nAriaEn : node.dataset.i18nAriaZh);
+        });
+        altNodes.forEach((node) => {
+          if (!node.dataset.i18nAltZh) node.dataset.i18nAltZh = node.getAttribute('alt') || '';
+          node.setAttribute('alt', lang === 'en' ? node.dataset.i18nAltEn : node.dataset.i18nAltZh);
+        });
+        if (languageToggle) {
+          const label = lang === 'en' ? '切换到中文' : 'Switch to English';
+          languageToggle.setAttribute('aria-label', label);
+          languageToggle.setAttribute('aria-pressed', String(lang === 'en'));
+          if (languageLabel) languageLabel.textContent = label;
+        }
+        localStorage.setItem('alex-site-language', lang);
+        if (updateUrl) {
+          const url = new URL(location.href);
+          if (lang === 'en') url.searchParams.set('lang', 'en');
+          else url.searchParams.delete('lang');
+          history.replaceState({}, '', url);
+        }
+      };
+      const requestedLanguage = new URL(location.href).searchParams.get('lang');
+      setLanguage(requestedLanguage || localStorage.getItem('alex-site-language') || 'zh', false);
+      languageToggle?.addEventListener('click', () => setLanguage(document.documentElement.lang === 'en' ? 'zh' : 'en'));
       const marker = document.querySelector('.top-rule span');
       const update = () => { const max = document.documentElement.scrollHeight - innerHeight; const progress = max > 0 ? scrollY / max : 0; if (marker) marker.style.transform = `scaleX(${progress})`; };
       addEventListener('scroll', update, { passive: true }); update();

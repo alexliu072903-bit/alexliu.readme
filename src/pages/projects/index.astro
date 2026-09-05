@@ -11,13 +11,23 @@ const statusLabel = {
   Experimental: '实验中',
   Available: '可使用',
 };
+const statusLabelEn = { 'Public product': 'Public product', Historical: 'Historical', Experimental: 'Experimental', Available: 'Available' };
 const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源', 'Public repository': '公开仓库' };
+const sourceLabelEn = { 'Private source': 'Private source', 'Open source': 'Open source', 'Public repository': 'Public repository' };
+const categoryLabelEn = { 产品: 'Products', 开源工具: 'Open-source tools', Skill: 'Skills' };
+const descriptionEn: Record<string, string> = {
+  'resume-ai': 'A resume rewriting workspace that keeps the resume, job description, and personal evidence in one process.',
+  'blink-vibe-test': 'A historical product experiment in cultural context, identity expression, and social sharing on Telegram.',
+  'cairn-lite': 'A small Markdown protocol for preserving project judgments across Agents and sessions.',
+  'obsidian-ai-starter': 'A reproducible way to connect a local Agent to an existing Obsidian vault with explicit setup and permission boundaries.',
+  'obsidian-git-sync': 'A Skill for syncing an Obsidian vault while keeping the decision about what may leave the device with the user.',
+};
 ---
 
 <BaseLayout title="Projects — Alex Liu" description="Alex Liu 做过的产品、开源工具和 Skills。" pageClass="projects-page">
   <header class="projects-intro">
     <h1>Projects</h1>
-    <p>我做过的产品、开源工具和 Skills。有些仍在运行，有些已经结束，但都留下了可以验证的东西。</p>
+    <p data-i18n-en="Products, open-source tools, and Skills I have built. Some are still running; others are historical, but each leaves behind something verifiable.">我做过的产品、开源工具和 Skills。有些仍在运行，有些已经结束，但都留下了可以验证的东西。</p>
   </header>
 
   {categories.map((category) => {
@@ -25,8 +35,8 @@ const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源',
     return (
       <section class:list={['project-group', `project-group--${category === '产品' ? 'products' : category === '开源工具' ? 'tools' : 'skill'}`]}>
         <header class="project-group__head">
-          <h2>{category}</h2>
-          <span>{entries.length} {entries.length === 1 ? '项' : '项'}</span>
+          <h2 data-i18n-en={categoryLabelEn[category]}>{category}</h2>
+          <span data-i18n-en={`${entries.length} ${entries.length === 1 ? 'project' : 'projects'}`}>{entries.length} 项</span>
         </header>
         <div class="project-group__list">
           {entries.map((project) => (
@@ -36,12 +46,12 @@ const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源',
               </a>
               <div class="project-entry__content">
                 <div class="project-entry__status">
-                  <span>{statusLabel[project.data.status]}</span>
-                  <span>{sourceLabel[project.data.source]}</span>
+                  <span data-i18n-en={statusLabelEn[project.data.status]}>{statusLabel[project.data.status]}</span>
+                  <span data-i18n-en={sourceLabelEn[project.data.source]}>{sourceLabel[project.data.source]}</span>
                 </div>
                 <h3><a href={`${base}projects/${project.id}/`}>{project.data.title}</a></h3>
-                <p>{project.data.description}</p>
-                <a class="project-entry__link" href={`${base}projects/${project.id}/`}>查看项目 <span aria-hidden="true">→</span></a>
+                <p data-i18n-en={descriptionEn[project.id]}>{project.data.description}</p>
+                <a class="project-entry__link" href={`${base}projects/${project.id}/`}><span data-i18n-en="View project">查看项目</span> <span aria-hidden="true">→</span></a>
               </div>
             </article>
           ))}

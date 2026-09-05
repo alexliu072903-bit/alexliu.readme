@@ -6,6 +6,11 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 const writing = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())[0];
 const base = import.meta.env.BASE_URL;
 const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
+const statusLabelEn = { 'Public product': 'Public product', Historical: 'Historical', Experimental: 'Experimental', Available: 'Available' };
+const projectDescriptionEn: Record<string, string> = {
+  'resume-ai': 'A resume rewriting workspace that keeps the resume, job description, and personal evidence in one process.',
+  'blink-vibe-test': 'A historical product experiment in cultural context, identity expression, and social sharing on Telegram.',
+};
 const catMoments = [
   { file: 'cat-close.jpg', alt: '一只猫在室内靠近镜头', className: 'home-stills__workspace' },
   { file: 'cat-portrait.jpg', alt: '一只猫的近景', className: 'home-stills__portrait' },
@@ -18,14 +23,14 @@ const catMoments = [
     <h1 class="visually-hidden">Alex Liu</h1>
     <div class="home-intro__experience" aria-label="实习经历">
       <article>
-        <p class="home-intro__label">目前</p>
+        <p class="home-intro__label" data-i18n-en="Now">目前</p>
         <h2>Low Entropy AI · AirJelly</h2>
-        <p>AI Product Manager Intern · 深度参与 AirJelly 2.0 的产品框架、需求定义与功能迭代。</p>
+        <p data-i18n-en="AI Product Manager Intern · Shaping AirJelly 2.0 across product architecture, Agent Context, and core features.">AI 产品经理实习生 · 参与 AirJelly 2.0 的产品体系、Agent Context 与核心功能建设。</p>
       </article>
       <article>
-        <p class="home-intro__label">此前</p>
+        <p class="home-intro__label" data-i18n-en="Previously">此前</p>
         <h2>Emotional Byte AI Inc.</h2>
-        <p>AI Research Intern · 围绕 Telegram 的跨文化社交场景，完成 Blink Vibe Test 的产品实践。</p>
+        <p data-i18n-en="AI Research Intern · Built and tested Blink Vibe Test for cross-cultural social use on Telegram.">AI 研究实习生 · 围绕 Telegram 的跨文化社交场景完成 Blink Vibe Test。</p>
       </article>
     </div>
   </section>
@@ -35,25 +40,25 @@ const catMoments = [
   </section>
 
   <section class="home-projects">
-    <header><h2>近期项目</h2><a href={`${base}projects/`}>全部 Projects</a></header>
+    <header><h2 data-i18n-en="Recent projects">近期项目</h2><a href={`${base}projects/`} data-i18n-en="All projects">全部 Projects</a></header>
     <div class="home-projects__list">
       {projects.map((project) => (
         <article>
           <a class="home-project__image" href={`${base}projects/${project.id}/`}><img src={`${base}${project.data.image}`} alt={project.data.imageAlt} loading="lazy" /></a>
-          <div><span>{statusLabel[project.data.status]}</span><h3><a href={`${base}projects/${project.id}/`}>{project.data.title}</a></h3><p>{project.data.description}</p></div>
+          <div><span data-i18n-en={statusLabelEn[project.data.status]}>{statusLabel[project.data.status]}</span><h3><a href={`${base}projects/${project.id}/`}>{project.data.title}</a></h3><p data-i18n-en={projectDescriptionEn[project.id]}>{project.data.description}</p></div>
         </article>
       ))}
     </div>
   </section>
 
   {writing && <section class="home-writing" aria-labelledby="home-writing-title">
-    <header><h2 id="home-writing-title">Writing</h2><a href={`${base}writing/`}>全部文章</a></header>
+    <header><h2 id="home-writing-title">Writing</h2><a href={`${base}writing/`} data-i18n-en="All writing">全部文章</a></header>
     <div class="home-writing__content">
       <div class="home-writing__copy">
-        <p>{writing.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {writing.data.readTime ?? 5} 分钟阅读</p>
+        <p data-i18n-en={`${writing.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · ${writing.data.readTime ?? 5} min read`}>{writing.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {writing.data.readTime ?? 5} 分钟阅读</p>
         <h3><a href={`${base}writing/${writing.id}/`}>{writing.data.title}</a></h3>
         <p>{writing.data.description}</p>
-        <a class="primary-link" href={`${base}writing/${writing.id}/`}>阅读文章 <span aria-hidden="true">→</span></a>
+        <a class="primary-link" href={`${base}writing/${writing.id}/`}><span data-i18n-en="Read">阅读文章</span> <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>}

@@ -16,7 +16,7 @@ const { Content } = await render(entry);
   <article class="writing-article">
     <header class:list={{ 'writing-article__header': true, 'writing-article__header--visual': Boolean(entry.data.visual) }}>
       <div class="writing-article__intro">
-        <p class="eyeline">Writing · {entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {entry.data.readTime ?? 5} 分钟阅读</p>
+        <p class="eyeline" data-i18n-en={`Writing · ${entry.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · ${entry.data.readTime ?? 5} min read`}>Writing · {entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {entry.data.readTime ?? 5} 分钟阅读</p>
         <h1 class="display">{entry.data.title}</h1>
         <p class="lede">{entry.data.description}</p>
         {entry.data.source && <p class="writing-article__source">{entry.data.source.note} <a href={entry.data.source.url} target="_blank" rel="noreferrer">阅读英文原文（{entry.data.source.label}）↗</a></p>}
@@ -24,6 +24,6 @@ const { Content } = await render(entry);
       {entry.data.visual === 'two-flywheels' && <FlywheelDiagram />}
     </header>
     <div class="writing-prose"><Content /></div>
-    <a class="back-link" href={`${import.meta.env.BASE_URL}writing/`}>返回 Writing</a>
+    <a class="back-link" href={`${import.meta.env.BASE_URL}writing/`} data-i18n-en="Back to Writing">返回 Writing</a>
   </article>
 </BaseLayout>

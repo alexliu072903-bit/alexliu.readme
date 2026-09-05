@@ -15,19 +15,22 @@ const nextProject = projects[(currentIndex + 1) % projects.length];
 const base = import.meta.env.BASE_URL;
 const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
 const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源', 'Public repository': '公开仓库' };
+const statusLabelEn = { 'Public product': 'Public product', Historical: 'Historical', Experimental: 'Experimental', Available: 'Available' };
+const sourceLabelEn = { 'Private source': 'Private source', 'Open source': 'Open source', 'Public repository': 'Public repository' };
+const categoryLabelEn = { 产品: 'Product', 开源工具: 'Open-source tool', Skill: 'Skill' };
 const useBriefLayout = (project.data.brief?.length ?? 0) > 0;
 const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
 ---
 
 <BaseLayout title={`${project.data.title} — Alex Liu`} description={project.data.description} pageClass="project-page">
   <article class:list={['project-detail', { 'project-detail--brief': useBriefLayout }]}>
-    {!useBriefLayout && <a class="back-link" href={`${base}projects/`}>← 返回 Projects</a>}
+    {!useBriefLayout && <a class="back-link" href={`${base}projects/`} data-i18n-en="← Back to Projects">← 返回 Projects</a>}
 
     <header class="project-header">
       <div class="project-header__meta">
-        <span>{project.data.category}</span>
-        <span>{statusLabel[project.data.status]}</span>
-        <span>{sourceLabel[project.data.source]}</span>
+        <span data-i18n-en={categoryLabelEn[project.data.category]}>{project.data.category}</span>
+        <span data-i18n-en={statusLabelEn[project.data.status]}>{statusLabel[project.data.status]}</span>
+        <span data-i18n-en={sourceLabelEn[project.data.source]}>{sourceLabel[project.data.source]}</span>
         <span>{project.data.year}</span>
       </div>
       {useBriefLayout ? (
@@ -59,15 +62,15 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
         {project.data.readme && (
           <section class="readme-excerpt" aria-label="README 使用摘要">
             <header>
-              <h2>README：如何开始</h2>
-              <a href={project.data.readme.url} target="_blank" rel="noreferrer">完整 README <span aria-hidden="true">↗</span></a>
+              <h2 data-i18n-en="README: Getting started">README：如何开始</h2>
+              <a href={project.data.readme.url} target="_blank" rel="noreferrer"><span data-i18n-en="Full README">完整 README</span> <span aria-hidden="true">↗</span></a>
             </header>
             <ol>{project.data.readme.steps.map((step) => <li>{step}</li>)}</ol>
           </section>
         )}
 
         <details class="full-note">
-          <summary>展开完整项目笔记</summary>
+          <summary data-i18n-en="Read the full project note">展开完整项目笔记</summary>
           <div class="project-prose"><Content /></div>
         </details>
       </>
@@ -79,9 +82,9 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
         </figure>
 
         <section class="project-summary" aria-label="项目摘要">
-          <div><h2>解决什么</h2><p>{project.data.problem}</p></div>
-          <div><h2>我做了什么</h2><p>{project.data.contribution}</p></div>
-          <div><h2>现在怎样</h2><p>{project.data.current}</p></div>
+          <div><h2 data-i18n-en="Problem">解决什么</h2><p>{project.data.problem}</p></div>
+          <div><h2 data-i18n-en="Contribution">我做了什么</h2><p>{project.data.contribution}</p></div>
+          <div><h2 data-i18n-en="Current state">现在怎样</h2><p>{project.data.current}</p></div>
         </section>
 
         <div class="project-prose"><Content /></div>
@@ -89,9 +92,9 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
     )}
 
     <a class="next-project" href={`${base}projects/${nextProject.id}/`}>
-      <span>下一个项目</span>
+      <span data-i18n-en="Next project">下一个项目</span>
       <strong>{nextProject.data.title} →</strong>
     </a>
-    {useBriefLayout && <a class="back-link back-link--footer" href={`${base}projects/`}>← 返回 Projects</a>}
+    {useBriefLayout && <a class="back-link back-link--footer" href={`${base}projects/`} data-i18n-en="← Back to Projects">← 返回 Projects</a>}
   </article>
 </BaseLayout>

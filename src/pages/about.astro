@@ -6,63 +6,63 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="about-profile">
     <p class="eyeline">About</p>
     <h1 class="display">柳锦鸿 Jinhong (Alex) Liu</h1>
-    <div class="about-profile__meta" aria-label="基本信息">
+    <div class="about-profile__meta" aria-label="基本信息" data-i18n-aria-en="Contact">
       <a href="mailto:alexliu072903@gmail.com">alexliu072903@gmail.com</a>
-      <a href="https://bonjour.bio/jobs-mapping/blog/ai-wayfinders-02" target="_blank" rel="noreferrer">来自 Bonjour! 的公开报道 ↗</a>
+      <a href="https://bonjour.bio/jobs-mapping/blog/ai-wayfinders-02" target="_blank" rel="noreferrer" data-i18n-en="Public profile by Bonjour! ↗">来自 Bonjour! 的公开报道 ↗</a>
     </div>
-    <div class="about-stills" aria-label="日常片段">
-      <figure class="about-stills__resting"><img src={`${import.meta.env.BASE_URL}profile/cat-resting.jpg`} alt="一只猫在桌边休息" loading="eager" /></figure>
-      <figure class="about-stills__close"><img src={`${import.meta.env.BASE_URL}profile/cat-intimate.jpg`} alt="一只猫侧躺着靠近镜头" loading="eager" /></figure>
-      <figure class="about-stills__portrait"><img src={`${import.meta.env.BASE_URL}profile/cat-window.jpg`} alt="一只猫隔着玻璃望向镜头" loading="eager" /></figure>
-      <figure class="about-stills__detail"><img src={`${import.meta.env.BASE_URL}profile/cat-detail.jpg`} alt="一只猫低头看向地面" loading="eager" /></figure>
+    <div class="about-stills" aria-label="日常片段" data-i18n-aria-en="Everyday moments">
+      <figure class="about-stills__resting"><img src={`${import.meta.env.BASE_URL}profile/cat-resting.jpg`} alt="一只猫在桌边休息" data-i18n-alt-en="A cat resting beside a desk" loading="eager" /></figure>
+      <figure class="about-stills__close"><img src={`${import.meta.env.BASE_URL}profile/cat-intimate.jpg`} alt="一只猫侧躺着靠近镜头" data-i18n-alt-en="A cat lying close to the camera" loading="eager" /></figure>
+      <figure class="about-stills__portrait"><img src={`${import.meta.env.BASE_URL}profile/cat-window.jpg`} alt="一只猫隔着玻璃望向镜头" data-i18n-alt-en="A cat looking through a window" loading="eager" /></figure>
+      <figure class="about-stills__detail"><img src={`${import.meta.env.BASE_URL}profile/cat-detail.jpg`} alt="一只猫低头看向地面" data-i18n-alt-en="A cat looking down" loading="eager" /></figure>
     </div>
   </section>
 
   <section class="about-resume" aria-labelledby="experience-heading">
-    <header class="about-resume__head"><h2 id="experience-heading">实习经历</h2></header>
+    <header class="about-resume__head"><h2 id="experience-heading" data-i18n-en="Experience">实习经历</h2></header>
     <div class="about-resume__list">
       <article class="about-entry">
-        <div class="about-entry__top"><div><h3>Low Entropy AI · AirJelly</h3><p>北京 AI 明星创业公司 · AI Product Manager Intern</p></div><time datetime="2026-05">2026.05 - 至今</time></div>
-        <p>从 AirJelly 2.0 的早期阶段开始，深度参与整体产品框架、需求定义与多轮功能迭代，覆盖 Context plugin、Memory、Work 与 onboarding 等核心体验。</p>
+        <div class="about-entry__top"><div><h3>Low Entropy AI · AirJelly</h3><p data-i18n-en="5Y Capital-backed Beijing AI startup · AI Product Manager Intern">五源资本投资的北京 AI 初创 · AI 产品经理实习生</p></div><time datetime="2026-05" data-i18n-en="May 2026 - Present">2026.05 - 至今</time></div>
+        <p data-i18n-en="Helped shape AirJelly 2.0 around Agent Context and context consumption. Proposed Context for Agents and turned early product judgments into working foundations for Grow, Suggestion to Do, and Recall.">参与搭建 AirJelly 2.0 以 Agent Context 和 Context consumption 为核心的产品体系；提出“为 Agent 整合 Context”的方向，并将“成长”“推进建议”和“召回”的早期判断转化为可运行的基础版本。</p>
       </article>
       <article class="about-entry">
-        <div class="about-entry__top"><div><h3>Emotional Byte AI Inc.</h3><p>美国怀俄明州 AI 创业公司 · AI Research Intern</p></div><time datetime="2026-02">2026.02 - 2026.04</time></div>
-        <p>负责 Blink Vibe Test，围绕 Telegram 的跨文化社交场景，从研究、内容本地化、产品设计到上线完成完整产品实践。</p>
+        <div class="about-entry__top"><div><h3>Emotional Byte AI Inc.</h3><p data-i18n-en="U.S. AI startup · AI Research Intern">美国 AI 初创 · AI 研究实习生</p></div><time datetime="2026-02" data-i18n-en="Feb 2026 - Apr 2026">2026.02 - 2026.04</time></div>
+        <p data-i18n-en="Researched AI Agent interaction patterns and delivered Blink Vibe Test from product definition through bilingual deployment for cross-cultural social use on Telegram.">研究 AI Agent 交互模式，并围绕 Telegram 的跨文化社交场景，将 Blink Vibe Test 从产品定义推进至双语版本部署。</p>
       </article>
     </div>
   </section>
 
   <section class="about-resume" aria-labelledby="education-heading">
-    <header class="about-resume__head"><h2 id="education-heading">教育背景</h2></header>
+    <header class="about-resume__head"><h2 id="education-heading" data-i18n-en="Education">教育背景</h2></header>
     <article class="about-entry about-entry--single">
-      <div class="about-entry__top"><div><h3>深圳技术大学 · Shenzhen Technology University</h3><p>市场营销（全英文授课） · B.Mgmt. in Marketing (English-taught program)</p></div><time datetime="2023-09">2023.09 - 2027.06</time></div>
+      <div class="about-entry__top"><div><h3>深圳技术大学 · Shenzhen Technology University</h3><p data-i18n-en="B.Mgmt. in Marketing · English-taught program">市场营销（全英文授课） · B.Mgmt. in Marketing</p></div><time datetime="2023-09" data-i18n-en="Sep 2023 - Jun 2027">2023.09 - 2027.06</time></div>
     </article>
   </section>
 
   <section class="about-resume about-resume--compact" aria-labelledby="awards-heading">
-    <header class="about-resume__head"><h2 id="awards-heading">获奖经历</h2></header>
+    <header class="about-resume__head"><h2 id="awards-heading" data-i18n-en="Awards">获奖经历</h2></header>
     <div class="about-resume__list">
-      <article class="about-entry about-entry--brief"><h3>全国大学生商科综合能力大赛商务谈判竞赛全国总决赛一等奖</h3><p>2024.11</p></article>
-      <article class="about-entry about-entry--brief"><h3>第十四届正大杯全国大学生市场调查与分析大赛全国三等奖（前 2%）</h3><p>2023.11 - 2024.06</p></article>
-      <article class="about-entry about-entry--brief"><h3>深圳技术大学科技创新之星（科研创新奖）一等奖</h3><p>校级</p></article>
+      <article class="about-entry about-entry--brief"><h3 data-i18n-en="First Prize · National Finals, Business Negotiation Competition">全国大学生商科综合能力大赛商务谈判竞赛全国总决赛一等奖</h3><p data-i18n-en="Nov 2024">2024.11</p></article>
+      <article class="about-entry about-entry--brief"><h3 data-i18n-en="National Third Prize (Top 2%) · Market Survey and Analysis Competition">第十四届正大杯全国大学生市场调查与分析大赛全国三等奖（前 2%）</h3><p data-i18n-en="Nov 2023 - Jun 2024">2023.11 - 2024.06</p></article>
+      <article class="about-entry about-entry--brief"><h3 data-i18n-en="First Prize · SZTU Science and Innovation Star Award">深圳技术大学科技创新之星（科研创新奖）一等奖</h3><p data-i18n-en="University level">校级</p></article>
     </div>
   </section>
 
   <section class="about-resume about-resume--compact" aria-labelledby="skills-heading">
-    <header class="about-resume__head"><h2 id="skills-heading">技能</h2></header>
+    <header class="about-resume__head"><h2 id="skills-heading" data-i18n-en="Skills">技能</h2></header>
     <div class="about-skills">
-      <div><h3>AI 产品</h3><p>Agent 体验分析、LLM routing、用户研究、Prompt 策略、PRD 与技术协作、GTM 冷启动</p></div>
-      <div><h3>AI 辅助开发</h3><p>Claude Code、Codex、Cursor、Manus、Coze、OpenRouter、Perplexity、NotebookLM</p></div>
-      <div><h3>开发与数据</h3><p>React、FastAPI、Railway、PostgreSQL、Python、SQL、SPSS、STATA</p></div>
+      <div><h3 data-i18n-en="AI Product">AI 产品</h3><p data-i18n-en="Agent experience research, Context and Memory products, proactive AI, user research, PRD, and product-engineering collaboration">Agent 体验研究、Context 与 Memory 产品设计、主动式 AI、用户研究、PRD 与产品技术协作</p></div>
+      <div><h3 data-i18n-en="AI-assisted development">AI 辅助开发</h3><p>Claude Code、Codex、Cursor、Manus、Coze、OpenRouter、Perplexity、NotebookLM</p></div>
+      <div><h3 data-i18n-en="Development & data">开发与数据</h3><p>React、FastAPI、Railway、PostgreSQL、Python、SQL、SPSS、STATA</p></div>
     </div>
   </section>
 
   <section class="about-resume about-resume--compact" aria-labelledby="other-heading">
-    <header class="about-resume__head"><h2 id="other-heading">其他信息</h2></header>
+    <header class="about-resume__head"><h2 id="other-heading" data-i18n-en="Other">其他信息</h2></header>
     <div class="about-other-grid">
       <div class="about-resume__list">
-        <article class="about-entry about-entry--brief"><h3>辩论</h3><p>深圳技术大学商学院辩论队队长（2024.09 - 2025.09）</p></article>
-        <article class="about-entry about-entry--brief"><h3>语言</h3><p>粤语（母语）· 英语（全英文授课背景，可日常沟通）</p></article>
+        <article class="about-entry about-entry--brief"><h3 data-i18n-en="Debate">辩论</h3><p data-i18n-en="Captain, SZTU Business School Debate Team (Sep 2024 - Sep 2025)">深圳技术大学商学院辩论队队长（2024.09 - 2025.09）</p></article>
+        <article class="about-entry about-entry--brief"><h3 data-i18n-en="Languages">语言</h3><p data-i18n-en="Cantonese (native) · English (English-medium education)">粤语（母语）· 英语（全英文授课背景）</p></article>
       </div>
     </div>
   </section>
