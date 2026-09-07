@@ -47,6 +47,7 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
       <a class="site-name" href={base}>Alex Liu</a>
       <nav aria-label="Primary navigation">
         {navigation.map(([label, path]) => <a class:list={{ active: relativePath.startsWith(`/${path}`) }} href={`${base}${path}`}>{label}</a>)}
+        <a href={`${base}resume/alex-liu-chinese-resume.pdf`} download data-i18n-en="CV ↗" data-i18n-href-en={`${base}resume/alex-liu-english-cv.pdf`}>简历 ↗</a>
         <button class="language-switch" type="button" data-language-toggle aria-label="Switch to English" aria-pressed="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="8.5"></circle>
@@ -106,7 +107,9 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
         }
       };
       const requestedLanguage = new URL(location.href).searchParams.get('lang');
-      setLanguage(requestedLanguage || localStorage.getItem('alex-site-language') || 'zh', false);
+      const browserLanguage = (navigator.languages && navigator.languages[0]) || navigator.language || 'zh';
+      const detectedLanguage = browserLanguage.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+      setLanguage(requestedLanguage || localStorage.getItem('alex-site-language') || detectedLanguage, false);
       languageToggle?.addEventListener('click', () => setLanguage(document.documentElement.lang === 'en' ? 'zh' : 'en'));
       const marker = document.querySelector('.top-rule span');
       const update = () => { const max = document.documentElement.scrollHeight - innerHeight; const progress = max > 0 ? scrollY / max : 0; if (marker) marker.style.transform = `scaleX(${progress})`; };
