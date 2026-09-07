@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order).slice(0, 2);
 const writing = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())[0];
+const writingUsesEnglishOriginal = writing?.id === 'two-flywheels' && writing.data.source;
 const base = import.meta.env.BASE_URL;
 const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
 const statusLabelEn = { 'Public product': 'Public product', Historical: 'Historical', Experimental: 'Experimental', Available: 'Available' };
@@ -56,9 +57,9 @@ const catMoments = [
     <div class="home-writing__content">
       <div class="home-writing__copy">
         <p data-i18n-en={`${writing.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · ${writing.data.readTime ?? 5} min read`}>{writing.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {writing.data.readTime ?? 5} 分钟阅读</p>
-        <h3><a href={`${base}writing/${writing.id}/`}>{writing.data.title}</a></h3>
-        <p>{writing.data.description}</p>
-        <a class="primary-link" href={`${base}writing/${writing.id}/`}><span data-i18n-en="Read">阅读文章</span> <span aria-hidden="true">→</span></a>
+        <h3><a href={`${base}writing/${writing.id}/`} data-i18n-href-en={writingUsesEnglishOriginal ? writing.data.source?.url : undefined} data-i18n-en={writingUsesEnglishOriginal ? 'Two Flywheels: A Management Model Built for AI Startups' : undefined}>{writing.data.title}</a></h3>
+        <p data-i18n-en={writingUsesEnglishOriginal ? 'A structure I stumbled into on my first internship — and have been thinking about ever since.' : undefined}>{writing.data.description}</p>
+        <a class="primary-link" href={`${base}writing/${writing.id}/`} data-i18n-href-en={writingUsesEnglishOriginal ? writing.data.source?.url : undefined}><span data-i18n-en={writingUsesEnglishOriginal ? 'Read the English original ↗' : 'Read'}>阅读文章</span> <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>}

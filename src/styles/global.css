@@ -46,7 +46,10 @@ p { text-wrap: pretty; }
 .site-header nav .language-switch[aria-pressed="true"] { color: var(--accent); border-color: color-mix(in oklch, var(--accent) 55%, var(--line)); background: var(--accent-soft); }
 .site-header nav .language-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 main { min-height: 72vh; }
-footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-items: center; margin-top: 6rem; padding-block: 1.5rem 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+footer { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; margin-top: 6rem; padding-block: 1.5rem 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+[data-language-visible="en"] { display: none; }
+html[data-language="en"] [data-language-visible="en"] { display: block; }
+html[data-language="en"] [data-language-hidden="en"] { display: none; }
 
 .primary-link, .project-entry__link { display: inline-flex; gap: .45rem; align-items: center; min-height: 2.75rem; color: var(--ink); font-weight: 620; text-underline-offset: .3em; }
 .primary-link:hover, .project-entry__link:hover { color: var(--accent); }
@@ -231,6 +234,8 @@ footer { display: grid; grid-template-columns: 1fr auto auto; gap: 2rem; align-i
 .writing-article__header .display { margin-bottom: .85rem; font-size: clamp(2rem, 3.5vw, 2.85rem); font-weight: 570; line-height: 1.1; letter-spacing: -.02em; }
 .writing-article__source { margin: 1.5rem 0 0; color: var(--muted); font-size: .94rem; }
 .writing-article__source a { color: var(--ink); text-underline-offset: .28em; }
+.writing-source-handoff { max-width: 42rem; margin-top: clamp(2rem, 5vw, 3.5rem); padding-block: 1.15rem; border-block: 1px solid var(--ink); }
+.writing-source-handoff p { max-width: 38rem; margin: 0 0 .55rem; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
 .writing-prose { max-width: 43rem; padding-top: clamp(2rem, 5vw, 3.5rem); }
 .writing-prose h2 { margin: clamp(2.5rem, 5vw, 3.5rem) 0 1rem; font-size: clamp(1.35rem, 2.4vw, 1.8rem); line-height: 1.2; }
 .writing-prose p, .writing-prose li { font-size: 1.05rem; line-height: 1.8; }

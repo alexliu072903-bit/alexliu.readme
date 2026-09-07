@@ -62,18 +62,19 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
     <footer>
       <span>© {new Date().getFullYear()} Alex Liu</span>
       <span class="footer-note" data-i18n-en="Built as an independent, portable archive.">一个独立、可迁移的个人档案。</span>
-      <a href={`${base}rss.xml`}>RSS</a>
     </footer>
     <script is:inline>
       document.documentElement.classList.add('has-js');
       const languageNodes = document.querySelectorAll('[data-i18n-en]');
       const ariaNodes = document.querySelectorAll('[data-i18n-aria-en]');
       const altNodes = document.querySelectorAll('[data-i18n-alt-en]');
+      const hrefNodes = document.querySelectorAll('[data-i18n-href-en]');
       const languageToggle = document.querySelector('[data-language-toggle]');
       const languageLabel = document.querySelector('[data-language-label]');
       const setLanguage = (language, updateUrl = true) => {
         const lang = language === 'en' ? 'en' : 'zh';
         document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+        document.documentElement.dataset.language = lang;
         languageNodes.forEach((node) => {
           if (!node.dataset.i18nZh) node.dataset.i18nZh = node.textContent || '';
           node.textContent = lang === 'en' ? node.dataset.i18nEn : node.dataset.i18nZh;
@@ -85,6 +86,10 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
         altNodes.forEach((node) => {
           if (!node.dataset.i18nAltZh) node.dataset.i18nAltZh = node.getAttribute('alt') || '';
           node.setAttribute('alt', lang === 'en' ? node.dataset.i18nAltEn : node.dataset.i18nAltZh);
+        });
+        hrefNodes.forEach((node) => {
+          if (!node.dataset.i18nHrefZh) node.dataset.i18nHrefZh = node.getAttribute('href') || '';
+          node.setAttribute('href', lang === 'en' ? node.dataset.i18nHrefEn : node.dataset.i18nHrefZh);
         });
         if (languageToggle) {
           const label = lang === 'en' ? '切换到中文' : 'Switch to English';
