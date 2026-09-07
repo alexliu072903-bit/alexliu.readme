@@ -236,6 +236,9 @@ html[data-language="en"] [data-language-hidden="en"] { display: none; }
 .writing-article__source a { color: var(--ink); text-underline-offset: .28em; }
 .writing-source-handoff { max-width: 42rem; margin-top: clamp(2rem, 5vw, 3.5rem); padding-block: 1.15rem; border-block: 1px solid var(--ink); }
 .writing-source-handoff p { max-width: 38rem; margin: 0 0 .55rem; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+html[data-language="en"] .writing-article--source-handoff .writing-article__header { display: block; max-width: 48rem; padding-bottom: 0; border-bottom: 0; }
+html[data-language="en"] .writing-article--source-handoff .writing-source-handoff { margin-top: clamp(2rem, 5vw, 3rem); padding: 1.15rem 0 0; border-top: 1px solid var(--ink); border-bottom: 0; }
+html[data-language="en"] .writing-article--source-handoff .back-link { margin-top: 2rem; }
 .writing-prose { max-width: 43rem; padding-top: clamp(2rem, 5vw, 3.5rem); }
 .writing-prose h2 { margin: clamp(2.5rem, 5vw, 3.5rem) 0 1rem; font-size: clamp(1.35rem, 2.4vw, 1.8rem); line-height: 1.2; }
 .writing-prose p, .writing-prose li { font-size: 1.05rem; line-height: 1.8; }
