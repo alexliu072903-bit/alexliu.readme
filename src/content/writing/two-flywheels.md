@@ -1,11 +1,16 @@
 ---
 title: 两个飞轮：AI 创业公司的管理模型
+titleEn: "Two Flywheels: A Management Model Built for AI Startups"
 description: 从第一次实习时偶然换办公室开始，我看到了一种让当下建设与面向未来的探索同时运转的组织方式。
+descriptionEn: A structure I stumbled into during my first internship — and have continued thinking about since.
 publishedAt: 2026-08-22
 tags:
   - 团队协作
   - AI 创业
 readTime: 6
+image: profile/writing-two-flywheels.jpg
+imageAlt: 一只猫站在插线板旁边看向镜头
+imageAltEn: A cat standing beside power adapters and looking at the camera
 visual: two-flywheels
 source:
   label: AirJelly

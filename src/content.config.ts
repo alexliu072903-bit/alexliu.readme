@@ -14,6 +14,9 @@ const writing = defineCollection({
     draft: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     readTime: z.number().int().positive().optional(),
+    image: z.string(),
+    imageAlt: z.string(),
+    imageAltEn: z.string().optional(),
     visual: z.enum(['two-flywheels']).optional(),
     source: z.object({
       label: z.string(),
