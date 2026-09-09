@@ -6,7 +6,9 @@ const writing = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/writing' }),
   schema: z.object({
     title: z.string(),
+    titleEn: z.string().optional(),
     description: z.string(),
+    descriptionEn: z.string().optional(),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     draft: z.boolean().default(false),
@@ -17,6 +19,7 @@ const writing = defineCollection({
       label: z.string(),
       url: z.url(),
       note: z.string(),
+      noteEn: z.string().optional(),
     }).optional(),
   }),
 });

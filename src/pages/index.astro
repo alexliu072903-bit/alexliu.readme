@@ -57,8 +57,8 @@ const catMoments = [
     <div class="home-writing__content">
       <div class="home-writing__copy">
         <p data-i18n-en={`${writing.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · ${writing.data.readTime ?? 5} min read`}>{writing.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {writing.data.readTime ?? 5} 分钟阅读</p>
-        <h3><a href={`${base}writing/${writing.id}/`} data-i18n-href-en={writingUsesEnglishOriginal ? writing.data.source?.url : undefined} data-i18n-en={writingUsesEnglishOriginal ? 'Two Flywheels: A Management Model Built for AI Startups' : undefined}>{writing.data.title}</a></h3>
-        <p data-i18n-en={writingUsesEnglishOriginal ? 'A structure I stumbled into on my first internship — and have been thinking about ever since.' : undefined}>{writing.data.description}</p>
+        <h3><a href={`${base}writing/${writing.id}/`} data-i18n-href-en={writingUsesEnglishOriginal ? writing.data.source?.url : undefined} data-i18n-en={writing.data.titleEn ?? (writingUsesEnglishOriginal ? 'Two Flywheels: A Management Model Built for AI Startups' : undefined)}>{writing.data.title}</a></h3>
+        <p data-i18n-en={writing.data.descriptionEn ?? (writingUsesEnglishOriginal ? 'A structure I stumbled into on my first internship — and have been thinking about ever since.' : undefined)}>{writing.data.description}</p>
         <a class="primary-link" href={`${base}writing/${writing.id}/`} data-i18n-href-en={writingUsesEnglishOriginal ? writing.data.source?.url : undefined}><span data-i18n-en={writingUsesEnglishOriginal ? 'Read the English original ↗' : 'Read'}>阅读文章</span> <span aria-hidden="true">→</span></a>
       </div>
     </div>
