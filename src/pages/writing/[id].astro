@@ -13,7 +13,7 @@ const { Content } = await render(entry);
 const isEnglishOriginal = entry.id === 'two-flywheels' && entry.data.source;
 ---
 
-<BaseLayout title={`${entry.data.title} — Alex Liu`} description={entry.data.description}>
+<BaseLayout title={`${entry.data.title} — Alex Liu`} titleEn={`${entry.data.titleEn ?? entry.data.title} — Alex Liu`} description={entry.data.description} descriptionEn={entry.data.descriptionEn ?? entry.data.description}>
   <article class:list={{ 'writing-article': true, 'writing-article--source-handoff': Boolean(isEnglishOriginal) }}>
     <header class:list={{ 'writing-article__header': true, 'writing-article__header--visual': Boolean(entry.data.visual) }}>
       <div class="writing-article__intro">

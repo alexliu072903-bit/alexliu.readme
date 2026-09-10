@@ -7,7 +7,6 @@ const entries = (await getCollection('writing', ({ data }) => !data.draft)).sort
 );
 const [featured, ...remaining] = entries;
 const isEnglishOriginal = featured?.id === 'two-flywheels' && Boolean(featured.data.source);
-const englishOriginalUrl = isEnglishOriginal ? featured?.data.source?.url : undefined;
 ---
 
 <BaseLayout title="Writing — Alex Liu">
@@ -24,7 +23,7 @@ const englishOriginalUrl = isEnglishOriginal ? featured?.data.source?.url : unde
         <h2 id="featured-title" data-i18n-en={featured.data.titleEn ?? (isEnglishOriginal ? 'Two Flywheels: A Management Model Built for AI Startups' : undefined)}>{featured.data.title}</h2>
         <p data-i18n-en={featured.data.descriptionEn ?? (isEnglishOriginal ? 'A structure I stumbled into on my first internship — and have been thinking about ever since.' : undefined)}>{featured.data.description}</p>
         {featured.data.source && <p class="writing-feature__source"><span data-i18n-en={featured.data.source.noteEn ?? (isEnglishOriginal ? 'Originally published in English on AirJelly.' : 'Originally published elsewhere.')}>{featured.data.source.note}</span> <a href={featured.data.source.url} target="_blank" rel="noreferrer"><span data-i18n-en={`${featured.data.source.label} original ↗`}>{featured.data.source.label} 原文 ↗</span></a></p>}
-        <a class="primary-link" href={`${import.meta.env.BASE_URL}writing/${featured.id}/`} data-i18n-href-en={englishOriginalUrl}><span data-i18n-en={isEnglishOriginal ? 'Read the English original ↗' : 'Read'}>阅读文章</span> <span aria-hidden="true">→</span></a>
+        <a class="primary-link" href={`${import.meta.env.BASE_URL}writing/${featured.id}/`}><span data-i18n-en="Read">阅读文章</span> <span aria-hidden="true">→</span></a>
       </div>
     </section>
     {remaining.length > 0 && <section class="writing-list" aria-label="更多文章">{remaining.map((entry) => <article><a href={`${import.meta.env.BASE_URL}writing/${entry.id}/`}><img src={`${import.meta.env.BASE_URL}${entry.data.image}`} alt={entry.data.imageAlt} data-i18n-alt-en={entry.data.imageAltEn} loading="lazy" /><div><p data-i18n-en={entry.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}>{entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</p><h2 data-i18n-en={entry.data.titleEn}>{entry.data.title}</h2><p data-i18n-en={entry.data.descriptionEn}>{entry.data.description}</p></div></a></article>)}</section>}

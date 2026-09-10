@@ -41,8 +41,8 @@ const descriptionEn: Record<string, string> = {
         <div class="project-group__list">
           {entries.map((project) => (
             <article class="project-entry">
-              <a class="project-entry__image" href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`}>
-                <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} loading="lazy" />
+              <a class="project-entry__image" href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`} data-i18n-aria-en={`View ${project.data.title}`}>
+                <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} data-i18n-alt-en={`Project evidence for ${project.data.title}`} loading="lazy" />
               </a>
               <div class="project-entry__content">
                 <div class="project-entry__status">

@@ -4,13 +4,17 @@ import '@fontsource-variable/bricolage-grotesque';
 
 interface Props {
   title: string;
+  titleEn?: string;
   description?: string;
+  descriptionEn?: string;
   pageClass?: string;
 }
 
 const {
   title,
+  titleEn = title,
   description = 'Alex Liu — product work, writing, and experiments.',
+  descriptionEn = description,
   pageClass = '',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -20,7 +24,7 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-title-zh={title} data-title-en={titleEn} data-description-zh={description} data-description-en={descriptionEn}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -72,6 +76,12 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
       const hrefNodes = document.querySelectorAll('[data-i18n-href-en]');
       const languageToggle = document.querySelector('[data-language-toggle]');
       const languageLabel = document.querySelector('[data-language-label]');
+      const descriptionMeta = document.querySelector('meta[name="description"]');
+      const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+      const ogDescriptionMeta = document.querySelector('meta[property="og:description"]');
+      const twitterTitleMeta = document.querySelector('meta[name="twitter:title"]');
+      const twitterDescriptionMeta = document.querySelector('meta[name="twitter:description"]');
+      const siteBase = document.querySelector('link[rel="manifest"]')?.getAttribute('href')?.replace(/site\.webmanifest$/, '') || '/';
       const setLanguage = (language, updateUrl = true) => {
         const lang = language === 'en' ? 'en' : 'zh';
         document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
@@ -92,6 +102,21 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
           if (!node.dataset.i18nHrefZh) node.dataset.i18nHrefZh = node.getAttribute('href') || '';
           node.setAttribute('href', lang === 'en' ? node.dataset.i18nHrefEn : node.dataset.i18nHrefZh);
         });
+        document.querySelectorAll('a[href]').forEach((node) => {
+          const rawHref = node.getAttribute('href') || '';
+          if (!rawHref || rawHref.startsWith('#') || node.dataset.i18nHrefEn) return;
+          if (!node.dataset.languageBaseHref) node.dataset.languageBaseHref = rawHref;
+          const url = new URL(node.dataset.languageBaseHref, location.origin);
+          if (url.origin !== location.origin || !url.pathname.startsWith(siteBase)) return;
+          if (lang === 'en') url.searchParams.set('lang', 'en');
+          else url.searchParams.delete('lang');
+          node.setAttribute('href', `${url.pathname}${url.search}${url.hash}`);
+        });
+        const pageTitle = lang === 'en' ? document.documentElement.dataset.titleEn : document.documentElement.dataset.titleZh;
+        const pageDescription = lang === 'en' ? document.documentElement.dataset.descriptionEn : document.documentElement.dataset.descriptionZh;
+        if (pageTitle) document.title = pageTitle;
+        [ogTitleMeta, twitterTitleMeta].forEach((node) => pageTitle && node?.setAttribute('content', pageTitle));
+        [descriptionMeta, ogDescriptionMeta, twitterDescriptionMeta].forEach((node) => pageDescription && node?.setAttribute('content', pageDescription));
         if (languageToggle) {
           const label = lang === 'en' ? '切换到中文' : 'Switch to English';
           languageToggle.setAttribute('aria-label', label);
