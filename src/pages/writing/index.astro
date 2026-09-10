@@ -6,7 +6,6 @@ const entries = (await getCollection('writing', ({ data }) => !data.draft)).sort
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
 );
 const [featured, ...remaining] = entries;
-const isEnglishOriginal = featured?.id === 'two-flywheels' && Boolean(featured.data.source);
 ---
 
 <BaseLayout title="Writing — Alex Liu">
@@ -20,9 +19,9 @@ const isEnglishOriginal = featured?.id === 'two-flywheels' && Boolean(featured.d
       </div>
       <div class="writing-feature__copy">
         <p class="writing-feature__meta" data-i18n-en={`${featured.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · ${featured.data.readTime ?? 5} min read`}>{featured.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {featured.data.readTime ?? 5} 分钟阅读</p>
-        <h2 id="featured-title" data-i18n-en={featured.data.titleEn ?? (isEnglishOriginal ? 'Two Flywheels: A Management Model Built for AI Startups' : undefined)}>{featured.data.title}</h2>
-        <p data-i18n-en={featured.data.descriptionEn ?? (isEnglishOriginal ? 'A structure I stumbled into on my first internship — and have been thinking about ever since.' : undefined)}>{featured.data.description}</p>
-        {featured.data.source && <p class="writing-feature__source"><span data-i18n-en={featured.data.source.noteEn ?? (isEnglishOriginal ? 'Originally published in English on AirJelly.' : 'Originally published elsewhere.')}>{featured.data.source.note}</span> <a href={featured.data.source.url} target="_blank" rel="noreferrer"><span data-i18n-en={`${featured.data.source.label} original ↗`}>{featured.data.source.label} 原文 ↗</span></a></p>}
+        <h2 id="featured-title" data-i18n-en={featured.data.titleEn}>{featured.data.title}</h2>
+        <p data-i18n-en={featured.data.descriptionEn}>{featured.data.description}</p>
+        {featured.data.source && <p class="writing-feature__source"><span data-i18n-en={featured.data.source.noteEn ?? 'Originally published elsewhere.'}>{featured.data.source.note}</span> <a href={featured.data.source.url} target="_blank" rel="noreferrer"><span data-i18n-en={`${featured.data.source.label} original ↗`}>{featured.data.source.label} 原文 ↗</span></a></p>}
         <a class="primary-link" href={`${import.meta.env.BASE_URL}writing/${featured.id}/`}><span data-i18n-en="Read">阅读文章</span> <span aria-hidden="true">→</span></a>
       </div>
     </section>
