@@ -18,6 +18,13 @@ const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源',
 const statusLabelEn = { 'Public product': 'Public product', Historical: 'Historical', Experimental: 'Experimental', Available: 'Available' };
 const sourceLabelEn = { 'Private source': 'Private source', 'Open source': 'Open source', 'Public repository': 'Public repository' };
 const categoryLabelEn = { 产品: 'Product', 开源工具: 'Open-source tool', Skill: 'Skill' };
+const descriptionEn: Record<string, string> = {
+  'resume-ai': 'A resume rewriting workspace that keeps the resume, job description, and personal evidence in one process.',
+  'blink-vibe-test': 'A historical product experiment in cultural context, identity expression, and social sharing on Telegram.',
+  'cairn-lite': 'A small Markdown protocol for preserving project judgments across Agents and sessions.',
+  'obsidian-ai-starter': 'A reproducible way to connect a local Agent to an existing Obsidian vault with explicit setup and permission boundaries.',
+  'obsidian-git-sync': 'A Skill for syncing an Obsidian vault while keeping the decision about what may leave the device with the user.',
+};
 const useBriefLayout = (project.data.brief?.length ?? 0) > 0;
 const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
 ---
@@ -36,15 +43,20 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
       {useBriefLayout ? (
         <div class="project-header__title-row project-header__title-row--brief">
           <h1>{project.data.title}</h1>
-          {project.data.links.map((link) => <a class="project-header__github" href={link.url} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
+          {project.data.links.map((link) => <a class="project-header__github" href={link.url} target="_blank" rel="noreferrer"><span data-i18n-en="View source">{link.label}</span> <span aria-hidden="true">↗</span></a>)}
         </div>
       ) : <h1>{project.data.title}</h1>}
-      <p>{project.data.description}</p>
-      {!useBriefLayout && project.data.links.map((link) => <a class="primary-link" href={link.url} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
+      <p data-i18n-en={descriptionEn[project.id]}>{project.data.description}</p>
+      {!useBriefLayout && project.data.links.map((link) => <a class="primary-link" href={link.url} target="_blank" rel="noreferrer"><span data-i18n-en="View source">{link.label}</span> <span aria-hidden="true">↗</span></a>)}
     </header>
 
+    <section class="project-brief" data-language-visible="en" aria-label="English project overview">
+      <div class="project-brief__row"><h2>Overview</h2><p>{descriptionEn[project.id]}</p></div>
+      <div class="project-brief__row"><h2>Detailed note</h2><p>The complete project note is currently available in Chinese. Public products and source repositories remain available through the link above.</p></div>
+    </section>
+
     {useBriefLayout ? (
-      <>
+      <div data-language-hidden="en">
         <section class="project-brief" aria-label="项目概览">
           {briefRows.map((row) => (
             <div class="project-brief__row">
@@ -73,9 +85,9 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
           <summary data-i18n-en="Read the full project note">展开完整项目笔记</summary>
           <div class="project-prose"><Content /></div>
         </details>
-      </>
+      </div>
     ) : (
-      <>
+      <div data-language-hidden="en">
         <figure class="project-figure">
           <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} />
           <figcaption>真实项目界面或公开仓库，截取于 2026 年 8 月。</figcaption>
@@ -88,7 +100,7 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
         </section>
 
         <div class="project-prose"><Content /></div>
-      </>
+      </div>
     )}
 
     <a class="next-project" href={`${base}projects/${nextProject.id}/`}>
