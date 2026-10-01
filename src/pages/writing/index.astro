@@ -9,12 +9,12 @@ const [featured, ...remaining] = entries;
 ---
 
 <BaseLayout title="Writing — Alex Liu">
-  <section class="writing-intro"><h1 class="display">Writing</h1><p class="lede" data-i18n-en="Notes on products, AI, and ways of working.">关于产品、AI 和工作方式的一些记录。</p></section>
+  <section class="writing-intro" style={`--haze: url("${import.meta.env.BASE_URL}style-kit/haze-violet.svg")`}><h1 class="display">Writing</h1><p class="lede" data-i18n-en="Notes on products, AI, and ways of working.">关于产品、AI 和工作方式的一些记录。</p></section>
   {!featured ? (
     <p class="lede writing-empty" data-i18n-en="The first piece is still being prepared.">第一篇文章正在整理。</p>
   ) : <>
     <section class="writing-feature" aria-labelledby="featured-title">
-      <div class="writing-feature__visual">
+      <div class="writing-feature__visual" style={`--haze: url("${import.meta.env.BASE_URL}style-kit/haze-warm.svg")`}>
         <img src={`${import.meta.env.BASE_URL}${featured.data.image}`} alt={featured.data.imageAlt} data-i18n-alt-en={featured.data.imageAltEn} />
       </div>
       <div class="writing-feature__copy">

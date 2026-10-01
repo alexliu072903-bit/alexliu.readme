@@ -18,13 +18,7 @@ const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源',
 const statusLabelEn = { 'Public product': 'Public product', Historical: 'Historical', Experimental: 'Experimental', Available: 'Available' };
 const sourceLabelEn = { 'Private source': 'Private source', 'Open source': 'Open source', 'Public repository': 'Public repository' };
 const categoryLabelEn = { 产品: 'Product', 开源工具: 'Open-source tool', Skill: 'Skill' };
-const descriptionEn: Record<string, string> = {
-  'resume-ai': 'A resume rewriting workspace that keeps the resume, job description, and personal evidence in one process.',
-  'blink-vibe-test': 'A historical product experiment in cultural context, identity expression, and social sharing on Telegram.',
-  'cairn-lite': 'A small Markdown protocol for preserving project judgments across Agents and sessions.',
-  'obsidian-ai-starter': 'A reproducible way to connect a local Agent to an existing Obsidian vault with explicit setup and permission boundaries.',
-  'obsidian-git-sync': 'A Skill for syncing an Obsidian vault while keeping the decision about what may leave the device with the user.',
-};
+const en = project.data.en;
 const useBriefLayout = (project.data.brief?.length ?? 0) > 0;
 const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
 ---
@@ -46,14 +40,47 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
           {project.data.links.map((link) => <a class="project-header__github" href={link.url} target="_blank" rel="noreferrer"><span data-i18n-en="View source">{link.label}</span> <span aria-hidden="true">↗</span></a>)}
         </div>
       ) : <h1>{project.data.title}</h1>}
-      <p data-i18n-en={descriptionEn[project.id]}>{project.data.description}</p>
+      <p data-i18n-en={en?.description}>{project.data.description}</p>
       {!useBriefLayout && project.data.links.map((link) => <a class="primary-link" href={link.url} target="_blank" rel="noreferrer"><span data-i18n-en="View source">{link.label}</span> <span aria-hidden="true">↗</span></a>)}
     </header>
 
-    <section class="project-brief" data-language-visible="en" aria-label="English project overview">
-      <div class="project-brief__row"><h2>Overview</h2><p>{descriptionEn[project.id]}</p></div>
-      <div class="project-brief__row"><h2>Detailed note</h2><p>The complete project note is currently available in Chinese. Public products and source repositories remain available through the link above.</p></div>
-    </section>
+    <div data-language-visible="en">
+      <section class="project-brief" aria-label="English project overview">
+        {(en?.brief ?? []).map((row) => (
+          <div class="project-brief__row"><h2>{row.label}</h2><p>{row.text}</p></div>
+        ))}
+        <div class="project-brief__row"><h2>Full note</h2><p>The full project note is currently available in Chinese only.</p></div>
+      </section>
+      {en?.facts && (
+        <section class="project-facts" aria-label="Figures">
+          <dl>{en.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
+          {en.factsNote && <p>{en.factsNote}</p>}
+        </section>
+      )}
+      {project.data.image && (
+        <figure class="project-figure project-figure--brief">
+          <img src={`${base}${project.data.image}`} alt={en?.imageAlt ?? project.data.imageAlt} />
+          {en?.evidenceCaption && <figcaption>{en.evidenceCaption}</figcaption>}
+        </figure>
+      )}
+      {project.data.reactions && en?.reactions && (
+        <section class="project-reactions" aria-label="Public reaction">
+          <h2>Public reaction</h2>
+          <div>{project.data.reactions.map((r, i) => (
+            <figure><img src={`${base}${r.image}`} alt={en.reactions![i]?.alt ?? r.alt} loading="lazy" /><figcaption>{en.reactions![i]?.caption}</figcaption></figure>
+          ))}</div>
+        </section>
+      )}
+      {project.data.readme && en?.readmeSteps && (
+        <section class="readme-excerpt" aria-label="README summary">
+          <header>
+            <h2>README: Getting started</h2>
+            <a href={project.data.readme.url} target="_blank" rel="noreferrer">Full README <span aria-hidden="true">↗</span></a>
+          </header>
+          <ol>{en.readmeSteps.map((step) => <li>{step}</li>)}</ol>
+        </section>
+      )}
+    </div>
 
     {useBriefLayout ? (
       <div data-language-hidden="en">
@@ -66,11 +93,27 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
           ))}
         </section>
 
-        <figure class="project-figure project-figure--brief">
-          <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} />
-          <figcaption>{project.data.evidenceCaption ?? '公开 GitHub 仓库，截取于 2026 年 8 月。'}</figcaption>
-        </figure>
+        {project.data.facts && (
+          <section class="project-facts" aria-label="数据">
+            <dl>{project.data.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
+            {project.data.factsNote && <p>{project.data.factsNote}</p>}
+          </section>
+        )}
+        {project.data.image && (
+          <figure class="project-figure project-figure--brief">
+            <img src={`${base}${project.data.image}`} alt={project.data.imageAlt ?? project.data.title} />
+            {project.data.evidenceCaption && <figcaption>{project.data.evidenceCaption}</figcaption>}
+          </figure>
+        )}
 
+        {project.data.reactions && (
+          <section class="project-reactions" aria-label="公开反馈">
+            <h2>公开反馈</h2>
+            <div>{project.data.reactions.map((r) => (
+              <figure><img src={`${base}${r.image}`} alt={r.alt} loading="lazy" /><figcaption>{r.caption}</figcaption></figure>
+            ))}</div>
+          </section>
+        )}
         {project.data.readme && (
           <section class="readme-excerpt" aria-label="README 使用摘要">
             <header>
@@ -88,10 +131,9 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
       </div>
     ) : (
       <div data-language-hidden="en">
-        <figure class="project-figure">
-          <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} />
-          <figcaption>真实项目界面或公开仓库，截取于 2026 年 8 月。</figcaption>
-        </figure>
+        {project.data.image && <figure class="project-figure">
+          <img src={`${base}${project.data.image}`} alt={project.data.imageAlt ?? project.data.title} />
+        </figure>}
 
         <section class="project-summary" aria-label="项目摘要">
           <div><h2 data-i18n-en="Problem">解决什么</h2><p>{project.data.problem}</p></div>

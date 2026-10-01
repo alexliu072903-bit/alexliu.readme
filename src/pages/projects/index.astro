@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
 const categories = ['产品', '开源工具', 'Skill'] as const;
 const base = import.meta.env.BASE_URL;
+const hazes = ['haze-cyan', 'haze-violet', 'haze-warm'];
 const statusLabel = {
   'Public product': '可访问',
   Historical: '历史项目',
@@ -15,17 +16,10 @@ const statusLabelEn = { 'Public product': 'Public product', Historical: 'Histori
 const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源', 'Public repository': '公开仓库' };
 const sourceLabelEn = { 'Private source': 'Private source', 'Open source': 'Open source', 'Public repository': 'Public repository' };
 const categoryLabelEn = { 产品: 'Products', 开源工具: 'Open-source tools', Skill: 'Skills' };
-const descriptionEn: Record<string, string> = {
-  'resume-ai': 'A resume rewriting workspace that keeps the resume, job description, and personal evidence in one process.',
-  'blink-vibe-test': 'A historical product experiment in cultural context, identity expression, and social sharing on Telegram.',
-  'cairn-lite': 'A small Markdown protocol for preserving project judgments across Agents and sessions.',
-  'obsidian-ai-starter': 'A reproducible way to connect a local Agent to an existing Obsidian vault with explicit setup and permission boundaries.',
-  'obsidian-git-sync': 'A Skill for syncing an Obsidian vault while keeping the decision about what may leave the device with the user.',
-};
 ---
 
 <BaseLayout title="Projects — Alex Liu" description="Alex Liu 做过的产品、开源工具和 Skills。" pageClass="projects-page">
-  <header class="projects-intro">
+  <header class="projects-intro" style={`--haze: url("${base}style-kit/haze-cyan.svg")`}>
     <h1>Projects</h1>
     <p data-i18n-en="Products, open-source tools, and Skills I have built. Some are still running; others are historical, but each leaves behind something verifiable.">我做过的产品、开源工具和 Skills。有些仍在运行，有些已经结束，但都留下了可以验证的东西。</p>
   </header>
@@ -39,10 +33,12 @@ const descriptionEn: Record<string, string> = {
           <span data-i18n-en={`${entries.length} ${entries.length === 1 ? 'project' : 'projects'}`}>{entries.length} 项</span>
         </header>
         <div class="project-group__list">
-          {entries.map((project) => (
+          {entries.map((project, index) => (
             <article class="project-entry">
-              <a class="project-entry__image" href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`} data-i18n-aria-en={`View ${project.data.title}`}>
-                <img src={`${base}${project.data.image}`} alt={project.data.imageAlt} data-i18n-alt-en={`Project evidence for ${project.data.title}`} loading="lazy" />
+              <a class="project-entry__image" style={`--haze: url("${base}style-kit/${hazes[index % hazes.length]}.svg")`} href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`} data-i18n-aria-en={`View ${project.data.title}`}>
+                {project.data.image
+                  ? <img src={`${base}${project.data.image}`} alt={project.data.imageAlt ?? project.data.title} data-i18n-alt-en={project.data.en?.imageAlt ?? `Project evidence for ${project.data.title}`} loading="lazy" />
+                  : <span class="project-entry__plain"><strong>{project.data.title}</strong><small data-i18n-en="Private source, no public screenshot">源码私有，没有公开截图</small></span>}
               </a>
               <div class="project-entry__content">
                 <div class="project-entry__status">
@@ -50,7 +46,7 @@ const descriptionEn: Record<string, string> = {
                   <span data-i18n-en={sourceLabelEn[project.data.source]}>{sourceLabel[project.data.source]}</span>
                 </div>
                 <h3><a href={`${base}projects/${project.id}/`}>{project.data.title}</a></h3>
-                <p data-i18n-en={descriptionEn[project.id]}>{project.data.description}</p>
+                <p data-i18n-en={project.data.en?.description}>{project.data.description}</p>
                 <a class="project-entry__link" href={`${base}projects/${project.id}/`}><span data-i18n-en="View project">查看项目</span> <span aria-hidden="true">→</span></a>
               </div>
             </article>

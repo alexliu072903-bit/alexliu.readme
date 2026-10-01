@@ -1,65 +1,290 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MousePointerClick from '@lucide/astro/icons/mouse-pointer-click';
+import WandSparkles from '@lucide/astro/icons/wand-sparkles';
+import CircleCheckBig from '@lucide/astro/icons/circle-check-big';
+import NotebookPen from '@lucide/astro/icons/notebook-pen';
+import ListFilter from '@lucide/astro/icons/list-filter';
+import Bot from '@lucide/astro/icons/bot';
+import FileText from '@lucide/astro/icons/file-text';
+import AppWindow from '@lucide/astro/icons/app-window';
+import Rocket from '@lucide/astro/icons/rocket';
 
-const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order).slice(0, 2);
-const writing = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())[0];
 const base = import.meta.env.BASE_URL;
-const statusLabel = { 'Public product': '可访问', Historical: '历史项目', Experimental: '实验中', Available: '可使用' };
-const statusLabelEn = { 'Public product': 'Public product', Historical: 'Historical', Experimental: 'Experimental', Available: 'Available' };
-const projectDescriptionEn: Record<string, string> = {
-  'resume-ai': 'A resume rewriting workspace that keeps the resume, job description, and personal evidence in one process.',
-  'blink-vibe-test': 'A historical product experiment in cultural context, identity expression, and social sharing on Telegram.',
+const writing = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const projects = new Map((await getCollection('projects')).map((entry) => [entry.id, entry]));
+
+// 状态与源码可见性沿用项目文件里的字段，只在这里翻译成中英文标签。
+const statusLabel: Record<string, [string, string]> = {
+  Available: ['可使用', 'Available'],
+  Historical: ['历史项目', 'Historical'],
+  Experimental: ['实验中', 'Experimental'],
+  'Public product': ['公开产品', 'Public product'],
 };
-const catMoments = [
-  { file: 'cat-close.jpg', alt: '一只猫在室内靠近镜头', altEn: 'A cat resting close to the camera', className: 'home-stills__workspace' },
-  { file: 'cat-portrait.jpg', alt: '一只猫的近景', altEn: 'A close portrait of a cat', className: 'home-stills__portrait' },
-  { file: 'cat-chair.jpg', alt: '一只猫躺在椅子上', altEn: 'A cat relaxing on a chair', className: 'home-stills__chair' },
+const sourceLabel: Record<string, [string, string]> = {
+  'Open source': ['开源', 'Open source'],
+  'Private source': ['源码私有', 'Private source'],
+  'Public repository': ['公开仓库', 'Public repository'],
+};
+const statusOf = (id: string): [string, string] => {
+  const data = projects.get(id)?.data;
+  if (!data) return ['', ''];
+  const [statusZh, statusEn] = statusLabel[data.status] ?? [data.status, data.status];
+  const [sourceZh, sourceEn] = sourceLabel[data.source] ?? [data.source, data.source];
+  return [`${statusZh} · ${sourceZh}`, `${statusEn} · ${sourceEn}`];
+};
+
+// 三件主要的事：每一件都配可以点开的证据，证据只引用已经公开的项目。
+const capabilities = [
+  {
+    key: 'define',
+    haze: 'haze-cyan',
+    titleZh: '产品定义',
+    titleEn: 'Product definition',
+    descZh: '先找到用户卡住的那一步，只让他做一个动作，其余交给系统；该他拿主意的地方，留给他。',
+    descEn: 'Find the step where the user is stuck, ask them to do one thing, and let the system handle the rest. Where a call is theirs to make, leave it to them.',
+    steps: [
+      { icon: MousePointerClick, zh: '卡在哪里', en: "Where they're stuck" },
+      { icon: WandSparkles, zh: '替他完成', en: 'Done for them' },
+      { icon: CircleCheckBig, zh: '留给他决定', en: 'Left to them' },
+    ],
+    evidence: ['airjelly', 'resume-ai'],
+  },
+  {
+    key: 'context',
+    haze: 'haze-violet',
+    titleZh: 'Agent Context 与 Memory',
+    titleEn: 'Agent Context & Memory',
+    descZh: 'Agent 开工时，带着和这件事相关的背景；用户随时能看到它记了什么，也能修改。',
+    descEn: 'When an Agent starts work, it carries the context that bears on the task. Users can see what it has remembered and change it at any time.',
+    steps: [
+      { icon: NotebookPen, zh: '记下决定', en: 'Record decisions' },
+      { icon: ListFilter, zh: '挑出相关的', en: 'Pick the relevant' },
+      { icon: Bot, zh: '交给 Agent', en: 'Hand to the Agent' },
+    ],
+    evidence: ['cairn-context', 'obsidian-ai-starter'],
+  },
+  {
+    key: 'delivery',
+    haze: 'haze-warm',
+    titleZh: '从 0 到上线',
+    titleEn: 'From zero to running',
+    descZh: '写完 PRD 之后继续做：接入数据、设计交互、部署上线，再处理上线后出现的问题。',
+    descEn: 'Keep going after the PRD: connect the data, design the interaction, deploy, then handle what breaks after launch.',
+    steps: [
+      { icon: FileText, zh: 'PRD', en: 'PRD' },
+      { icon: AppWindow, zh: '可运行的原型', en: 'Working prototype' },
+      { icon: Rocket, zh: '上线之后', en: 'After launch' },
+    ],
+    evidence: ['tg-miniapp-fastbuild', 'obsidian-git-sync'],
+  },
 ];
+
+// 精选项目：问题与做法取自项目文件，英文是同一内容的对应翻译。
+const selectedProjects = [
+  {
+    id: 'cairn-context',
+    problemZh: '新的 Agent session 不知道项目已经决定过什么，容易重复解释，或推翻旧判断。',
+    problemEn: 'A new Agent session does not know what the project has already decided, so it repeats explanations or overturns earlier calls.',
+    doneZh: '让 Codex 开新 session 时，只读取与任务相关、已经确认的决定；决定改了会留下修订记录，用户纠正过的也会记下。',
+    doneEn: 'Lets a new Codex session read only the confirmed decisions that bear on the task. Changed decisions keep a revision record, and user corrections are logged.',
+  },
+  {
+    id: 'tg-miniapp-fastbuild',
+    problemZh: 'Telegram Mini App 的部署要经过 BotFather、Railway、Webhook 和分享链接，每一处都有难以发现的陷阱。',
+    problemEn: 'Deploying a Telegram Mini App means going through BotFather, Railway, webhooks, and share links, and each one hides pitfalls that are hard to find.',
+    doneZh: '写成 Agent 可以逐步执行的部署指南：从 BotFather 到 Railway、Webhook，每个关键步骤都有检查点。',
+    doneEn: 'A deployment guide an Agent can follow step by step, from BotFather to Railway and webhooks, with a check at each key step.',
+  },
+  {
+    id: 'obsidian-ai-starter',
+    problemZh: '本地 Agent 的集成常常卡在依赖、插件构建和跨平台差异上。',
+    problemEn: 'Local Agent integrations often stall on dependencies, plugin builds, and cross-platform differences.',
+    doneZh: '运行一个脚本就能装好；任何一步失败就停下，不留半成品。',
+    doneEn: 'One script installs everything. If any step fails it stops, leaving no half-finished setup.',
+  },
+].map((item) => ({ ...item, entry: projects.get(item.id) })).filter((item) => item.entry);
+
+
+// 首页展示区：Resume.AI 的反馈数据，取项目文件里最有说服力的三项（浏览、收藏、独立访客）。
+const airjelly = projects.get('airjelly');
+const proof = projects.get('resume-ai');
+const proofIndexes = [0, 2, 3];
+const proofFacts = proofIndexes.map((i) => ({ zh: proof?.data.facts?.[i], en: proof?.data.en?.facts?.[i] })).filter((f) => f.zh);
 ---
 
-<BaseLayout title="Alex Liu — Product, writing, and field notes" description="Alex Liu 做产品，也把实践变成可以复用的工具。" pageClass="home-page">
-  <section class="home-intro">
-    <h1 class="visually-hidden">Alex Liu</h1>
-    <div class="home-intro__experience" aria-label="实习经历" data-i18n-aria-en="Experience">
-      <article>
-        <p class="home-intro__label" data-i18n-en="Now">目前</p>
-        <h2>Low Entropy AI · AirJelly</h2>
-        <p data-i18n-en="AI Product Manager Intern · Shaping AirJelly 2.0 across product architecture, Agent Context, and core features.">AI 产品经理实习生 · 参与 AirJelly 2.0 的产品体系、Agent Context 与核心功能建设。</p>
-      </article>
-      <article>
-        <p class="home-intro__label" data-i18n-en="Previously">此前</p>
-        <h2>Emotional Byte AI Inc.</h2>
-        <p data-i18n-en="AI Research Intern · Built and tested Blink Vibe Test for cross-cultural social use on Telegram.">AI 研究实习生 · 围绕 Telegram 的跨文化社交场景完成 Blink Vibe Test。</p>
-      </article>
-    </div>
-  </section>
+<BaseLayout
+  title="Alex Liu — AI Product Manager"
+  description="Alex Liu 做 AI 产品，关注 Agent Context、产品架构与 0→1 交付。"
+  pageClass="home-page home-page--field"
+>
+  <div class="field-page" style={`--field-visual: url("${base}style-kit/personal-light.svg")`}>
 
-  <section class="home-stills" aria-label="工作之外的日常片段" data-i18n-aria-en="Everyday moments outside work">
-    {catMoments.map((moment) => <figure class={moment.className}><img src={`${base}profile/${moment.file}`} alt={moment.alt} data-i18n-alt-en={moment.altEn} loading="eager" /></figure>)}
-  </section>
-
-  <section class="home-projects">
-    <header><h2 data-i18n-en="Recent projects">近期项目</h2><a href={`${base}projects/`} data-i18n-en="All projects">全部 Projects</a></header>
-    <div class="home-projects__list">
-      {projects.map((project) => (
-        <article>
-          <a class="home-project__image" href={`${base}projects/${project.id}/`}><img src={`${base}${project.data.image}`} alt={project.data.imageAlt} loading="lazy" /></a>
-          <div><span data-i18n-en={statusLabelEn[project.data.status]}>{statusLabel[project.data.status]}</span><h3><a href={`${base}projects/${project.id}/`}>{project.data.title}</a></h3><p data-i18n-en={projectDescriptionEn[project.id]}>{project.data.description}</p></div>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  {writing && <section class="home-writing" aria-labelledby="home-writing-title">
-    <header><h2 id="home-writing-title">Writing</h2><a href={`${base}writing/`} data-i18n-en="All writing">全部文章</a></header>
-    <div class="home-writing__content">
-      <div class="home-writing__copy">
-        <p data-i18n-en={`${writing.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · ${writing.data.readTime ?? 5} min read`}>{writing.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })} · {writing.data.readTime ?? 5} 分钟阅读</p>
-        <h3><a href={`${base}writing/${writing.id}/`} data-i18n-en={writing.data.titleEn}>{writing.data.title}</a></h3>
-        <p data-i18n-en={writing.data.descriptionEn}>{writing.data.description}</p>
-        <a class="primary-link" href={`${base}writing/${writing.id}/`}><span data-i18n-en="Read">阅读文章</span> <span aria-hidden="true">→</span></a>
+    <section class="v2-hero" aria-labelledby="field-title">
+      <div class="v2-hero__copy">
+        <p class="field-kicker" data-i18n-en="AI Product Manager · Agent Context">AI 产品经理 · Agent Context</p>
+        <h1 id="field-title">Alex Liu</h1>
+        <p class="field-thesis" data-i18n-en="Turn ambiguous AI capabilities into products people can understand, control, and actually use.">
+          把模糊的 AI 能力，变成用户能理解、能控制、真正用得上的产品。
+        </p>
+        <ul class="v2-skills" aria-label="我主要做的三件事" data-i18n-aria-en="The three things I mainly do">
+          {capabilities.map((cap) => (
+            <li><a href={`#cap-${cap.key}`} data-i18n-en={cap.titleEn}>{cap.titleZh}</a></li>
+          ))}
+        </ul>
+        <div class="field-actions">
+          <a class="field-link field-link--primary" href={`${base}projects/`}><span data-i18n-en="View Projects">查看项目</span> <span aria-hidden="true">→</span></a>
+          <a class="field-link" href={`${base}about/`}><span data-i18n-en="About me">关于我</span> <span aria-hidden="true">→</span></a>
+        </div>
       </div>
-    </div>
-  </section>}
+
+      <div class="v2-stage">
+        <div class="v2-card">
+          <div class="v2-card__who">
+            <img src={`${base}profile/alex-portrait.jpg`} alt="柳锦鸿（Alex Liu）的照片" data-i18n-alt-en="Portrait of Alex Liu" width="64" height="64" />
+            <div>
+              <strong data-i18n-en="Alex Liu">柳锦鸿 Alex Liu</strong>
+              <span data-i18n-en="AI Product Manager">AI 产品经理</span>
+            </div>
+          </div>
+          <p class="v2-card__label" data-i18n-en="Right now">现在</p>
+          <dl class="v2-card__facts">
+            <div><dt data-i18n-en="Current role">当前角色</dt><dd data-i18n-en="One of the core PMs of AirJelly 2.0 · Low Entropy AI">AirJelly 2.0 核心产品经理之一 · Low Entropy AI</dd></div>
+            <div><dt data-i18n-en="Focus">关注方向</dt><dd>Agent Context &amp; Memory</dd></div>
+            <div><dt data-i18n-en="Building">正在做</dt><dd>AirJelly 2.0 · Cairn Context</dd></div>
+            <div><dt data-i18n-en="Tools">常用工具</dt><dd>Claude Code · Codex · Obsidian</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-caps" aria-labelledby="caps-title">
+      <header class="v2-section-head">
+        <h2 id="caps-title" data-i18n-en="What I mainly do">我主要做三件事</h2>
+      </header>
+      <div class="v2-cap-grid">
+        {capabilities.map((cap) => (
+          <article class="v2-cap" id={`cap-${cap.key}`}>
+            <div class="v2-cap__visual" style={`--haze: url("${base}style-kit/${cap.haze}.svg")`}>
+              <ol class="v2-steps">
+                {cap.steps.map((step) => {
+                  const Icon = step.icon;
+                  return (
+                    <li class="v2-step">
+                      <span class="v2-tile" aria-hidden="true"><Icon size={26} stroke-width={1.75} /></span>
+                      <small data-i18n-en={step.en}>{step.zh}</small>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+            <div class="v2-cap__body">
+              <h3 data-i18n-en={cap.titleEn}>{cap.titleZh}</h3>
+              <p data-i18n-en={cap.descEn}>{cap.descZh}</p>
+              <div class="v2-evidence">
+                <p class="v2-evidence__label" data-i18n-en="Work">作品</p>
+                <ul>
+                  {cap.evidence.filter((id) => projects.has(id)).map((id) => {
+                    const [zh, en] = statusOf(id);
+                    return (
+                      <li>
+                        <a href={`${base}projects/${id}/`}>
+                          <strong>{projects.get(id)!.data.title}</strong>
+                          <small data-i18n-en={en}>{zh}</small>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {airjelly && (
+      <section class="v2-proof v2-proof--visual" aria-labelledby="airjelly-title" style={`--haze: url("${base}style-kit/haze-violet.svg")`}>
+        <div class="v2-proof__copy">
+          <p class="v2-proof__kicker" data-i18n-en="Working on now">正在做</p>
+          <h2 id="airjelly-title">AirJelly 2.0</h2>
+          <p class="v2-proof__lede" data-i18n-en="The world's first context-aware proactive agent. It brings scattered context together so Codex and Claude Code can act with the full picture.">全球首个感知上下文的主动式智能体。汇集散落在各处的上下文，让 Codex 和 Claude Code 掌握完整信息并采取行动。</p>
+          <p class="v2-proof__lede" data-i18n-en="I am one of the core product managers of 2.0, responsible for the Agent Context direction.">我是 2.0 的核心产品经理之一，负责 Agent Context 方向。</p>
+          <p class="v2-proof__status" data-i18n-en="Company product · source is private">公司产品 · 源码不公开</p>
+          <a class="field-link field-link--primary" href={`${base}projects/airjelly/`}><span data-i18n-en="See my part">查看我负责的部分</span> <span aria-hidden="true">→</span></a>
+        </div>
+        {airjelly.data.image && (
+          <figure class="v2-proof__shot">
+            <img src={`${base}${airjelly.data.image}`} alt={airjelly.data.imageAlt} data-i18n-alt-en={airjelly.data.en?.imageAlt} loading="lazy" />
+          </figure>
+        )}
+      </section>
+    )}
+
+    {proof && proofFacts.length > 0 && (
+      <section class="v2-proof" aria-labelledby="proof-title" style={`--haze: url("${base}style-kit/haze-cyan.svg")`}>
+        <div class="v2-proof__copy">
+          <p class="v2-proof__kicker" data-i18n-en="After launch">上线之后</p>
+          <h2 id="proof-title">Resume.AI</h2>
+          <p class="v2-proof__lede" data-i18n-en="A resume rewriting tool I designed and built on my own. Two Xiaohongshu posts were enough for a cold-start test.">我独立设计并开发的简历改写工具。两篇小红书笔记，完成了一次冷启动验证。</p>
+          <p class="v2-proof__status" data-i18n-en="No longer publicly running · source is private">已停止公开运行 · 源码私有</p>
+          <a class="field-link field-link--primary" href={`${base}projects/resume-ai/`}><span data-i18n-en="See the project and the posts">查看项目与笔记截图</span> <span aria-hidden="true">→</span></a>
+        </div>
+        <dl class="v2-proof__stats">
+          {proofFacts.map((f) => (
+            <div><dt data-i18n-en={f.en?.label}>{f.zh!.label}</dt><dd data-i18n-en={f.en?.value}>{f.zh!.value}</dd></div>
+          ))}
+        </dl>
+        <p class="v2-proof__note" data-i18n-en="Cold-start figures, from my resume.">冷启动期数据，来自我的简历。</p>
+      </section>
+    )}
+
+    <section class="field-list-section" aria-labelledby="selected-projects-title">
+      <header class="field-list-head">
+        <div><h2 id="selected-projects-title" data-i18n-en="Selected Projects">精选项目</h2><p data-i18n-en="Projects and Skills you can inspect and use today.">现在可以直接查看和使用的项目与 Skills。</p></div>
+        <a class="field-link" href={`${base}projects/`}><span data-i18n-en="View all">查看全部</span> <span aria-hidden="true">→</span></a>
+      </header>
+      <div class="v2-ledger">
+        <div class="v2-ledger__head" aria-hidden="true">
+          <span data-i18n-en="Project">项目</span><span data-i18n-en="Problem">问题</span><span data-i18n-en="What I did">做法</span><span></span>
+        </div>
+        {selectedProjects.map((item) => {
+          const [zh, en] = statusOf(item.id);
+          return (
+            <a class="v2-ledger__row" href={`${base}projects/${item.id}/`}>
+              <span class="v2-ledger__name"><strong>{item.entry!.data.title}</strong><small data-i18n-en={en}>{zh}</small></span>
+              <span class="v2-ledger__cell"><em data-i18n-en="Problem">问题</em><span data-i18n-en={item.problemEn}>{item.problemZh}</span></span>
+              <span class="v2-ledger__cell"><em data-i18n-en="What I did">做法</em><span data-i18n-en={item.doneEn}>{item.doneZh}</span></span>
+              <b aria-hidden="true">→</b>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="field-list-section" aria-labelledby="writing-title">
+      <header class="field-list-head">
+        <div><h2 id="writing-title">Writing</h2><p data-i18n-en="Longer notes on products, Agents, and ways of working.">关于产品、Agent 和工作方式的长期记录。</p></div>
+        <a class="field-link" href={`${base}writing/`}><span data-i18n-en="View all">查看全部</span> <span aria-hidden="true">→</span></a>
+      </header>
+      <div class="field-list v2-writing">
+        {writing.map((entry) => (
+          <a class="field-row field-row--writing" href={`${base}writing/${entry.id}/`}>
+            <strong data-i18n-en={entry.data.titleEn}>{entry.data.title}</strong>
+            <span data-i18n-en={entry.data.descriptionEn}>{entry.data.description}</span>
+            <small>{entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}</small>
+            <b aria-hidden="true">→</b>
+          </a>
+        ))}
+        <div class="field-row field-row--static">
+          <strong data-i18n-en="IACP 2026">IACP 2026</strong>
+          <span data-i18n-en="Research on digital infrastructure, inclusion, and mental health, accepted and presented at the 20th IACP Annual Conference.">关于数字基础设施、数字包容与心理健康的研究，入选第 20 届 IACP 年会并完成报告。</span>
+          <small data-i18n-en="Research">研究</small>
+          <b aria-hidden="true"></b>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </BaseLayout>

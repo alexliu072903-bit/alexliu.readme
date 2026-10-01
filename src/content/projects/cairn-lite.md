@@ -6,7 +6,7 @@ category: 开源工具
 type: Protocol
 status: Experimental
 source: Open source
-draft: false
+draft: true
 order: 3
 specimen: cairn
 image: project-assets/cairn-lite.png
@@ -28,6 +28,15 @@ readme:
     - 在已有项目中运行 cairn init；它只补充缺失文件，不覆盖既有项目说明。
     - 运行 cairn validate 和 cairn status，检查结构并查看最近变化。
     - 新 Agent 默认先读最新 LOG，再按当前任务打开相关 topic。
+en:
+  description: A small Markdown protocol, with a CLI, for preserving project judgments across agents and sessions.
+  brief:
+    - label: Situation
+      text: When you switch agents or start a new session in the same project, verified judgments tend to get lost.
+    - label: What it does
+      text: Write the decisions worth keeping into Markdown; a new agent reads the latest LOG first, then opens the relevant topics.
+    - label: Status
+      text: MIT licensed and usable, but still an experimental protocol whose format may change before 1.0.
 links:
   - label: 查看 GitHub
     url: https://github.com/alexliu072903-bit/cairn-lite

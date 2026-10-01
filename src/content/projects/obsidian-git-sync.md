@@ -1,50 +1,62 @@
 ---
 title: Obsidian Git Sync
-description: 用一句自然语言完成 vault 同步，同时让用户明确决定哪些私人内容能够离开本地。
+description: 一个 Claude Code Skill：用一句话把 Obsidian vault 同步到 GitHub，并在上传之前由你决定哪些文件夹可以离开本地。
 year: 2026
 category: Skill
 type: Skill
 status: Available
 source: Open source
 draft: false
-order: 5
+order: 6
 specimen: sync
 image: project-assets/obsidian-git-sync.png
 imageAlt: Obsidian Git Sync Skill 的公开 GitHub 仓库，包含 Windows 与 macOS 脚本、双语说明和 Skill 文件
-evidenceCaption: 公开 GitHub 仓库：Skill 文件、双平台脚本与 allowlist 同步方式可查看。
-problem: 自动同步 vault 很方便，也可能把私人内容一起上传。
-contribution: 将 Git 初始化与同步封装为支持预览、备份和 allowlist 的 Agent Skill。
-current: 已开源，支持 Windows 与 macOS 的全量和选定文件夹同步。
+evidenceCaption: 公开 GitHub 仓库：Skill 文件、双平台脚本和 allowlist 同步方式都可以查看。
+problem: 自动同步整个 vault 很方便，也可能把私人内容一起传上去。
+contribution: 把 Git 初始化和同步封装成支持预览、备份和 allowlist 的 Agent Skill。
+current: MIT 开源；Windows 与 macOS 都支持全量同步和指定文件夹同步。
 brief:
   - label: 场景
-    text: 想同步 Obsidian vault，又需要先决定哪些内容能上传时。
-  - label: 使用
-    text: 告诉 Agent 要同步的目录，选择完整备份或 allowlist，再预览或执行。
-  - label: 状态
-    text: MIT 开源，支持 Windows 和 macOS。
+    text: 想把 Obsidian vault 同步到 GitHub，又需要先决定哪些内容可以上传。
+  - label: 做法
+    text: 对 Claude Code 说出要同步的目录，选择全量备份或只同步指定文件夹（allowlist），先预览再执行。
+  - label: 现状
+    text: MIT 开源；Windows 与 macOS 都支持全量和指定文件夹两种模式。
+en:
+  description: A Claude Code Skill that syncs an Obsidian vault to GitHub in one sentence, with you deciding which folders may leave your machine before anything is uploaded.
+  imageAlt: The public Obsidian Git Sync Skill repository, with Windows and macOS scripts, bilingual docs, and the Skill file
+  evidenceCaption: The public repository. The Skill file, the two platform scripts, and the allowlist approach can all be inspected.
+  brief:
+    - label: Situation
+      text: You want to sync an Obsidian vault to GitHub but need to decide first what may be uploaded.
+    - label: What it does
+      text: Tell Claude Code which vault to sync, choose a full backup or only selected folders (an allowlist), then preview and run.
+    - label: Status
+      text: MIT licensed. Windows and macOS both support the full-vault and selected-folder modes.
+  readmeSteps:
+    - Install the Skill into Claude Code's skills directory.
+    - Tell Claude Code you want to sync your Obsidian vault to GitHub.
+    - Provide the vault path, an empty GitHub repository URL, and choose full-vault or selected-folder sync.
 readme:
   url: https://github.com/alexliu072903-bit/obsidian-git-sync-skill#usage
   steps:
     - 将 Skill 安装到 Claude Code 的 skills 目录。
-    - 在 Claude Code 中直接说明要同步 Obsidian vault 到 GitHub。
-    - 提供 vault 路径、空的 GitHub 仓库地址，以及 macOS 下要包含的文件夹。
+    - 在 Claude Code 里直接说明要把 Obsidian vault 同步到 GitHub。
+    - 提供 vault 路径和空的 GitHub 仓库地址，并选择全量同步或指定文件夹。
 links:
   - label: 查看 GitHub
     url: https://github.com/alexliu072903-bit/obsidian-git-sync-skill
 ---
+## 问题
 
-## 自动同步 vault 也可能把私人内容一起上传
+Git 很适合保存 Markdown 的历史，但初始化、`.gitignore`、remote、首次 push 和跨平台脚本，对很多 Obsidian 用户并不顺手。更麻烦的是，“自动同步整个 vault”可能顺手把插件设置、附件或私人笔记送进错误的仓库。
 
-Git 很适合保存 Markdown 的历史，但初始化、`.gitignore`、remote、首次 push 和跨平台脚本对很多 Obsidian 用户并不自然。更重要的是，一个“自动同步整个 vault”的方便方案，也可能顺手把插件设置、附件或私人笔记送进错误的仓库。
+## 做法
 
-这个 Skill 试图同时减少操作摩擦和信息风险，而不是用前者掩盖后者。
+你可以直接对 Agent 说：“同步我的 Obsidian SKILL 和 daily 文件夹到 GitHub。”Skill 会先询问 vault、remote 和同步模式，再调用 Windows PowerShell 或 macOS Shell 脚本完成设置。
 
-## 让用户先决定什么能离开本地
+全量模式适合完整的 Private backup。allowlist 模式默认忽略整个 vault，只开放你指定的目录。脚本支持 `dry-run` 预览，默认不包含 `.obsidian`；macOS 脚本在覆盖 `.gitignore` 之前会备份原文件。
 
-用户可以直接告诉 Agent：“同步我的 Obsidian SKILL 和 daily 文件夹到 GitHub。”Skill 会先询问 vault、remote 与同步模式，再调用 Windows PowerShell 或 macOS Shell 脚本完成设置。
+## 现状
 
-全量模式适合完整的 Private backup；allowlist 模式默认忽略整个 vault，只重新开放用户指定的目录。脚本支持 `dry-run`，在覆盖 `.gitignore` 前创建备份，不默认包含 `.obsidian`，并拒绝把同步目标当成一个无需判断的技术参数。
-
-## 公开 Skill，支持全量和 allowlist
-
-Skill 以 MIT License 开源，同时支持 Windows 与 macOS 的全量和 allowlist 模式。它规模很小，但保留了一个我希望反复使用的原则：自动化可以替人完成机械步骤，却不应该替人决定信息边界。
+MIT 开源，Windows 和 macOS 都支持全量与 allowlist 两种模式。规模很小，保留的原则是：自动化替人完成机械步骤，信息的边界仍然由人来定。

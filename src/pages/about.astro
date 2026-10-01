@@ -4,6 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About — Alex Liu" pageClass="about-page">
   <section class="about-profile">
+    <div class="about-profile__top" style={`--haze: url("${import.meta.env.BASE_URL}style-kit/haze-warm.svg")`}>
+    <div>
     <p class="eyeline">About</p>
     <h1 class="display">柳锦鸿 Jinhong (Alex) Liu</h1>
     <div class="about-profile__meta" aria-label="基本信息" data-i18n-aria-en="Contact">
@@ -11,6 +13,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <a href="https://github.com/alexliu072903-bit" target="_blank" rel="noreferrer">Personal GitHub ↗</a>
       <a href="https://github.com/Alex-Liu-airjelly" target="_blank" rel="noreferrer">AirJelly GitHub ↗</a>
       <a href="https://bonjour.bio/jobs-mapping/blog/ai-wayfinders-02" target="_blank" rel="noreferrer" data-i18n-en="Public profile by Bonjour! ↗">来自 Bonjour! 的公开报道 ↗</a>
+    </div>
+    </div>
+    <figure class="about-profile__portrait"><img src={`${import.meta.env.BASE_URL}profile/alex-portrait.jpg`} alt="柳锦鸿（Alex Liu）的照片" data-i18n-alt-en="Portrait of Alex Liu" width="520" height="520" loading="eager" /></figure>
     </div>
     <div class="about-stills" aria-label="日常片段" data-i18n-aria-en="Everyday moments">
       <figure class="about-stills__resting"><img src={`${import.meta.env.BASE_URL}profile/cat-resting.jpg`} alt="一只猫在桌边休息" data-i18n-alt-en="A cat resting beside a desk" loading="eager" /></figure>
@@ -24,8 +29,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <header class="about-resume__head"><h2 id="experience-heading" data-i18n-en="Experience">实习经历</h2></header>
     <div class="about-resume__list">
       <article class="about-entry">
-        <div class="about-entry__top"><div><h3>Low Entropy AI · AirJelly</h3><p data-i18n-en="5Y Capital-backed Beijing AI startup · AI Product Manager Intern">五源资本投资的北京 AI 初创 · AI 产品经理实习生</p></div><time datetime="2026-05" data-i18n-en="May 2026 - Present">2026.05 - 至今</time></div>
-        <p data-i18n-en="Helped shape AirJelly 2.0 around Agent Context and context consumption. Proposed Context for Agents and turned early product judgments into working foundations for Grow, Suggestion to Do, and Recall.">参与搭建 AirJelly 2.0 以 Agent Context 和 Context consumption 为核心的产品体系；提出“为 Agent 整合 Context”的方向，并将“成长”“推进建议”和“召回”的早期判断转化为可运行的基础版本。</p>
+        <div class="about-entry__top"><div><h3>Low Entropy AI · AirJelly</h3><p data-i18n-en="5Y Capital-backed Beijing AI startup · One of the core product managers of AirJelly 2.0">五源资本投资的北京 AI 初创 · AirJelly 2.0 核心产品经理之一</p></div><time datetime="2026-05" data-i18n-en="May 2026 - Present">2026.05 - 至今</time></div>
+        <p data-i18n-en="Helped shape AirJelly 2.0 around Agent Context and Context consumption. Proposed and led the direction of bringing Context together for Agents, covering how Context is composed, ranked, and access-controlled.">参与搭建 AirJelly 2.0 以 Agent Context 和 Context consumption 为核心的产品体系；提出并主导“为 Agent 整合 Context”的方向，覆盖 Context 的组装、相关性排序和访问控制。</p>
       </article>
       <article class="about-entry">
         <div class="about-entry__top"><div><h3>Emotional Byte AI Inc.</h3><p data-i18n-en="U.S. AI startup · AI Research Intern">美国 AI 初创 · AI 研究实习生</p></div><time datetime="2026-02" data-i18n-en="Feb 2026 - Apr 2026">2026.02 - 2026.04</time></div>

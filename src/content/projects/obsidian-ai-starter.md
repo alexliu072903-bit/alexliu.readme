@@ -1,6 +1,6 @@
 ---
 title: Obsidian AI Starter
-description: 把一个本地 Agent 可靠地接入已有 Obsidian vault，并让安装、版本与安全边界都可以被复现。
+description: 一套可重复的安装脚本，把 Pi coding agent 接进已有的 Obsidian vault，支持 Windows 和 macOS。
 year: 2026
 category: 开源工具
 type: Setup
@@ -11,40 +11,56 @@ order: 4
 specimen: starter
 image: project-assets/obsidian-ai-starter.png
 imageAlt: Obsidian AI Starter 的公开 GitHub 仓库，包含跨平台安装脚本、补丁、测试和安装文档
-evidenceCaption: 公开 GitHub 仓库：安装脚本、固定版本、跨平台 patch 与使用说明都可查看。
-problem: 本地 Agent 集成常常卡在依赖、插件构建与跨平台差异上。
-contribution: 把 Pi Agent 接入 Obsidian 的过程做成可重复、会在失败时停止的安装系统。
-current: 已开源，支持 Windows 和 macOS，并明确保留真实权限边界。
+evidenceCaption: 公开 GitHub 仓库：安装脚本、固定版本、跨平台 patch 与使用说明都可以查看。
+problem: 本地 Agent 的集成常常卡在依赖、插件构建和跨平台差异上。
+contribution: 把 Pi Agent 接入 Obsidian 的过程做成可重复、失败时会停止的安装脚本。
+current: MIT 开源，支持 Windows 10/11 和 macOS；不支持 Linux 和 Obsidian 移动端。
 brief:
   - label: 场景
-    text: 想把 Pi Agent 接入已有 Obsidian vault，却不想手动解决各平台安装差异时。
-  - label: 使用
-    text: 运行安装程序；它验证依赖、固定版本、构建插件，并在失败时停止。
-  - label: 状态
-    text: MIT 开源，支持 Windows 和 macOS；真实权限边界公开说明。
+    text: 想在自己的 Obsidian vault 里和 Pi agent 对话，但不想自己处理 Node、插件构建和平台差异。
+  - label: 做法
+    text: 运行一个安装脚本：检查环境，安装固定版本的 Pi 和插件，打补丁、构建，再写入 vault。任何一步失败就停止。
+  - label: 现状
+    text: MIT 开源，支持 Windows 10/11 和 macOS；模型账号或 API key 由你自己提供，安装器不会读取或保存。
+en:
+  description: A repeatable installer that brings the Pi coding agent into an existing Obsidian vault on Windows and macOS.
+  imageAlt: The public Obsidian AI Starter GitHub repository, with cross-platform installers, patches, tests, and setup docs
+  evidenceCaption: The public repository. Installers, pinned versions, cross-platform patches, and setup notes can all be inspected.
+  brief:
+    - label: Situation
+      text: You want to chat with the Pi agent inside your own Obsidian vault without handling Node, plugin builds, and platform differences yourself.
+    - label: What it does
+      text: One installer checks the environment, installs pinned versions of Pi and the plugin, applies a patch, builds, and writes into the vault. Any failed step stops it.
+    - label: Status
+      text: MIT licensed, for Windows 10/11 and macOS. You provide your own model account or API key; the installer never reads or stores it.
+  readmeSteps:
+    - Clone the repository and run the setup script for your platform with the path to an existing Obsidian vault.
+    - In Obsidian, enable the Pi plugin and register the command line interface on PATH.
+    - Run pi to sign in, then open Pi chat from the Command Palette.
 readme:
   url: https://github.com/alexliu072903-bit/obsidian-ai-starter#install
   steps:
     - Clone 仓库后，按平台运行 setup 脚本，并传入已有 Obsidian vault 的路径。
-    - 在 Obsidian 中启用 Pi plugin，并打开 Command line interface 的 PATH 注册。
+    - 在 Obsidian 中启用 Pi plugin，并在 Command line interface 里选择 Register for PATH。
     - 运行 pi 完成登录，再从 Command Palette 打开 Pi chat。
 links:
   - label: 查看 GitHub
     url: https://github.com/alexliu072903-bit/obsidian-ai-starter
 ---
+## 问题
 
-## 本地 Agent 安装为什么总停在最后一步
+把 AI 放进知识库听起来是个简单的集成，实际要跨过 Node、插件构建、模型登录、vault 权限、Windows 与 macOS 的差异，还有私密备份。对第一次配置本地 Agent 的人来说，任何一步失败，都会让“拥有自己的 AI 工作环境”停在概念阶段。
 
-把 AI 放进知识库听起来像一个简单集成，真正落地时却跨过 Node、插件构建、模型登录、vault 权限、Windows / macOS 差异和私密备份。对第一次配置本地 Agent 的用户来说，任何一个失败步骤都足以让“拥有自己的 AI 工作环境”停留在概念里。
+这个项目来自我自己的需求：和 Agent 的对话应该回到我的 Markdown 里，而不是留在某个订阅产品的会话历史中。
 
-这个项目来自我对 Obsidian 与 Agent 协作的实际需求：对话应该回到用户自己的 Markdown 中，而不是只留在某个订阅产品的会话历史里。
+## 做法
 
-## 把跨平台安装做成可重复的过程
+Obsidian AI Starter 把 Pi Agent、vault tools 和 Obsidian 插件组合成一套可重复安装的环境。脚本先验证目标目录和依赖，再安装固定版本、获取固定 commit、应用跨平台 patch、构建插件，并写入本地路径。任何 native command 失败，脚本都会停止，不会留下看起来完成的半成品。
 
-Obsidian AI Starter 把 Pi Agent、vault tools 和 Obsidian 插件组合成一套可重复安装的环境。脚本先验证目标目录和依赖，再安装固定版本、获取固定 commit、应用跨平台 patch、构建插件并写入正确的本地路径。任何 native command 失败都会停止，而不是留下一个看似完成的半成品。
+## 权限边界
 
-项目没有把安全描述得比现实更好：工作目录是 vault，并不意味着 Agent 被沙箱隔离；它仍然拥有当前用户允许的文件、Shell 与网络权限。GitHub 备份默认关闭，只有在用户明确给出空的 Private repository 并再次确认后才会 push。
+工作目录是 vault，但 Agent 没有被沙箱隔离，仍然拥有当前用户允许的文件、Shell 和网络权限。GitHub 备份默认关闭，只有你给出一个空的 Private repository 并再次确认后才会 push。
 
-## 公开项目，安全边界不被夸大
+## 现状
 
-项目以 MIT License 开源，支持 Windows 10/11 与 macOS，固定了可验证的依赖版本。它不是 Pi 或 Obsidian 插件的 fork，而是一层安装与集成：目标是让复杂系统可复现，同时不模糊它真实的权限边界。
+MIT 开源，支持 Windows 10/11 和 macOS，依赖版本固定。它是一层安装与集成，没有 fork Pi 或 Obsidian 插件。Windows 上需要 Git for Windows，Node.js 需要 22.19 以上。
