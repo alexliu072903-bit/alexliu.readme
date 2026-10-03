@@ -13,6 +13,9 @@ import Rocket from '@lucide/astro/icons/rocket';
 
 const base = import.meta.env.BASE_URL;
 const writing = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const writingKind = (kind: 'Essay' | 'Forecast') => kind === 'Forecast'
+  ? { zh: '趋势推演', en: 'Forecast' }
+  : { zh: '文章', en: 'Essay' };
 const projects = new Map((await getCollection('projects')).map((entry) => [entry.id, entry]));
 
 // 状态与源码可见性沿用项目文件里的字段，只在这里翻译成中英文标签。
@@ -101,8 +104,8 @@ const selectedProjects = [
     id: 'mechanism-illustration',
     problemZh: '生成模型能画出有趣的说明图，但很难在批量、多语言和重复生成中保持结构与文字稳定。',
     problemEn: 'Image models can make interesting diagrams, but repeated and multilingual output rarely keeps structure and text stable.',
-    doneZh: '把机制写成 JSON，用 Pipeline、Filter 或 Loop 生成共享图形层和确定性的中英 SVG。',
-    doneEn: 'Defines the mechanism in JSON, then renders shared art and deterministic Chinese and English SVGs with Pipeline, Filter, or Loop.',
+    doneZh: '把机制写成 JSON，从六种布局中选择真正匹配的空间语法，再生成共享图形层和确定性的中英 SVG。',
+    doneEn: 'Defines the mechanism in JSON, selects the fitting grammar from six layouts, then renders shared art and deterministic bilingual SVGs.',
   },
   {
     id: 'tg-miniapp-fastbuild',
@@ -280,7 +283,7 @@ const proofFacts = proofIndexes.map((i) => ({ zh: proof?.data.facts?.[i], en: pr
           <a class="field-row field-row--writing" href={`${base}writing/${entry.id}/`}>
             <strong data-i18n-en={entry.data.titleEn}>{entry.data.title}</strong>
             <span data-i18n-en={entry.data.descriptionEn}>{entry.data.description}</span>
-            <small>{entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}</small>
+            <small data-i18n-en={`${writingKind(entry.data.kind).en} · ${entry.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}`}>{writingKind(entry.data.kind).zh} · {entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}</small>
             <b aria-hidden="true">→</b>
           </a>
         ))}

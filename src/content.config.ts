@@ -11,6 +11,8 @@ const writing = defineCollection({
     descriptionEn: z.string().optional(),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
+    kind: z.enum(['Essay', 'Forecast']).default('Essay'),
+    featured: z.boolean().default(false),
     draft: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     readTime: z.number().int().positive().optional(),
