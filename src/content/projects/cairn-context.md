@@ -7,6 +7,7 @@ type: Protocol
 status: Available
 source: Open source
 draft: false
+featured: true
 order: 3
 specimen: cairn
 illustration: project-assets/cairn-context-mechanism.zh.svg

@@ -91,18 +91,25 @@ const selectedProjects = [
     doneEn: 'Lets a new Claude Code or Codex session read only the confirmed decisions that bear on the task. Changed decisions keep a revision record, and user corrections are logged.',
   },
   {
+    id: 'evidence-first-personal-site',
+    problemZh: 'Agent 很容易把个人网站写成自我评价，或把私密、过期和未验证的信息包装成公开成果。',
+    problemEn: 'An Agent can turn a personal site into self-praise or publish private, stale, and unverified material as if it were evidence.',
+    doneZh: '先建立 Evidence Ledger 和公开边界，再定义内容契约、构建网站并核验真实上线结果。',
+    doneEn: 'Creates an evidence ledger and publication boundary before defining content, building the site, and verifying the live result.',
+  },
+  {
+    id: 'mechanism-illustration',
+    problemZh: '生成模型能画出有趣的说明图，但很难在批量、多语言和重复生成中保持结构与文字稳定。',
+    problemEn: 'Image models can make interesting diagrams, but repeated and multilingual output rarely keeps structure and text stable.',
+    doneZh: '把机制写成 JSON，用 Pipeline、Filter 或 Loop 生成共享图形层和确定性的中英 SVG。',
+    doneEn: 'Defines the mechanism in JSON, then renders shared art and deterministic Chinese and English SVGs with Pipeline, Filter, or Loop.',
+  },
+  {
     id: 'tg-miniapp-fastbuild',
     problemZh: 'Telegram Mini App 的部署要经过 BotFather、Railway、Webhook 和分享链接，每一处都有难以发现的陷阱。',
     problemEn: 'Deploying a Telegram Mini App means going through BotFather, Railway, webhooks, and share links, and each one hides pitfalls that are hard to find.',
     doneZh: '写成 Agent 可以逐步执行的部署指南：从 BotFather 到 Railway、Webhook，每个关键步骤都有检查点。',
     doneEn: 'A deployment guide an Agent can follow step by step, from BotFather to Railway and webhooks, with a check at each key step.',
-  },
-  {
-    id: 'obsidian-ai-starter',
-    problemZh: '本地 Agent 的集成常常卡在依赖、插件构建和跨平台差异上。',
-    problemEn: 'Local Agent integrations often stall on dependencies, plugin builds, and cross-platform differences.',
-    doneZh: '运行一个脚本就能装好；任何一步失败就停下，不留半成品。',
-    doneEn: 'One script installs everything. If any step fails it stops, leaving no half-finished setup.',
   },
 ].map((item) => ({ ...item, entry: projects.get(item.id) })).filter((item) => item.entry);
 

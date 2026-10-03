@@ -567,6 +567,7 @@ html[data-language="en"] .home-hero__title[data-language-visible="en"] { display
 .project-group__head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; padding-bottom: .7rem; border-bottom: 1px solid var(--ink); }
 .project-group__head h2 { margin: 0; font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 620; }
 .project-group__head span { color: var(--muted); font-size: .85rem; }
+.project-group__intro { max-width: 46rem; margin: 0 0 clamp(2rem, 4vw, 3rem); color: var(--muted); font-size: 1rem; line-height: 1.75; }
 .project-group__list { display: grid; gap: 3.5rem; }
 .project-entry { display: grid; grid-template-columns: minmax(20rem, 1.1fr) minmax(16rem, .9fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; }
 .project-entry:nth-child(even) .project-entry__image { order: 2; }

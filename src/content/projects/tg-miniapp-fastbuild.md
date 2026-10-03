@@ -7,6 +7,7 @@ type: Skill
 status: Available
 source: Open source
 draft: false
+featured: true
 order: 5
 specimen: vibe
 illustration: project-assets/tg-miniapp-fastbuild-mechanism.zh.svg
