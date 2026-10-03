@@ -44,6 +44,13 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
       {!useBriefLayout && project.data.links.map((link) => <a class="primary-link" href={link.url} target="_blank" rel="noreferrer"><span data-i18n-en="View source">{link.label}</span> <span aria-hidden="true">↗</span></a>)}
     </header>
 
+    {project.data.illustration && (
+      <figure class="project-figure project-figure--diagram">
+        <img src={`${base}${project.data.illustration}`} data-i18n-src-en={project.data.illustrationEn ? `${base}${project.data.illustrationEn}` : undefined} alt={project.data.illustrationAlt ?? project.data.title} data-i18n-alt-en={en?.illustrationAlt ?? project.data.illustrationAlt ?? project.data.title} />
+        {project.data.illustrationCaption && <figcaption data-i18n-en={en?.illustrationCaption}>{project.data.illustrationCaption}</figcaption>}
+      </figure>
+    )}
+
     <div data-language-visible="en">
       <section class="project-brief" aria-label="English project overview">
         {(en?.brief ?? []).map((row) => (

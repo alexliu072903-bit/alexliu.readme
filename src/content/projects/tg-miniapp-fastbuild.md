@@ -9,6 +9,10 @@ source: Open source
 draft: false
 order: 5
 specimen: vibe
+illustration: project-assets/tg-miniapp-fastbuild-mechanism.zh.svg
+illustrationEn: project-assets/tg-miniapp-fastbuild-mechanism.en.svg
+illustrationAlt: Telegram Mini App Fastbuild 部署机制图：从 Bot、代码、三个 Railway 服务到 Webhook 和公开链接，每一步都有失败点与验证检查
+illustrationCaption: 机制说明图：部署不是一次上传，而是一条需要逐步验证的链路；失败点和检查点都来自真实部署。
 image: project-assets/tg-miniapp-fastbuild.png
 imageAlt: Telegram Mini App Fastbuild 的公开 GitHub 仓库，包含 Skill、双语说明和生产部署经验
 evidenceCaption: 公开 GitHub 仓库：这份 Skill 来自 Blink Vibe Test 的英俄双语部署。
@@ -36,6 +40,8 @@ en:
   description: Follow one guide to deploy a Telegram Mini App through BotFather, GitHub, and Railway, step by step. Built from the deployment of Blink Vibe Test.
   imageAlt: The public Telegram Mini App Fastbuild GitHub repository, with the Skill, bilingual README, and production deployment notes
   evidenceCaption: The public repository. The Skill comes from the bilingual English and Russian deployment of Blink Vibe Test.
+  illustrationAlt: Telegram Mini App Fastbuild deployment diagram showing bot setup, source code, three services, webhook registration, and public-link verification with failure checkpoints
+  illustrationCaption: Mechanism diagram. Deployment is a chain of verified stages rather than one upload; the failure points and checks come from a real production deployment.
   brief:
     - label: Situation
       text: You, or your agent, need to deploy a Telegram Mini App from an empty project to production.

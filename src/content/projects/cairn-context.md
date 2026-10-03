@@ -9,6 +9,10 @@ source: Open source
 draft: false
 order: 3
 specimen: cairn
+illustration: project-assets/cairn-context-mechanism.zh.svg
+illustrationEn: project-assets/cairn-context-mechanism.en.svg
+illustrationAlt: Cairn Context 机制说明图：项目决定进入 Repository，新 session 只取得与任务相关的 Context，用户纠正会形成修订记录
+illustrationCaption: 机制说明图：不是把全部 Memory 塞给 Agent，而是筛选已确认且与当前任务相关的决定；纠正会回到修订历史。
 image: project-assets/cairn-context.png
 imageAlt: Cairn Context 的公开 GitHub 仓库，包含 Skill、安装器、模板与中英文说明
 evidenceCaption: 公开 GitHub 仓库：通用 Skill 与模板公开，真实身份、项目状态和决定保存在用户自己的 Repository 里。
@@ -26,6 +30,8 @@ en:
   description: A Skill that lets a fresh agent session recover only the confirmed project decisions relevant to the current task. Works with Claude Code, Codex, and other agents that load a SKILL.md.
   imageAlt: The public Cairn Context GitHub repository, with the Skill, installer, template, and bilingual README
   evidenceCaption: The public repository. The reusable Skill and template are public; identity, project state, and decisions stay in the user's own repository.
+  illustrationAlt: Cairn Context mechanism diagram showing project decisions filtered into a compact task context for a new Agent session, with user corrections returning as revisions
+  illustrationCaption: Mechanism diagram. The Agent receives confirmed decisions relevant to the task rather than the whole memory; corrections return to revision history.
   brief:
     - label: Situation
       text: After switching agents or starting a new session, you need the confirmed decisions that matter to the current task.

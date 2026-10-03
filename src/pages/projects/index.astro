@@ -35,9 +35,9 @@ const categoryLabelEn = { 产品: 'Products', 开源工具: 'Open-source tools',
         <div class="project-group__list">
           {entries.map((project, index) => (
             <article class="project-entry">
-              <a class="project-entry__image" style={`--haze: url("${base}style-kit/${hazes[index % hazes.length]}.svg")`} href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`} data-i18n-aria-en={`View ${project.data.title}`}>
-                {project.data.image
-                  ? <img src={`${base}${project.data.image}`} alt={project.data.imageAlt ?? project.data.title} data-i18n-alt-en={project.data.en?.imageAlt ?? `Project evidence for ${project.data.title}`} loading="lazy" />
+              <a class:list={['project-entry__image', { 'project-entry__image--diagram': !!project.data.illustration }]} style={`--haze: url("${base}style-kit/${hazes[index % hazes.length]}.svg")`} href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`} data-i18n-aria-en={`View ${project.data.title}`}>
+                {project.data.illustration || project.data.image
+                  ? <img src={`${base}${project.data.illustration ?? project.data.image}`} data-i18n-src-en={project.data.illustrationEn ? `${base}${project.data.illustrationEn}` : undefined} alt={project.data.illustrationAlt ?? project.data.imageAlt ?? project.data.title} data-i18n-alt-en={project.data.en?.illustrationAlt ?? project.data.en?.imageAlt ?? `Project evidence for ${project.data.title}`} loading="lazy" />
                   : <span class="project-entry__plain"><strong>{project.data.title}</strong><small data-i18n-en="Private source, no public screenshot">源码私有，没有公开截图</small></span>}
               </a>
               <div class="project-entry__content">

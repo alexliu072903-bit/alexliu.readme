@@ -9,6 +9,10 @@ source: Private source
 draft: false
 order: 1
 specimen: resume
+illustration: project-assets/resume-ai-mechanism.zh.svg
+illustrationEn: project-assets/resume-ai-mechanism.en.svg
+illustrationAlt: Resume.AI 机制说明图：简历、JD 和经历笔记先由用户选择进入 Context，再经过改写、Diff 审阅和文档导出
+illustrationCaption: 机制说明图：用户先决定哪些材料作为证据，AI 才开始改写；最终修改仍由用户审阅。
 image: project-assets/resume-ai.png
 imageAlt: Resume.AI 在线编辑器，左侧导入简历、JD 和知识库，中间编辑简历，右侧与 AI 对话
 evidenceCaption: 最后一个版本的编辑器：左侧导入简历、JD 和知识库，中间编辑，右侧与 AI 对话改写。
@@ -26,6 +30,8 @@ en:
   description: A resume editor that puts your resume, the job description, and your experience notes in one workspace. The AI rewrites only from what you have actually done.
   imageAlt: The Resume.AI online editor, with the resume, JD, and knowledge base imported on the left, the editor in the middle, and the AI chat on the right
   evidenceCaption: The last version of the editor, with imports on the left, the resume in the middle, and the rewrite chat on the right.
+  illustrationAlt: Resume.AI mechanism diagram showing a resume, job description, and notes moving through user-controlled context selection, rewriting, diff review, and document export
+  illustrationCaption: Mechanism diagram. The user chooses which material counts as evidence before the AI rewrites; the user still reviews the final changes.
   brief:
     - label: Situation
       text: You have a job description and do not want a general-purpose AI to invent experience for you.

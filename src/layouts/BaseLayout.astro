@@ -74,6 +74,7 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
       const ariaNodes = document.querySelectorAll('[data-i18n-aria-en]');
       const altNodes = document.querySelectorAll('[data-i18n-alt-en]');
       const hrefNodes = document.querySelectorAll('[data-i18n-href-en]');
+      const srcNodes = document.querySelectorAll('[data-i18n-src-en]');
       const languageToggle = document.querySelector('[data-language-toggle]');
       const languageLabel = document.querySelector('[data-language-label]');
       const descriptionMeta = document.querySelector('meta[name="description"]');
@@ -101,6 +102,10 @@ const navigation = [['Projects', 'projects/'], ['Writing', 'writing/'], ['About'
         hrefNodes.forEach((node) => {
           if (!node.dataset.i18nHrefZh) node.dataset.i18nHrefZh = node.getAttribute('href') || '';
           node.setAttribute('href', lang === 'en' ? node.dataset.i18nHrefEn : node.dataset.i18nHrefZh);
+        });
+        srcNodes.forEach((node) => {
+          if (!node.dataset.i18nSrcZh) node.dataset.i18nSrcZh = node.getAttribute('src') || '';
+          node.setAttribute('src', lang === 'en' ? node.dataset.i18nSrcEn : node.dataset.i18nSrcZh);
         });
         document.querySelectorAll('a[href]').forEach((node) => {
           const rawHref = node.getAttribute('href') || '';

@@ -145,13 +145,14 @@ Navigation is a quiet coordinate system. The active destination gains an ink rul
 
 ### Project evidence
 
-Every project receives one current, verifiable visual: the real product interface or its public repository. Images are evidence, not decoration, and must carry specific alt text.
+Every project detail keeps one current, verifiable visual: the real product interface or its public repository. The Projects index may lead with a mechanism illustration when the workflow is otherwise hard to understand, but the illustration must be labeled as explanatory, must not invent product state, and must never replace the real evidence on the detail page. All images carry specific alt text.
 
 ## Do's and Don'ts
 
 ### Do:
 
 - **Do** let project status and source visibility remain visible near the title.
+- **Do** use mechanism illustrations to explain a documented workflow, then preserve the real screenshot or repository as evidence on the detail page.
 - **Do** keep primary reading content in one clear column, with short summaries before detail.
 - **Do** vary the density and specimen treatment for each project.
 - **Do** keep prose between 45–68ch and preserve generous paragraph rhythm.
@@ -165,3 +166,4 @@ Every project receives one current, verifiable visual: the real product interfac
 - **Don't** default to a beige editorial template with a display serif, tiny monospace labels, and ruled three-column grids.
 - **Don't** repeat identical project cards, expose internal concept words as navigation, or turn project journals into feature-list case studies.
 - **Don't** publish company work, private source, internal screenshots, or unverified status.
+- **Don't** present a generated mechanism illustration as a product screenshot or proof that a feature exists.
