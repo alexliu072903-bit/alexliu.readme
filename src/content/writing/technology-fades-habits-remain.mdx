@@ -1,8 +1,8 @@
 ---
 title: 技术会退到幕后，但习惯会留下
 titleEn: Technology Fades Into the Background. Habits Remain.
-description: Agent 正在减少人能感知到的操作，却可能长期改变一代人的邮箱、付费和工作习惯。
-descriptionEn: Agents are making technology less visible while reshaping the email, payment, and working habits a generation may carry for decades.
+description: AI 可以在几个月里让操作消失，却可能把邮箱、付费和工作习惯留给一代人二十年。
+descriptionEn: AI can make an operation disappear within months while leaving a generation with email, payment, and working habits that last for decades.
 publishedAt: 2026-09-12
 kind: Essay
 featured: true
@@ -10,7 +10,7 @@ tags:
   - Agent
   - 用户习惯
   - 产品判断
-readTime: 9
+readTime: 10
 image: profile/cat-chair.jpg
 imageAlt: 一只小猫躺在椅子上看向镜头
 imageAltEn: A kitten resting on a chair and looking toward the camera
@@ -23,138 +23,220 @@ source:
 
 <div data-language-hidden="en">
 
-2023 到 2030 年可能是 AI 最狂野的一段时间。模型、产品形态和公司会快速更替，但这一轮变化留给我们这一代人的，可能不是某个具体工具，而是两种更长久的习惯：使用个人邮箱，以及为软件持续付费。
+2023 年到 2030 年的 AI 狂野阶段，可能会给我们这一代人留下两个东西：
 
-这个判断背后有一个更基本的观察：**技术变化得很快，也会越来越无感；人的习惯形成得慢，却可能持续十年甚至二十年。**
+1. 使用个人邮箱的习惯。
+2. 为软件持续付费的习惯。
 
-## 技术进步，往往意味着操作消失
+这看起来像两件不太相关的小事。邮箱甚至有一点古老，付费则只是钱包变薄。但它们背后其实是同一件事：**技术变化得很快，而且会越来越无感；人的习惯一旦形成，却可能持续十年甚至二十年。**
 
-早期的 Vibe Coding 是一件有明显技术门槛的事。除了 PRD，人通常还需要准备技术设计和任务清单，明确依赖、涉及文件和验收标准。你不能完全依赖 AI 写这些内容，也不能完全看不懂它们。
+我先从技术怎样消失开始讲。
 
-那是一个“有感”的阶段：人通过大量显式输入，维持 Agent 执行的连贯性、可验收性和可证伪性。
+## 先消失的是操作
 
-后来，模型能力和 Agent harness 一起变化。完整的前期规划仍然可能在局部执行中失效，Agent 却开始更主动地建立技术方案、验收标准和测试。PRD、技术设计和任务清单没有突然失去价值；其中一部分只是从用户必须亲手完成的工作，变成了 Agent 的内部过程。
+早期做 Vibe Coding，除了 PRD，通常还要准备技术文档和任务清单。任务不能只写“把数据库做完”，而要写成类似这样：
 
-人感知到的操作减少了，技术在背后承担的工作反而更多。
+```text
+目标：定义完整数据模型并完成首次迁移
+依赖：Task X 完成
+涉及文件：
+- prisma/schema.prisma
+- prisma/migrations/
+验收标准：
+- 所有表按技术设计创建
+- migration 执行无报错
+- 字段、索引和外键与设计一致
+```
 
-我现在“写”文章也是类似的过程。这里的“写”需要打引号：很多初稿来自 Typeless 口述。我更多是在表达和判断，技术负责把声音变成可以继续编辑的文字。写作并没有消失，但人与写作工具之间的分工改变了。
+所以，早期的 Vibe Coding 其实还是技术活。你需要知道一份 PRD 怎样才算完整，Tech Spec 应该包含什么，任务怎样拆，边缘条件在哪里。你不可能完全依赖 AI 写，也不可能完全看不懂 AI 写出来的东西。
+
+这是第一个阶段：人需要进行大量“有感”的输入，才能维持 Agent 执行的连贯性、可验收性和可证伪性。
+
+从我的体感看，大概到了 6 月中旬，Claude Code 在一次模型升级后开始发生变化。不是说前期规划没有用了，恰恰相反：你会发现自己写了很厚的 Tech Spec，Agent 仍然可能在某个局部犯错，最后还是要一段段纠正。
+
+到了 7 月末或 8 月初，Codex 和 Context 能力继续升级。很多情况下，除了 PRD，技术文档和任务清单不再需要由人写得那么完整。Agent 会自己补充技术细节，建立验收标准，在推送前跑检查和测试。
+
+原来的工作没有消失，只是逐渐进入 Agent 内部。人看到的操作越来越少，技术在背后承担的东西反而越来越多。
+
+我现在“写”这篇文章也是同样的过程。这里的“写”需要打引号，因为初稿来自 Typeless 口述。我主要负责表达，技术把声音变成文字，再由我判断哪里说多了、哪里说错了、哪里应该留下。
+
+以前是先想、再写、再修改；现在更像是先说，然后和一段已经成形的文字继续工作。
 
 <figure class="writing-mechanism writing-mechanism--editorial">
   <a href="/alexliu.readme/writing-assets/technology-habit-loops.zh.svg" target="_blank" rel="noreferrer" aria-label="打开完整尺寸的技术与习惯双循环机制图"><img src="/alexliu.readme/writing-assets/technology-habit-loops.zh.svg" alt="技术快循环不断增强能力、封装操作并退到幕后；习惯慢循环通过重复使用形成默认并推动生态生长" /></a>
-  <figcaption>技术在快循环中迅速退到幕后；习惯在慢循环中逐渐成为默认。能力改变行为，行为又决定什么生态值得继续生长。点击图片可查看完整尺寸。</figcaption>
+  <figcaption>技术在快循环中退到幕后，习惯在慢循环中变成默认。点击图片可查看完整尺寸。</figcaption>
 </figure>
 
-## 技术可以消失，习惯不会立刻消失
+真正有效的技术进步，往往不是要求人掌握更多操作，而是让人用更简单、甚至更“傻瓜”的方式，完成原来很困难的事情。
 
-界面变简单，不代表人会立即放弃过去形成的工作方式。
+但操作消失以后，习惯不会跟着一起消失。
 
-即使 Agent 能每天自动整理邮件，人也可能继续在早上打开邮箱；即使一个新工具能把任务主动送到面前，人仍会沿用自己熟悉的收件箱、文件夹和通知路径。
+## 邮箱可能重新变成一种身份
 
-这不是用户不够先进。习惯本身就是一种基础设施：它降低每天重新决定“我该怎么做”的成本。产品可以在几个月里升级，人的默认动作却需要很长时间才会移动。
+如果长期使用 Claude Code、Codex 或其他全球化 Agent 产品，你很容易重新开始大量使用 Gmail。
 
-## 第一个变化：个人邮箱可能重新进入国内日常
+原因很简单：很多小产品默认支持 Gmail。验证码、产品通知、账单、邀请都从邮箱进来，国内常见的手机号登录反而不一定存在。即使邮件到了以后马上被退订，邮箱也已经重新进入日常路径。
 
-长期使用 Claude Code、Codex 或全球化 AI 产品的人，很容易重新频繁接触邮箱。验证码、产品通知、账单、邀请和开发者服务经常优先进入 Gmail 等邮箱体系，而不是手机号或某个国内平台账号。
+更重要的是，人会慢慢发现，邮箱在很多时候比手机号更像一种可以携带的身份。手机号属于运营商，也经常与地区绑定；平台账号属于平台；邮箱却可以穿过多个服务，成为 Agent 代表一个人行动时最自然的入口之一。
 
-一开始，邮箱可能只是注册工具。使用次数增加以后，它会重新成为一种跨平台身份：一个人可以携带它进入不同服务，不必把身份完全寄托在单一社交平台上。
+所以我的第一个具体判断是：随着国内长期使用 Agent 的创作者、Builder 和行业从业者增加，个人邮箱生态可能重新兴起。
 
-这不意味着邮箱会取代微信，也不意味着国内一定会出现新的邮箱巨头。更值得观察的是：当 Agent 需要代表一个人访问多个服务时，邮箱是否会重新成为定义“这个人是谁”的一部分。如果答案是肯定的，围绕邮箱的身份、通知、支付和 Agent 服务就可能重新生长。
+我不确定谁会接住它。腾讯有最深的社交关系链，但 QQ 邮箱背着“不够高端”的旧印象；字节有巨大的流量入口，也没有太重的邮箱历史包袱，但这需要很大的转型魄力。
 
-## 第二个变化：为软件付费开始成为默认选项
+如果有人真的占住这个位置，它可能像一个 Mini 版的“中国 Google”。邮箱不只是收信工具，它还可以长出身份、登录、日历、文件、支付和 Agent 服务。
 
-我第一次为 AI 产品付费，是为了开始使用 Claude Code。后来我也为 Manus 做过一次昂贵得多的尝试，现在则已经习惯为 Codex 持续支付订阅费用。
+这不意味着邮箱会取代微信。更有意思的问题是：未来别人问“这个人是谁”时，答案会不会不再只有手机号和微信，而重新包括一个属于他自己的邮箱。
 
-其中有些钱花得值，有些显然没有。但更重要的变化是：我不再默认软件应该先免费，再通过广告或流量变现。只要产品持续提供清楚的价值，订阅和按调用量付费都开始变得自然。
+## 我们开始习惯为软件付费
 
-这种习惯一旦形成，并不会只留在 AI 产品里。用户可能开始接受为其他小型软件按月支付十几元或几十元，也更容易理解“没有广告，但需要付费”是一种正常交换。
+第二个变化，是付费。
 
-AI 产品训练的，可能不只是使用 Agent 的能力，也包括一代人对软件价值的基本预期。
+我第一次为 AI 产品付费，应该是 Claude Code。当时需要先付 20 美元才能开始用，它足够有吸引力，所以我直接开了。
 
-## 我们是过渡一代，不是完全的 AI 原生代
+再往后是 Manus。4 月份的时候，我给它付了 300 美元。到现在这仍然是我的最高纪录，而且现在回头看，这 300 美元花得可能不太值。
 
-这里的“我们”，主要指 00 后，也包括现在处在青少年阶段的一部分 10 后。我们在大学、研究生或刚进入工作时遇到 AI，因此它会深刻改变我们的工作与消费习惯。
+最近我已经开始习惯为 Codex 每月支付 100 美元。只能说是时代的东风，或者西风吧。
 
-但严格来说，我们并不是完全的 AI 原生代。我们经历过电视、电脑、智能手机，再进入 Agent 时代。AI 是后来进入生活的技术，而不是从出生起就存在的环境。
+真正重要的不是我到底给哪家公司付了多少钱，而是默认值变了。以前很多国内互联网产品的默认逻辑是免费使用，再通过广告和流量变现。现在越来越多人开始接受另一种交换：产品持续解决问题，我就持续付费；用得更多，就按调用量多付一点。
 
-真正从一开始就把 AI 视为空气的人，可能是 20 后、30 后，以及更晚出生的一代。他们未必继承我们今天的邮箱和订阅习惯，也可能发明完全不同的默认方式。
+一旦这种习惯形成，它不会只留在 AI 产品里。一个人习惯每月为 Agent 支付几十或几百元以后，也更可能接受为其他小软件支付十几或几十元。他开始觉得，没有广告但需要付费，是一件很正常的事。
 
-这使我们处在一个有趣的位置：十五到二十年后，我们可能成为 AI 原生时代的建设者，却仍带着在互联网和早期 Agent 时代形成的动作与判断。
+Agent 训练的可能不只是我们怎样工作，也包括我们怎样理解软件的价值。
 
-## 观察习惯，而不只是追踪功能
+## 我们可能只是过渡一代
 
-判断 AI 的长期影响，不能只看哪个模型更强、哪个产品又增加了什么按钮。功能可以在一次发布中出现，也可以在下一次发布中消失。
+这里所说的“我们这一代人”，主要是 00 后，也包括现在十五六岁的一部分 10 后。
 
-更耐久的信号是：人开始默认用什么身份进入服务，愿意为什么付钱，把哪些判断交给 Agent，又在哪些地方坚持自己完成。
+我们在大学、研究生或刚开始工作时遇到 Claude Code、Codex 和 Agent。它们会深刻改变我们的工作与消费习惯，但严格来说，我们还不算真正的 AI 原生代。
 
-技术最终会退到幕后。但由技术塑造的习惯，可能比技术本身存在得更久。
+我们小时候看电视，后来从电视到电脑，从电脑到手机，再从手机进入 AI 时代。我们甚至看过那些充满 3G 想象的广告。AI 对我们来说是后来出现的新环境，不是出生时就存在的空气。
+
+真正完全意义上的 AI 原生代，可能是 20 后、30 后以及更往后的一代。他们未必会继承我们的邮箱和订阅习惯，也可能从一开始就用完全不同的方式定义身份、工作和消费。
+
+这使我们处在一个有点奇怪的位置：十五到二十年后，我们可能是 AI 原生时代的建设者，但自己仍然带着互联网时代和早期 Agent 时代留下的习惯。
+
+## 技术退场以后
+
+所以我最后其实只有两个判断。
+
+第一个判断是：技术会从“有感”走向“无感”，但习惯的形成和消失都比技术变化更慢。
+
+第二个判断是：今天的 Agent 不只是在改变我们怎样完成工作，也在训练一代人的基础习惯。它可能让个人邮箱重新进入国内日常，也可能推动订阅制和软件付费继续普及。
+
+判断 AI 的长期影响，不能只追踪哪个模型更强、哪个产品这周又增加了什么按钮。按钮可以在一次发布中出现，也可以在下一次发布中消失。
+
+更值得看的，是人开始默认用什么身份进入服务，愿意为什么付钱，把哪些判断交给 Agent，又在哪些地方坚持自己完成。
+
+技术最终会退到幕后。但它塑造的习惯，可能比技术本身存在得更久。
 
 </div>
 
 <div data-language-visible="en">
 
-The years from 2023 to 2030 may become the wildest phase of AI. Models, product forms, and companies will change quickly. What this period leaves behind, however, may not be one particular tool. It may be two durable habits: using personal email and paying continuously for software.
+The wild AI period from 2023 to 2030 may leave my generation with two things:
 
-That prediction rests on a more basic observation: **technology changes quickly and becomes less visible; habits form slowly and may last for decades.**
+1. The habit of using personal email.
+2. The habit of paying continuously for software.
 
-## Progress often looks like operations disappearing
+They sound almost unrelated. Email is faintly old-fashioned; payment mostly makes the wallet thinner. But both come from the same pattern: **technology changes quickly and becomes less visible, while habits form slowly and may last for ten or twenty years.**
 
-Early vibe coding had a visible technical threshold. A PRD was rarely enough. People prepared technical designs and task lists that specified dependencies, files, and acceptance criteria. You could not rely entirely on AI to produce those materials, and you could not safely ignore what they contained.
+Let me begin with how technology disappears.
 
-This was a high-friction phase. Humans supplied a large amount of explicit structure to keep execution coherent, testable, and falsifiable.
+## Operations disappear first
 
-As models and agent harnesses improved, the division of work began to move. Detailed upfront planning could still fail during local execution, while agents became more capable of proposing technical approaches, forming acceptance criteria, and running tests. PRDs and technical plans did not lose their value. Some of the work simply moved from an artifact the user had to prepare into a process the agent performed internally.
+Early vibe coding required more than a PRD. A technical design and task list often looked something like this:
 
-The user saw fewer operations while the technology did more behind the scenes.
+```text
+Goal: define the complete data model and run the first migration
+Dependency: Task X complete
+Files:
+- prisma/schema.prisma
+- prisma/migrations/
+Acceptance:
+- every table matches the technical design
+- the migration runs without errors
+- fields, indexes, and foreign keys are correct
+```
 
-I now “write” in a similar way. The quotation marks matter: many first drafts begin as speech through Typeless. I spend more of my attention on expression and judgment, while the technology turns voice into material I can edit. Writing has not disappeared. The boundary between writer and tool has changed.
+In other words, early vibe coding was still technical work. You needed to know what belonged in a PRD, what a useful Tech Spec looked like, how to split a task, and where the edge cases lived. You could not rely entirely on AI to write those documents, and you could not safely understand none of what it produced.
+
+That was the first phase: a large amount of visible human input was required to keep an agent coherent, testable, and falsifiable.
+
+Around mid-June, at least in my own use, Claude Code began to feel different after a model upgrade. This did not make planning useless. If anything, it exposed a problem: you could write a beautifully complete Tech Spec and the agent would still fail in one local corner, forcing you to correct execution piece by piece.
+
+By late July or early August, Codex and stronger Context handling moved the boundary again. In many tasks, the PRD remained, but the technical document and task list no longer needed to be fully prepared by the person. The agent could fill in technical detail, form acceptance criteria, and run checks before pushing.
+
+The work did not vanish. It moved inside the agent. The user saw fewer operations while the technology carried more of them.
+
+I now “write” in much the same way. The quotation marks matter because many first drafts begin as speech through Typeless. I am mainly responsible for expression; the technology turns voice into text, and I decide what ran too long, what was wrong, and what should survive.
+
+The old sequence was think, write, revise. The new one is closer to speak, then continue working with language that already has a shape.
 
 <figure class="writing-mechanism writing-mechanism--editorial">
   <a href="/alexliu.readme/writing-assets/technology-habit-loops.en.svg" target="_blank" rel="noreferrer" aria-label="Open the full-size technology and habit loops diagram"><img src="/alexliu.readme/writing-assets/technology-habit-loops.en.svg" alt="A fast technology cycle improves capability, encapsulates operations, and recedes while a slower habit cycle turns repetition into defaults and ecosystem growth" /></a>
-  <figcaption>Technology recedes through a fast cycle. Habits become defaults through a slower one. Capability changes behavior; behavior determines which ecosystems continue to grow. Open the image for the full-size diagram.</figcaption>
+  <figcaption>Technology recedes through a fast cycle; habits become defaults through a slower one. Open the image for the full-size diagram.</figcaption>
 </figure>
 
-## Technology can disappear before habits do
+The best technical progress often does not ask people to learn more operations. It lets them do something difficult through a simpler, sometimes almost foolishly simple, action.
 
-A simpler interface does not make people abandon a familiar working rhythm overnight.
+But when the operation disappears, the habit does not disappear with it.
 
-An agent may summarize every message automatically, yet someone may still begin the morning by opening an inbox. A product may proactively deliver the next task, yet the user may continue to organize life through folders, notifications, and routines learned years earlier.
+## Email may become an identity again
 
-This is not a failure to become sufficiently advanced. Habit is infrastructure too. It removes the cost of deciding, every day, how to do ordinary things. A product can change within months; a person's default motions move much more slowly.
+Use Claude Code, Codex, or other globally distributed agent products for long enough and personal email quietly returns to your life.
 
-## First possibility: personal email returns to everyday life in China
+The reason is mundane: small products support Gmail. Verification codes, notifications, bills, and invitations arrive in an inbox, while the phone-number login familiar in China may not exist. Even if every marketing email is immediately unsubscribed, email has already re-entered the path.
 
-People who use Claude Code, Codex, and globally distributed AI products often encounter email again and again. Verification codes, product notifications, bills, invitations, and developer services frequently arrive through Gmail and other email systems rather than a phone number or one domestic platform account.
+More importantly, email begins to look like a portable identity. A phone number belongs partly to a carrier and often to a region. A platform account belongs to the platform. An email address can travel across services and may become one of the most natural entry points for an agent acting across them.
 
-At first, email may be only a registration tool. With repetition, it can become a portable identity: something a person carries across services without placing the whole self inside one social platform.
+So my first concrete prediction is that personal email may regain importance in China as more creators, builders, and industry workers live with agents.
 
-This does not mean email will replace WeChat, or that a new Chinese email giant is inevitable. The more useful question is whether email becomes part of the answer to “who is this person?” when an agent needs to work across services on their behalf. If it does, identity, notification, payment, and agent services may begin growing around it again.
+I do not know who would capture that position. Tencent has the deepest social graph, but QQ Mail carries an old perception problem. ByteDance has enormous distribution and less historical baggage around email, but claiming the category would require unusual strategic nerve.
 
-## Second possibility: paying for software becomes a default option
+Whoever does it could become a miniature “Google of China.” Email is not only mail. It can grow into identity, login, calendar, files, payment, and agent services.
 
-My first AI subscription was the price of entry to Claude Code. Later I made a much more expensive experiment with Manus. I now treat a continuing Codex subscription as an ordinary software expense.
+That does not mean email replaces WeChat. The more interesting question is whether the answer to “who is this person?” once again includes an address that belongs to them, rather than only a phone number and a platform account.
 
-Some of that money was well spent; some clearly was not. The deeper change is that I no longer assume software must be free first and funded by advertising or traffic later. When a product delivers continuing, legible value, subscriptions and usage-based pricing begin to feel normal.
+## We are learning to pay for software
 
-That habit will not remain confined to AI. A user who learns to pay for an agent may become more willing to spend a small amount each month on other useful software, and more comfortable with a product that has no ads but does have a price.
+The second change is payment.
 
-AI products may be training a generation not only in how to use agents, but in what software is worth.
+My first AI subscription was probably Claude Code. It required twenty dollars before I could begin, and the product was compelling enough that I paid.
 
-## We are a transition generation, not a fully AI-native one
+Then came Manus. In April, I spent three hundred dollars on it. That remains my personal record, and in retrospect, it may not have been three hundred dollars well spent.
 
-By “we,” I mostly mean people born in the 2000s, along with some teenagers born in the 2010s. We encountered AI during university, graduate school, or the beginning of work. It will strongly shape our professional and purchasing habits.
+I have since become comfortable paying one hundred dollars a month for Codex. Call it the wind of the times — from the east or the west, I am no longer sure.
 
-But we are not fully AI native. We moved through television, personal computers, smartphones, and then agents. AI entered our lives later; it was not part of the environment from birth.
+The point is not which company received which amount. The default changed. Much of the Chinese internet trained users to expect free products funded later by advertising and traffic. Agent products are teaching another exchange: if the product keeps solving a clear problem, I keep paying; if I use more, I may pay by usage.
 
-Children born in the 2020s, 2030s, and beyond may treat AI as ordinary background infrastructure. They may not inherit today's email and subscription habits at all. They may create a different set of defaults.
+Once formed, that habit will not remain inside AI. Someone comfortable paying hundreds for an agent may become more willing to pay a small monthly fee for other useful software. A product with no ads and a price starts to feel normal rather than suspicious.
 
-That puts our generation in a curious position. Fifteen or twenty years from now, we may be building the AI-native era while still carrying motions and judgments learned during the internet and early-agent eras.
+Agents may be training not only how a generation works, but how it understands the value of software.
 
-## Watch habits, not only features
+## We may only be the transition generation
 
-The long-term effect of AI cannot be understood only by tracking which model is strongest or which feature appeared this week. Features can arrive in one release and disappear in the next.
+By “my generation,” I mostly mean people born in the 2000s, along with some teenagers born in the 2010s.
 
-The more durable signals are what identity people use to enter a service, what they become willing to pay for, which judgments they hand to an agent, and where they continue to insist on acting themselves.
+We met Claude Code, Codex, and agents during university, graduate school, or the beginning of work. They will shape our professional and purchasing habits. Strictly speaking, however, we are not fully AI native.
 
-Technology eventually moves into the background. The habits it creates may remain long after the technology that formed them has changed.
+We grew up with television, then computers, then smartphones, and only afterward entered the AI era. We even remember advertisements full of excitement about 3G. AI arrived as a new environment; it was not the air present at birth.
+
+The fully AI-native generation may be those born in the 2020s, 2030s, and beyond. They may inherit neither our inboxes nor our subscriptions. They may define identity, work, and consumption differently from the start.
+
+That puts us in a strange position. Fifteen or twenty years from now, we may be building the AI-native era while still carrying habits from the internet and early-agent eras.
+
+## After the technology leaves the stage
+
+I am left with two claims.
+
+First, technology moves from visible to invisible, but habits form and disappear far more slowly than technology changes.
+
+Second, today's agents are not only changing how we complete work. They are training a generation's basic habits. Personal email may return to everyday life in China, and subscriptions may continue reshaping how people pay for software.
+
+The long-term effect of AI cannot be understood only by tracking which model is strongest or which button appeared this week. A button can arrive in one release and vanish in the next.
+
+The more durable signals are what identity people use to enter a service, what they become willing to pay for, which judgments they hand to an agent, and where they insist on acting themselves.
+
+Technology eventually moves into the background. The habits it creates may remain long after the technology itself has changed.
 
 </div>
