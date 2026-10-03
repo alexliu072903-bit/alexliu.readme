@@ -1,0 +1,39 @@
+name: Check mechanism Skill sync
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'skills/mechanism-illustration/**'
+      - '.github/workflows/check-mechanism-skill-sync.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compare-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read pinned upstream version
+        id: version
+        shell: bash
+        run: |
+          version=$(sed -n 's/^- Version: //p' skills/mechanism-illustration/UPSTREAM.md)
+          test -n "$version"
+          echo "value=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Download pinned upstream package
+        shell: bash
+        run: |
+          curl --fail --location --silent --show-error \
+            "https://github.com/alexliu072903-bit/mechanism-illustration-skill/archive/refs/tags/${{ steps.version.outputs.value }}.tar.gz" \
+            --output /tmp/mechanism-skill.tar.gz
+          mkdir -p /tmp/mechanism-upstream
+          tar -xzf /tmp/mechanism-skill.tar.gz --strip-components=1 -C /tmp/mechanism-upstream
+
+      - name: Compare vendored copy with upstream
+        shell: bash
+        run: |
+          diff -ru --exclude UPSTREAM.md /tmp/mechanism-upstream skills/mechanism-illustration
