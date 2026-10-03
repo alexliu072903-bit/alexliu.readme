@@ -34,19 +34,14 @@ source:
 
 ## 先消失的是操作
 
-早期做 Vibe Coding，除了 PRD，通常还要准备技术文档和任务清单。任务不能只写“把数据库做完”，而要写成类似这样：
+早期做 Vibe Coding，除了 PRD，通常还要准备技术文档和任务清单。
 
-```text
-目标：定义完整数据模型并完成首次迁移
-依赖：Task X 完成
-涉及文件：
-- prisma/schema.prisma
-- prisma/migrations/
-验收标准：
-- 所有表按技术设计创建
-- migration 执行无报错
-- 字段、索引和外键与设计一致
-```
+任务不能只写“把数据库做完”。它需要说明这次任务的目标、前置依赖、涉及文件和验收标准。例如，一项数据库任务可能包括：
+
+- **目标：** 定义完整的数据模型并完成第一次迁移；
+- **依赖：** 等待 Task X 完成；
+- **涉及文件：** `prisma/schema.prisma` 和 `prisma/migrations/`；
+- **验收标准：** 所有数据表按照技术设计创建，migration 可以顺利执行，字段类型、索引和外键都与设计一致。
 
 所以，早期的 Vibe Coding 其实还是技术活。你需要知道一份 PRD 怎样才算完整，Tech Spec 应该包含什么，任务怎样拆，边缘条件在哪里。你不可能完全依赖 AI 写，也不可能完全看不懂 AI 写出来的东西。
 
@@ -144,19 +139,12 @@ Let me begin with how technology disappears.
 
 ## Operations disappear first
 
-Early vibe coding required more than a PRD. A technical design and task list often looked something like this:
+Early vibe coding required more than a PRD. A task could not simply say “finish the database.” It had to specify the goal, dependencies, affected files, and acceptance criteria. A database task might include:
 
-```text
-Goal: define the complete data model and run the first migration
-Dependency: Task X complete
-Files:
-- prisma/schema.prisma
-- prisma/migrations/
-Acceptance:
-- every table matches the technical design
-- the migration runs without errors
-- fields, indexes, and foreign keys are correct
-```
+- **Goal:** Define the complete data model and run the first migration;
+- **Dependency:** Wait for Task X to be completed;
+- **Files:** `prisma/schema.prisma` and `prisma/migrations/`;
+- **Acceptance:** Create every table described by the technical design, run the migration without errors, and match the required fields, indexes, and foreign keys.
 
 In other words, early vibe coding was still technical work. You needed to know what belonged in a PRD, what a useful Tech Spec looked like, how to split a task, and where the edge cases lived. You could not rely entirely on AI to write those documents, and you could not safely understand none of what it produced.
 
