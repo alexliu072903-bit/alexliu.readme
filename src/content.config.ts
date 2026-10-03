@@ -17,7 +17,6 @@ const writing = defineCollection({
     image: z.string(),
     imageAlt: z.string(),
     imageAltEn: z.string().optional(),
-    visual: z.enum(['two-flywheels']).optional(),
     source: z.object({
       label: z.string(),
       url: z.url(),

@@ -4,7 +4,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
 const featuredProjects = projects.filter((project) => project.data.featured);
-const categories = ['产品', '开源工具', 'Skill'] as const;
 const base = import.meta.env.BASE_URL;
 const hazes = ['haze-cyan', 'haze-violet', 'haze-warm'];
 const statusLabel = {
@@ -16,7 +15,30 @@ const statusLabel = {
 const statusLabelEn = { 'Public product': 'Public product', Historical: 'Historical', Experimental: 'Experimental', Available: 'Available' };
 const sourceLabel = { 'Private source': '源码私有', 'Open source': '开源', 'Public repository': '公开仓库' };
 const sourceLabelEn = { 'Private source': 'Private source', 'Open source': 'Open source', 'Public repository': 'Public repository' };
-const categoryLabelEn = { 产品: 'Products', 开源工具: 'Open-source tools', Skill: 'Skills' };
+const projectGroups = [
+  {
+    key: 'products',
+    titleZh: '产品',
+    titleEn: 'Products',
+    entries: projects.filter((project) => project.data.category === '产品'),
+  },
+  {
+    key: 'featured',
+    titleZh: '重点开源项目',
+    titleEn: 'Featured open source',
+    introZh: '围绕 Agent Context、证据、解释与交付的四个公开系统。每个仓库都包含可以查看和复现的机制图与生成源。',
+    introEn: 'Four public systems around Agent Context, evidence, explanation, and delivery. Each repository includes an inspectable mechanism diagram and source.',
+    entries: featuredProjects,
+  },
+  {
+    key: 'obsidian',
+    titleZh: 'Obsidian 相关开源项目',
+    titleEn: 'Open source for Obsidian',
+    introZh: '让本地 Agent 进入 Obsidian，并在同步到 GitHub 前由用户决定哪些内容可以离开本地。',
+    introEn: 'Bring a local Agent into Obsidian, then let the user decide what may leave the machine before syncing to GitHub.',
+    entries: projects.filter((project) => ['obsidian-ai-starter', 'obsidian-git-sync'].includes(project.id)),
+  },
+];
 ---
 
 <BaseLayout title="Projects — Alex Liu" description="Alex Liu 做过的产品、开源工具和 Skills。" pageClass="projects-page">
@@ -25,42 +47,15 @@ const categoryLabelEn = { 产品: 'Products', 开源工具: 'Open-source tools',
     <p data-i18n-en="Products, open-source tools, and Skills I have built. Some are still running; others are historical, but each leaves behind something verifiable.">我做过的产品、开源工具和 Skills。有些仍在运行，有些已经结束，但都留下了可以验证的东西。</p>
   </header>
 
-  <section class="project-group project-group--featured">
-    <header class="project-group__head">
-      <h2 data-i18n-en="Featured open source">重点开源项目</h2>
-      <span data-i18n-en={`${featuredProjects.length} projects`}>{featuredProjects.length} 项</span>
-    </header>
-    <p class="project-group__intro" data-i18n-en="Four public systems around Agent Context, evidence, explanation, and delivery. Each repository includes an inspectable mechanism diagram and source.">围绕 Agent Context、证据、解释与交付的四个公开系统。每个仓库都包含可以查看和复现的机制图与生成源。</p>
-    <div class="project-group__list">
-      {featuredProjects.map((project, index) => (
-        <article class="project-entry">
-          <a class:list={['project-entry__image', { 'project-entry__image--diagram': !!project.data.illustration }]} style={`--haze: url("${base}style-kit/${hazes[index % hazes.length]}.svg")`} href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`} data-i18n-aria-en={`View ${project.data.title}`}>
-            <img src={`${base}${project.data.illustration ?? project.data.image}`} data-i18n-src-en={project.data.illustrationEn ? `${base}${project.data.illustrationEn}` : undefined} alt={project.data.illustrationAlt ?? project.data.imageAlt ?? project.data.title} data-i18n-alt-en={project.data.en?.illustrationAlt ?? project.data.en?.imageAlt ?? `Project evidence for ${project.data.title}`} loading="lazy" />
-          </a>
-          <div class="project-entry__content">
-            <div class="project-entry__status">
-              <span data-i18n-en={statusLabelEn[project.data.status]}>{statusLabel[project.data.status]}</span>
-              <span data-i18n-en={sourceLabelEn[project.data.source]}>{sourceLabel[project.data.source]}</span>
-            </div>
-            <h3><a href={`${base}projects/${project.id}/`}>{project.data.title}</a></h3>
-            <p data-i18n-en={project.data.en?.description}>{project.data.description}</p>
-            <a class="project-entry__link" href={`${base}projects/${project.id}/`}><span data-i18n-en="View project">查看项目</span> <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  {categories.map((category) => {
-    const entries = projects.filter((project) => project.data.category === category && !project.data.featured);
-    return (
-      <section class:list={['project-group', `project-group--${category === '产品' ? 'products' : category === '开源工具' ? 'tools' : 'skill'}`]}>
+  {projectGroups.map((group) => (
+      <section class:list={['project-group', `project-group--${group.key === 'obsidian' ? 'tools' : group.key}`]}>
         <header class="project-group__head">
-          <h2 data-i18n-en={categoryLabelEn[category]}>{category}</h2>
-          <span data-i18n-en={`${entries.length} ${entries.length === 1 ? 'project' : 'projects'}`}>{entries.length} 项</span>
+          <h2 data-i18n-en={group.titleEn}>{group.titleZh}</h2>
+          <span data-i18n-en={`${group.entries.length} ${group.entries.length === 1 ? 'project' : 'projects'}`}>{group.entries.length} 项</span>
         </header>
+        {group.introZh && <p class="project-group__intro" data-i18n-en={group.introEn}>{group.introZh}</p>}
         <div class="project-group__list">
-          {entries.map((project, index) => (
+          {group.entries.map((project, index) => (
             <article class="project-entry">
               <a class:list={['project-entry__image', { 'project-entry__image--diagram': !!project.data.illustration }]} style={`--haze: url("${base}style-kit/${hazes[index % hazes.length]}.svg")`} href={`${base}projects/${project.id}/`} aria-label={`查看 ${project.data.title}`} data-i18n-aria-en={`View ${project.data.title}`}>
                 {project.data.illustration || project.data.image
@@ -80,6 +75,5 @@ const categoryLabelEn = { 产品: 'Products', 开源工具: 'Open-source tools',
           ))}
         </div>
       </section>
-    );
-  })}
+  ))}
 </BaseLayout>

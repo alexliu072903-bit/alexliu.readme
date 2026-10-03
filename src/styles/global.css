@@ -718,6 +718,10 @@ html[data-language="en"] .writing-article--source-handoff .back-link { margin-to
 .writing-prose ul, .writing-prose ol { padding-left: 1.35rem; }
 .writing-prose li { margin-bottom: .55rem; }
 .writing-prose code { padding: .12rem .3rem; background: var(--soft); font-family: inherit; font-size: .94em; }
+.writing-mechanism { width: min(66rem, calc(100vw - 3rem)); margin: clamp(2rem, 5vw, 3.5rem) 0; padding-block: clamp(.8rem, 2vw, 1.25rem); border-block: 1px solid var(--line); }
+.writing-mechanism img { display: block; width: 100%; height: auto; }
+.writing-mechanism figcaption { max-width: 52rem; margin-top: .75rem; color: var(--muted); font-size: .82rem; line-height: 1.6; }
+.writing-mechanism--editorial { background: #fff; }
 .flywheel-diagram { width: 100%; margin: 0; padding: clamp(1.1rem, 2.2vw, 1.7rem); background: var(--soft); border: 1px solid var(--line); }
 .flywheel-diagram figcaption { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: clamp(1.2rem, 2.5vw, 2rem); }
 .flywheel-diagram figcaption span { color: var(--muted); font-size: .8rem; }
@@ -790,6 +794,7 @@ html[data-language="en"] .writing-article--source-handoff .back-link { margin-to
   .writing-feature__visual { order: 2; }
   .writing-list a { grid-template-columns: 1fr; gap: 1rem; }
   .writing-list img { max-width: 26rem; }
+  .writing-mechanism { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
