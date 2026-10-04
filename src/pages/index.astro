@@ -226,7 +226,7 @@ const proofFacts = proofIndexes.map((i) => ({ zh: proof?.data.facts?.[i], en: pr
         </div>
         {airjelly.data.image && (
           <figure class="v2-proof__shot">
-            <img src={`${base}${airjelly.data.image}`} alt={airjelly.data.imageAlt} data-i18n-alt-en={airjelly.data.en?.imageAlt} loading="lazy" />
+            <img src={`${base}${airjelly.data.image}`} data-i18n-src-en={airjelly.data.imageEn ? `${base}${airjelly.data.imageEn}` : undefined} alt={airjelly.data.imageAlt} data-i18n-alt-en={airjelly.data.en?.imageAlt} loading="lazy" />
           </figure>
         )}
       </section>
