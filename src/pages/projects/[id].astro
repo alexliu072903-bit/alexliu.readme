@@ -87,14 +87,17 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
         </section>
       )}
       {en?.sections && (
-        <section class="project-prose project-prose--english" aria-label="Project note">
-          {en.sections.map((section) => (
-            <section>
-              <h2>{section.heading}</h2>
-              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-            </section>
-          ))}
-        </section>
+        <details class="full-note">
+          <summary>Read the full project note</summary>
+          <div class="project-prose" aria-label="Project note">
+            {en.sections.map((section) => (
+              <section>
+                <h2>{section.heading}</h2>
+                {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ))}
+          </div>
+        </details>
       )}
     </div>
 

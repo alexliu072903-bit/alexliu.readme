@@ -612,7 +612,6 @@ html[data-language="en"] .home-hero__title[data-language-visible="en"] { display
 .project-prose h2 { margin: 3.75rem 0 1rem; font-size: clamp(1.65rem, 3vw, 2.35rem); font-weight: 620; line-height: 1.15; letter-spacing: -.02em; }
 .project-prose h2:first-child { margin-top: 0; }
 .project-prose p { max-width: 42rem; margin-bottom: 1.15rem; color: oklch(.3 .012 145); font-size: 1.04rem; line-height: 1.8; }
-.project-prose--english { margin-top: clamp(3.5rem, 7vw, 5.5rem); }
 .project-detail--brief { padding-top: clamp(.75rem, 2vw, 1.25rem); }
 .project-detail--brief .project-header { margin-bottom: clamp(1.25rem, 2.5vw, 2rem); }
 .project-detail--brief .project-header h1 { font-size: clamp(1.95rem, 3.5vw, 2.8rem); letter-spacing: -.02em; }
