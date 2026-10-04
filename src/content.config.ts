@@ -47,6 +47,7 @@ const projects = defineCollection({
     illustrationAlt: z.string().optional(),
     illustrationCaption: z.string().optional(),
     image: z.string().optional(),
+    imageEn: z.string().optional(),
     imageAlt: z.string().optional(),
     evidenceCaption: z.string().optional(),
     reactions: z.array(z.object({ image: z.string(), alt: z.string(), caption: z.string() })).optional(),

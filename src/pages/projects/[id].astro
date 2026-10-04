@@ -66,7 +66,7 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
       )}
       {project.data.image && (
         <figure class="project-figure project-figure--brief">
-          <img src={`${base}${project.data.image}`} alt={en?.imageAlt ?? project.data.imageAlt} />
+          <img src={`${base}${project.data.imageEn ?? project.data.image}`} alt={en?.imageAlt ?? project.data.imageAlt} />
           {en?.evidenceCaption && <figcaption>{en.evidenceCaption}</figcaption>}
         </figure>
       )}

@@ -10,6 +10,7 @@ draft: false
 order: 0
 specimen: cairn
 image: project-assets/airjelly-site.png
+imageEn: project-assets/airjelly-site.en.png
 imageAlt: AirJelly 官网首屏，标题为“感知上下文的主动式智能体”，下方展示 Codex 调用 AirJelly 的界面
 evidenceCaption: AirJelly 官网首屏。截图于 2026 年 10 月 1 日。
 problem: 工作信息分散在很多应用里，外部 Agent 拿不到完整的背景，每次都要人重新解释。
@@ -31,7 +32,7 @@ factsNote: 来自 AirJelly 官网常见问题，截至 2026 年 10 月 1 日。
 en:
   description: A context-aware proactive desktop agent. I am one of the core product managers of 2.0, responsible for the Agent Context direction.
   imageAlt: The AirJelly website's first screen, headlined "Context-Aware Proactive Agent", with a Codex window using AirJelly below it
-  evidenceCaption: The first screen of the AirJelly website. Screenshot taken on October 1, 2026.
+  evidenceCaption: The first screen of the AirJelly website. Screenshot taken on October 4, 2026.
   brief:
     - label: Situation
       text: A user's work is scattered across chats, documents, tasks, and different agent sessions, and external agents such as Codex and Claude Code cannot see any of it.
