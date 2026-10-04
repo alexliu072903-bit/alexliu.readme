@@ -33,6 +33,27 @@ en:
       text: One installer checks the environment, installs pinned versions of Pi and the plugin, applies a patch, builds, and writes into the vault. Any failed step stops it.
     - label: Status
       text: MIT licensed, for Windows 10/11 and macOS. You provide your own model account or API key; the installer never reads or stores it.
+  sections:
+    - heading: The problem
+      paragraphs:
+        - >-
+          Putting an AI inside a knowledge base sounds like a small integration. In practice it crosses Node, plugin builds, model sign-in, vault permissions, Windows and macOS differences, and private backups. One failed step can leave the idea of a personal AI workspace stuck at setup.
+        - >-
+          The project came from my own need: conversations with an Agent should return to my Markdown instead of remaining inside the history of a subscription product.
+    - heading: The approach
+      paragraphs:
+        - >-
+          Obsidian AI Starter combines the Pi Agent, vault tools, and an Obsidian plugin into a repeatable installation. The script validates the target directory and dependencies, installs pinned versions, checks out a fixed commit, applies cross-platform patches, builds the plugin, and writes it into the local vault.
+        - >-
+          A failed native command stops the process. The installer does not continue and leave behind something that only looks complete.
+    - heading: Permission boundary
+      paragraphs:
+        - >-
+          The vault is the working directory, but the Agent is not sandboxed from the permissions of the current user. GitHub backup is off by default and runs only after the user provides an empty private repository and confirms again before the push.
+    - heading: Current state
+      paragraphs:
+        - >-
+          The project is MIT licensed, with pinned dependencies and support for Windows 10/11 and macOS. It is an installation and integration layer rather than a fork of Pi or the Obsidian plugin. Windows requires Git for Windows, and Node.js must be version 22.19 or newer.
   readmeSteps:
     - Clone the repository and run the setup script for your platform with the path to an existing Obsidian vault.
     - In Obsidian, enable the Pi plugin and register the command line interface on PATH.

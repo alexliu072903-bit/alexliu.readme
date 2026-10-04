@@ -33,6 +33,21 @@ en:
       text: Tell Claude Code which vault to sync, choose a full backup or only selected folders (an allowlist), then preview and run.
     - label: Status
       text: MIT licensed. Windows and macOS both support the full-vault and selected-folder modes.
+  sections:
+    - heading: The problem
+      paragraphs:
+        - >-
+          Git is well suited to preserving Markdown history, but repository setup, .gitignore rules, remotes, the first push, and platform-specific scripts are not straightforward for many Obsidian users. More importantly, automatically syncing an entire vault can send plugin settings, attachments, or private notes to the wrong repository.
+    - heading: The approach
+      paragraphs:
+        - >-
+          You can tell the Agent, “Sync my Obsidian SKILL and daily folders to GitHub.” The Skill asks for the vault, remote, and sync mode, then invokes the Windows PowerShell or macOS shell script.
+        - >-
+          Full mode is for a complete private backup. Allowlist mode ignores the whole vault by default and opens only the folders the user selected. The scripts support a dry-run preview, exclude .obsidian by default, and back up the existing .gitignore before the macOS script replaces it.
+    - heading: Current state
+      paragraphs:
+        - >-
+          The project is MIT licensed. Windows and macOS support both full-vault and allowlist sync. The implementation is deliberately small: automation handles the mechanical steps, while the user still decides what may leave the machine.
   readmeSteps:
     - Install the Skill into Claude Code's skills directory.
     - Tell Claude Code you want to sync your Obsidian vault to GitHub.

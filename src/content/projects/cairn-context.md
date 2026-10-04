@@ -40,6 +40,25 @@ en:
       text: The Agent reads only the relevant decisions from your own Cairn repository and tells decisions, inclinations, open questions, and temporary experiments apart.
     - label: Limits
       text: The Agent reads a one-line summary of each decision and chooses which to open. There is no keyword search or ranking, and logged corrections do not automatically change later behavior.
+  sections:
+    - heading: The problem
+      paragraphs:
+        - >-
+          A new Agent session does not know why a project has its current shape. Putting the whole history into a prompt creates noise; relying on conversation alone causes confirmed decisions to disappear and be reopened.
+    - heading: The approach
+      paragraphs:
+        - >-
+          Cairn Context keeps important project decisions in a repository owned by the user. The Agent reads only the decisions relevant to the current task and distinguishes confirmed conclusions from inclinations, open questions, and temporary experiments.
+        - >-
+          When a decision changes, Cairn preserves the old file and records the replacement chain with supersedes. When the user corrects the Agent, the repository fixes the fact first and then records the feedback, so the same mistaken judgment does not silently become project memory.
+        - >-
+          The public repository contains the Skill, installer, and templates. Identity, project state, and real decisions remain in a separate local or private repository.
+    - heading: Current state and limits
+      paragraphs:
+        - >-
+          The installer supports Claude Code, Codex, and arbitrary skills directories. Each project gets a one-line decision index, while validate.py checks fields, dates, and replacement chains.
+        - >-
+          The limits are explicit: there is no keyword search or ranking, so the Agent still decides which summaries to open, and correction records do not automatically train or change later behavior.
   readmeSteps:
     - Clone the public repository and run the installer for Claude Code, Codex, or any skills directory.
     - Set identity, project, and repository path; the installer will not overwrite a non-empty directory.

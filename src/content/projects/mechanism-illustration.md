@@ -35,6 +35,21 @@ en:
       text: Define the mechanism in JSON, choose the matching grammar from six layouts, then render one shared art layer and deterministic Chinese and English SVGs.
     - label: Status
       text: MIT licensed. v0.5.0 supports Pipeline, Filter, Loop, Branch, Before/After, and Dual Loop, with templates, tests, and a paired bilingual QA wall.
+  sections:
+    - heading: The problem
+      paragraphs:
+        - >-
+          A generated explainer can look interesting once and change composition the next time. Chinese text may be wrong, and bilingual versions easily lose their structural correspondence. Keeping one long prompt does not make repeated production reliable.
+    - heading: The approach
+      paragraphs:
+        - >-
+          The Skill first asks the Agent to write a mechanism contract: the trigger, stages, user decisions, output, and evidence boundary. Once the mechanism is clear, it selects the spatial grammar that actually matches the relationship — Pipeline, Filter, Loop, Branch, Before/After, or Dual Loop.
+        - >-
+          A zero-dependency Node.js renderer then turns the JSON into one shared art layer plus deterministic Chinese and English SVG text layers. The structure stays fixed while each language can use its own labels.
+    - heading: Current state
+      paragraphs:
+        - >-
+          Version 0.5.0 is MIT licensed and supports all six layouts. Automated tests check layer separation, bilingual labels, and layout rules, while qa:gallery produces a paired Chinese and English review wall after rendering.
   readmeSteps:
     - Install the repository as a Codex Skill or ask an Agent to read SKILL.md.
     - Copy a JSON template and replace it with documented stages and bilingual labels.

@@ -50,6 +50,25 @@ en:
       text: BotFather, GitHub, three Railway services (frontend, backend, PostgreSQL), webhooks, bilingual state, and share links.
     - label: Source
       text: Built from Blink Vibe Test. Every gotcha in it was hit while deploying Blink Vibe Test, a bilingual English and Russian Telegram personality test I delivered independently during my internship at Emotional Byte AI.
+  sections:
+    - heading: The problem
+      paragraphs:
+        - >-
+          A Telegram Mini App passes through BotFather, GitHub, Railway, PostgreSQL, webhooks, and Telegram's sharing entry point. One wrong setting can leave a product working locally but unable to reach production.
+    - heading: Where it came from
+      paragraphs:
+        - >-
+          This Skill grew out of the English and Russian deployment of Blink Vibe Test, a Telegram personality test for which I independently delivered the PRD, full-stack implementation, and three-service Railway deployment during my internship at Emotional Byte AI. The product is no longer running.
+        - >-
+          The Skill records problems encountered and resolved during that deployment: start Railway from an Empty Project, do not set PORT manually, use npm install in railway.json to avoid npm ci cache conflicts, include https:// in the webhook URL, and use the t.me/BOT_NAME/app format for the public share link.
+    - heading: What it covers
+      paragraphs:
+        - >-
+          The workflow covers a React and Vite frontend, a Node.js, Express, and Telegraf backend, PostgreSQL, Railway, and GitHub CI/CD. It is written as a sequence an Agent can execute while verifying the result at each critical stage.
+    - heading: Current state
+      paragraphs:
+        - >-
+          The Skill is MIT licensed and published as one SKILL.md that an Agent can read directly or a developer can follow by hand.
   facts:
     - value: '4'
       label: GitHub stars

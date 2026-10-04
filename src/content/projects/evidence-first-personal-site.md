@@ -35,6 +35,21 @@ en:
       text: It creates a private evidence ledger, separates public facts, permitted interpretation, and private or unverified material, then builds only after the owner approves the boundary.
     - label: Status
       text: MIT licensed. Supports new builds and revisions, bilingual content, GitHub Pages, and post-deployment verification.
+  sections:
+    - heading: The problem
+      paragraphs:
+        - >-
+          Personal sites often lack an evidence boundary rather than a page. Visitors cannot tell which projects are still accessible, which have ended, or which have private source. An Agent may fill those gaps with inflated contributions, stale status, or generic AI copy simply to make the site feel complete.
+    - heading: The approach
+      paragraphs:
+        - >-
+          The Skill starts with a private Evidence Ledger. It separates public facts, interpretations the owner has approved, and material that is private or still unverified.
+        - >-
+          Only after the owner confirms what may leave the machine does the Agent define the content contract for Projects, Writing, and About, build the Astro site, and verify bilingual content, mobile layouts, images, project status, and the final GitHub Pages deployment.
+    - heading: Current state
+      paragraphs:
+        - >-
+          The project is MIT licensed. The repository includes the main Skill, evidence and voice rules, guidance for revising an existing site, a bilingual content structure, an Astro foundation, and pre-publication QA. It does not invent a complete personal story or publish without explicit authorization.
   readmeSteps:
     - Install the Skill in the Agent's skills directory or ask the Agent to read SKILL.md from the repository.
     - Provide a public bio or resume, at least two projects, inspectable evidence, and a public contact route.

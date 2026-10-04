@@ -60,6 +60,10 @@ const projects = defineCollection({
       illustrationAlt: z.string().optional(),
       illustrationCaption: z.string().optional(),
       brief: z.array(z.object({ label: z.string(), text: z.string() })).min(2).max(3),
+      sections: z.array(z.object({
+        heading: z.string(),
+        paragraphs: z.array(z.string()).min(1),
+      })).min(1).optional(),
       readmeSteps: z.array(z.string()).optional(),
       reactions: z.array(z.object({ alt: z.string(), caption: z.string() })).optional(),
       facts: z.array(z.object({ value: z.string(), label: z.string() })).optional(),

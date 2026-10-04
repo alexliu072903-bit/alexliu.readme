@@ -40,6 +40,25 @@ en:
       text: The 2.0 product system and feature planning; the direction of bringing Context together for external agents, and behind it how Context is composed, ranked, and access-controlled, and how much the user can see of what has been handed to the agent.
     - label: Status
       text: A company product, source not public. 2.0 has shipped and keeps iterating.
+  sections:
+    - heading: The problem
+      paragraphs:
+        - >-
+          AirJelly is a context-aware proactive Agent that runs on the desktop. A user's work is scattered across chats, documents, tasks, and separate sessions, while external Agents such as Codex and Claude Code cannot see that background. People have to explain the same context again whenever the work moves.
+    - heading: My direction — Context for Agents
+      paragraphs:
+        - >-
+          I proposed bringing Context from different apps, tasks, and sessions together for external Agents, so the model can continue with the information the user has already created.
+        - >-
+          Turning that direction into a product also meant deciding how Context is assembled and ranked, how scope and Token Budget are controlled, how permissions and multiple instances work, and how users can see what has actually been handed to an Agent.
+    - heading: The 2.0 product system
+      paragraphs:
+        - >-
+          I helped shape the 2.0 product system around Agent Context and took part in feature planning and prioritization as the structure converged before release.
+    - heading: Current state
+      paragraphs:
+        - >-
+          AirJelly is a company product and its source is private. Version 2.0 has shipped and continues to evolve; the product itself is available on the official website.
   facts:
     - value: '2'
       label: desktop platforms, Apple Silicon Mac and Windows x64

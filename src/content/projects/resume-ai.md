@@ -39,6 +39,29 @@ en:
       text: Import the resume, the JD, and your experience notes, choose what goes into the Context, then rewrite round by round in the editor. It supports JD screenshot OCR, before-and-after diffs, and Chinese and English Word export.
     - label: Status
       text: No longer publicly running; only a screenshot of the last version remains. The source is private.
+  sections:
+    - heading: The problem
+      paragraphs:
+        - >-
+          Tailoring a resume to a new job description is mainly a judgment problem: which parts of a person's experience deserve to be included. Traditional templates change the layout, while general-purpose AI often turns different people into the same polished candidate.
+        - >-
+          I already had experience scattered across Obsidian, project documents, and GitHub. The material existed; what was missing was a stable way to connect it to one specific role and rewrite it in the language of that job.
+    - heading: The approach
+      paragraphs:
+        - >-
+          Resume.AI brought the existing resume, target JD, and personal experience notes into one workspace. The user chose which experience could enter the Context, the AI analyzed the gap and rewrote in rounds, and the user kept editing before exporting to Word.
+        - >-
+          The product moved from v0.4 to v2.1. Its goal narrowed from generating a better resume in one click to helping people find evidence in material they already had, without inventing a person who did not exist. Knowledge selection, role matching, conversational rewriting, and the editor became one path rather than separate features.
+    - heading: Cold start
+      paragraphs:
+        - >-
+          The project began after I saw a Xiaohongshu post about fraud in paid job-search coaching and decided to build a tool myself. I made the first version over a weekend with Claude Code, then published two Xiaohongshu posts that reached about 50,000 views, 5,000 likes, and 2,500 saves. They brought 519 unique visitors to the product site, with an average session of about three minutes.
+        - >-
+          These figures describe the cold-start period. They are not evidence of long-term retention.
+    - heading: Current state
+      paragraphs:
+        - >-
+          Resume.AI is no longer publicly available. The source is private, there is no live entry point, and the screenshot on this page comes from the final version.
   facts:
     - value: ~50,000
       label: views across two Xiaohongshu posts

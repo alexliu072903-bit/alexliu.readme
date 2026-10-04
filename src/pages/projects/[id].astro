@@ -56,7 +56,6 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
         {(en?.brief ?? []).map((row) => (
           <div class="project-brief__row"><h2>{row.label}</h2><p>{row.text}</p></div>
         ))}
-        <div class="project-brief__row"><h2>Full note</h2><p>The full project note is currently available in Chinese only.</p></div>
       </section>
       {en?.facts && (
         <section class="project-facts" aria-label="Figures">
@@ -85,6 +84,16 @@ const briefRows = useBriefLayout ? project.data.brief ?? [] : [];
             <a href={project.data.readme.url} target="_blank" rel="noreferrer">Full README <span aria-hidden="true">↗</span></a>
           </header>
           <ol>{en.readmeSteps.map((step) => <li>{step}</li>)}</ol>
+        </section>
+      )}
+      {en?.sections && (
+        <section class="project-prose project-prose--english" aria-label="Project note">
+          {en.sections.map((section) => (
+            <section>
+              <h2>{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </section>
+          ))}
         </section>
       )}
     </div>
