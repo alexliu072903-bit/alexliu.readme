@@ -8,6 +8,7 @@ on:
       - '.github/workflows/check-evidence-first-skill-sync.yml'
       - 'tsconfig.json'
   push:
+    branches: [main]
     paths:
       - 'skills/evidence-first-personal-site/**'
       - '.github/workflows/check-evidence-first-skill-sync.yml'
