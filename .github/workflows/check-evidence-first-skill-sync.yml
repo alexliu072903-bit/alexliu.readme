@@ -1,0 +1,72 @@
+name: Check Evidence-First Skill sync
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'skills/evidence-first-personal-site/**'
+      - '.github/workflows/check-evidence-first-skill-sync.yml'
+      - 'tsconfig.json'
+  push:
+    paths:
+      - 'skills/evidence-first-personal-site/**'
+      - '.github/workflows/check-evidence-first-skill-sync.yml'
+      - 'tsconfig.json'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-vendored-skill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            skills/evidence-first-personal-site/package-lock.json
+
+      - name: Read pinned upstream commit
+        id: upstream
+        shell: bash
+        run: |
+          commit=$(sed -n 's/^- Commit: //p' skills/evidence-first-personal-site/UPSTREAM.md)
+          test -n "$commit"
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+
+      - name: Download pinned upstream package
+        shell: bash
+        run: |
+          curl --fail --location --silent --show-error \
+            "https://github.com/alexliu072903-bit/evidence-first-personal-site/archive/${{ steps.upstream.outputs.commit }}.tar.gz" \
+            --output /tmp/evidence-first-personal-site.tar.gz
+          mkdir -p /tmp/evidence-first-personal-site-upstream
+          tar -xzf /tmp/evidence-first-personal-site.tar.gz --strip-components=1 -C /tmp/evidence-first-personal-site-upstream
+
+      - name: Compare vendored copy with upstream
+        shell: bash
+        run: |
+          diff -ru \
+            --exclude UPSTREAM.md \
+            /tmp/evidence-first-personal-site-upstream \
+            skills/evidence-first-personal-site
+
+      - name: Install vendored Skill dependencies
+        working-directory: skills/evidence-first-personal-site
+        run: npm ci
+
+      - name: Test vendored Skill
+        working-directory: skills/evidence-first-personal-site
+        run: npm test
+
+      - name: Install personal-site dependencies
+        run: npm ci
+
+      - name: Build personal site
+        run: npm run build
